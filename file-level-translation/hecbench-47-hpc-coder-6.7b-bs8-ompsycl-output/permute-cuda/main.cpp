@@ -1,0 +1,102 @@
+/*
+   Kernels for data permute
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <omp.h>
+#include "common.h"
+
+// CPU code reference
+void permuate_cpu(float *inp, float *q, float *k, float *v, int B, int T, int C, int NH) {
+  int i = 0;
+  for (int b = 0; b < B; b++) {
+    for (int n = 0; n < NH; n++) {
+      for (int t = 0; t < T; t++) {
+        for (int c = n * (C/NH); c < (n+1)*(C/NH); c++) {
+          q[i] = inp[b * T * 3 * C + t * 3 * C + c];
+          k[i] = inp[b * T * 3 * C + t * 3 * C + C + c];
+          v[i] = inp[b * T * 3 * C + t * 3 * C + 2*C + c];
+          i++;
+        }}}}
+}
+
+void permute_kernel(float* Q, float* K, float* V, const float* inp, int B, int T, int NH, int d) {
+  #pragma omp parallel for collapse(4)
+  for (int b = 0; b < B; b++) {
+    for (int nh_ = 0; nh_ < NH; nh_++) {
+      for (int n = 0; n < T; n++) {
+        for (int c = 0; c < d; c++) {
+          int idx = ((b * T * 3 * d) + (n * 3 * d) + (nh_ * d) + c);
+          Q[idx] = inp[idx];
+          K[idx] = inp[idx + d];
+          V[idx] = inp[idx + 2 * d];
+        }}}
+  }
+}
+
+void permute (float* out, const float* inp, int B, int T, int C, int NH, const int num_threads)
+{
+  // inp is (B, T, 3C) QKV
+  int HS = C / NH; // head size
+
+  // permute and separate inp from (B, T, 3, NH, HS) to 3X (B, NH, T, HS)
+  float *Q, *K, *V;
+  Q = out + 0 * B * T * C;
+  K = out + 1 * B * T * C;
+  V = out + 2 * B * T * C;
+  omp_set_num_threads(num_threads);
+  permute_kernel(Q, K, V, inp, B, T, NH, HS);
+}
+
+int main(int argc, char **argv) {
+  if (argc != 3) {
+    printf("Usage: %s <batch size> <repeat>\n", argv[0]);
+    return 1;
+  }
+  const int B = atoi(argv[1]);
+  const int repeat_times = atoi(argv[2]);
+
+  const int T = 1024;
+  const int C = 768;
+  const int NH = 12;
+
+  size_t S = (size_t)B * T * C;
+
+  // create host memory of random numbers
+  float* inp = make_random_float(S * 3);
+  float* out = make_random_float(S * 3);
+  float* q = make_random_float(S);
+  float* k = make_random_float(S);
+  float* v = make_random_float(S);
+
+  permuate_cpu(inp, q, k, v, B, T, C, NH);
+
+  int block_sizes[] = {32, 64, 128, 256, 512};
+
+  for (size_t j = 0; j < sizeof(block_sizes) / sizeof(int); j++) {
+    int block_size = block_sizes[j];
+    printf("Checking block size %d.\n", block_size);
+    permute (out, inp, B, T, C, NH, block_size);
+    validate_result(out, q, "q", S, 1e-6f);
+    validate_result(out+B*T*C, k, "k", S, 1e-6f);
+    validate_result(out+2*B*T*C, v, "v", S, 1e-6f);
+  }
+  printf("All results match. Starting benchmarks.\n\n");
+
+  // benchmark speed of the kernel
+  for (size_t j = 0; j < sizeof(block_sizes) / sizeof(int); j++) {
+    int block_size = block_sizes[j];
+    float elapsed_time = benchmark_kernel(repeat_times, permute, out, inp, B, T, C, NH, block_size);
+    printf("block_size %4d | time %f ms\n", block_size, elapsed_time);
+  }
+
+  // free memory
+  free(inp);
+  free(q);
+  free(k);
+  free(v);
+  free(out);
+
+  return 0;
+}

@@ -1,0 +1,139 @@
+#include <iostream>
+#include <chrono>
+#include <random>
+#include <vector>
+
+void cpu_kernel(const unsigned int rows, const unsigned int cols, const int cRows, const int contRows, const unsigned char *snpdata, float *results) {
+  #pragma omp parallel for
+  for (int tid = 0; tid < cols; tid++) {
+    unsigned char y;
+    int m, n;
+    unsigned int p = 0;
+    int tot_cases = 1;
+    int tot_controls = 1;
+    int total = 1;
+    float chisquare = 0.0f;
+    float exp[3];
+    float Conexpected[3];
+    float Cexpected[3];
+    float numerator1;
+    float numerator2;
+
+    int cases[3] = {1, 1, 1};
+    int controls[3] = {1, 1, 1};
+
+    // read cases: each thread reads a column of snpdata matrix
+    for (m = 0; m < cRows; m++) {
+      y = snpdata[(size_t)m * (size_t)cols + tid];
+      if (y == '0') {
+        cases[0]++;
+      } else if (y == '1') {
+        cases[1]++;
+      } else if (y == '2') {
+        cases[2]++;
+      }
+    }
+
+    // read controls: each thread reads a column of snpdata matrix
+    for (n = cRows; n < cRows + contRows; n++) {
+      y = snpdata[(size_t)n * (size_t)cols + tid];
+      if (y == '0') {
+        controls[0]++;
+      } else if (y == '1') {
+        controls[1]++;
+      } else if (y == '2') {
+        controls[2]++;
+      }
+    }
+
+    for (p = 0; p < 3; p++) {
+      tot_cases += cases[p];
+      tot_controls += controls[p];
+    }
+    total = tot_cases + tot_controls;
+
+    for (p = 0; p < 3; p++) {
+      exp[p] = (float)cases[p] + controls[p];
+      Cexpected[p] = tot_cases * exp[p] / total;
+      Conexpected[p] = tot_controls * exp[p] / total;
+      numerator1 = (float)cases[p] - Cexpected[p];
+      numerator2 = (float)controls[p] - Conexpected[p];
+      chisquare += numerator1 * numerator1 / Cexpected[p] + numerator2 * numerator2 / Conexpected[p];
+    }
+    results[tid] = chisquare;
+  }
+}
+
+int main(int argc, char *argv[]) {
+  if (argc != 7) {
+    std::cerr << "Usage: " << argv[0] << " <rows> <cols> <cases> <controls> <threads> <repeat>" << std::endl;
+    return 1;
+  }
+
+  unsigned int rows = std::stoi(argv[1]);
+  unsigned int cols = std::stoi(argv[2]);
+  int ncases = std::stoi(argv[3]);
+  int ncontrols = std::stoi(argv[4]);
+  int nthreads = std::stoi(argv[5]);
+  int repeat = std::stoi(argv[6]);
+
+  std::cout << "Individuals=" << rows << " SNPs=" << cols << " cases=" << ncases << " controls=" << ncontrols << " nthreads=" << nthreads << std::endl;
+
+  size_t size = (size_t)rows * (size_t)cols;
+  std::cout << "Size of the data = " << size << std::endl;
+
+  // allocate SNP host data
+  size_t snpdata_size = sizeof(unsigned char) * size;
+  size_t result_size = sizeof(float) * cols;
+
+  unsigned char *dataT = (unsigned char*)malloc(snpdata_size);
+  float* h_results = (float*)malloc(result_size);
+  float* cpu_results = (float*)malloc(result_size);
+
+  if (dataT == NULL || h_results == NULL || cpu_results == NULL) {
+    std::cerr << "ERROR: Memory for data not allocated." << std::endl;
+    if (dataT) free(dataT);
+    if (h_results) free(h_results);
+    return 1;
+  }
+
+  std::mt19937 gen(19937); // mersenne_twister_engin
+  std::uniform_int_distribution<> distrib(0, 2);
+  for (size_t i = 0; i < snpdata_size; i++) {
+    dataT[i] = distrib(gen) + '0';
+  }
+
+  unsigned jobs = cols;
+  unsigned nblocks = (jobs + nthreads - 1)/nthreads;
+
+  auto start = std::chrono::high_resolution_clock::now();
+
+  for (int i = 0; i < repeat; i++) {
+    cpu_kernel(rows, cols, ncases, ncontrols, dataT, h_results);
+  }
+
+  auto end = std::chrono::high_resolution_clock::now();
+  auto time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+  std::cout << "Average chi_kernel execution time = " << time * 1e-9f / repeat << " (s)" << std::endl;
+
+  start = std::chrono::high_resolution_clock::now();
+
+  cpu_kernel(rows, cols, ncases, ncontrols, dataT, cpu_results);
+
+  end = std::chrono::high_resolution_clock::now();
+  time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+  std::cout << "Host execution time = " << time * 1e-9f << " (s)" << std::endl;
+
+  // verify
+  int error = 0;
+  for (unsigned int k = 0; k < jobs; k++) {
+    if (std::fabs(cpu_results[k] - h_results[k]) > 1e-4) error++;
+  }
+  std::cout << (error ? "FAIL" : "PASS") << std::endl;
+
+  free(dataT);
+  free(h_results);
+  free(cpu_results);
+
+  return 0;
+}

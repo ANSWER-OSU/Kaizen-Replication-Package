@@ -1,0 +1,1 @@
+The main function reads options and initializes key variables. Then, the function runs the simulation over the Cartier-Schwartz binomial tree and prints the results.
