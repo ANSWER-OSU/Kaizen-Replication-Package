@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,no matching function for call to 'ChannelSumNCHW',"Found 91 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:82:5: error: no matching function for call to 'ChannelSumNCHW'
+   82 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:19:6: note: candidate template ignored: couldn't infer template argument 'kBlockDimX'
+   19 | void ChannelSumNCHW(const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T*__restrict__ sum, T*__restrict__ sumsq)
+      |      ^",000 001 003 011 012 013 014 015 016 019 020 022 023 025 026 028 029 030 036 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 077 080 081 083 086 091 093 094 097 099 101 103 106 107 108 109 111 113 114 115 116 119 120 121 122 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 166 167 172 174 176 177 182 187 188
+029,use of undeclared identifier 'threadIdx',"OMP STATUS: 2
+    -> FAIL
+  [Variant 029] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:9: error: use of undeclared identifier 'threadIdx'
+   33 |     if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |         ^
+main.cpp:33:29: error: use of undeclared identifier 'threadIdx'
+   33 |     if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |                             ^",029 138 145 156 172
+038,use of undeclared identifier 'BlockReduce',"   93 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:19:6: note: candidate template ignored: couldn't infer template argument 'kBlockDimX'
+   19 | void ChannelSumNCHW(const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T*__restrict__ sum, T*__restrict__ sumsq)
+      |      ^
+main.cpp:68:7: error: use of undeclared identifier 'BlockReduce'
+   68 |       BlockReduce(m_val, v_val);
+      |       ^
+main.cpp:113:5: note: in instantiation of function template specialization 'ChannelSumNHWC<int>' requested here
+  113 |     ChannelSumNHWC<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^",038
+064,statement after '#pragma omp parallel for' must be a for loop,"OMP STATUS: 2
+    -> FAIL
+  [Variant 064] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:46:5: error: statement after '#pragma omp parallel for' must be a for loop
+   46 |     if (omp_get_thread_num() == 0) {
+      |     ^
+main.cpp:97:5: error: no matching function for call to 'ChannelSumNCHW'
+   97 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",064 069 101 108 111 116 119 135
+086,argument to 'num_threads' clause must be a strictly positive integer value,"OMP STATUS: 2
+    -> FAIL
+  [Variant 086] Building on worker 7 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:42: error: argument to 'num_threads' clause must be a strictly positive integer value
+   48 |     #pragma omp parallel for num_threads(0)
+      |                                          ^
+main.cpp:103:5: error: no matching function for call to 'ChannelSumNCHW'
+  103 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",086 130
+114,use of undeclared identifier 'c',"OMP STATUS: 2
+    -> FAIL
+  [Variant 114] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:44:13: error: use of undeclared identifier 'c'
+   44 |         sum[c] = m_val;
+      |             ^
+main.cpp:45:15: error: use of undeclared identifier 'c'
+   45 |         sumsq[c] = v_val;
+      |               ^",114 172

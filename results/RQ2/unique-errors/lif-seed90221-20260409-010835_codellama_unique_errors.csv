@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+366,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'","OMP STATUS: 0
+    -> PASS
+  [Variant 366] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:72:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   72 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:75:5: error: use of undeclared identifier 'temp_buf863'
+   75 | if (temp_buf863 < numNeurons)
+      |     ^",366
+366,use of undeclared identifier 'temp_buf863',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:72:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   72 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:75:5: error: use of undeclared identifier 'temp_buf863'
+   75 | if (temp_buf863 < numNeurons)
+      |     ^
+main.cpp:77:24: error: use of undeclared identifier 'temp_buf863'
+   77 |     int neuron_index = temp_buf863 % neurons_per_item;
+      |                        ^",366
+797,use of undeclared identifier 'i',"OMP STATUS: 0
+    -> PASS
+  [Variant 797] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:76:5: error: use of undeclared identifier 'i'
+   76 | if (i < numNeurons)
+      |     ^
+main.cpp:78:22: error: use of undeclared identifier 'i'
+   78 |     int tmp_data51 = i % neurons_per_item;
+      |                      ^",797

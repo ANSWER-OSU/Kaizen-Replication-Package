@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 69 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:120:1: error: expected unqualified-id
+  120 | ### Context:
+      | ^
+main.cpp:214:3: error: use of undeclared identifier 'eval'
+  214 |   eval<float>(nrows, repeat);
+      |   ^",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 115 116 119 120 121 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150
+000,use of undeclared identifier 'eval',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:120:1: error: expected unqualified-id
+  120 | ### Context:
+      | ^
+main.cpp:214:3: error: use of undeclared identifier 'eval'
+  214 |   eval<float>(nrows, repeat);
+      |   ^
+main.cpp:217:3: error: use of undeclared identifier 'eval'
+  217 |   eval<double>(nrows, repeat);
+      |   ^",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 115 116 119 120 121 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150
+121,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 2","OMP STATUS: 2
+    -> FAIL
+  [Variant 121] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:93:42: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 2
+   93 |     for (int j = 0; j < numThreads; j++) {
+      |                                          ^
+main.cpp:91:61: note: as specified in 'collapse' clause
+   91 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",121

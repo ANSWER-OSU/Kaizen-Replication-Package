@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+108,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 108] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:60:1: error: extraneous closing brace ('}')
+   60 | }
+      | ^
+main.cpp:39:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   39 |   for (int i = 0; false; i++) {
+      |                   ^~~~~",108
+108,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:60:1: error: extraneous closing brace ('}')
+   60 | }
+      | ^
+main.cpp:39:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   39 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:163:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  163 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^",108 215 219 415
+108,use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?,"    -> PASS
+  [Variant 108] Building (mode=omp)
+BUILDING OMP VARIANT: /scratch/projects/anklesan/LLM-Code-Porting-Testing/kaizen-output/dense-embedding-seed68351-20260416-185334/translated-outputs-hpccoder/main-108.cpp
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -DLIBOMP -c main.cpp -o main.o
+main.cpp:149:5: error: use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?
+  149 |     reference(input, dense, output_ref, ncols, batch_size, offset);
+      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:14:6: note: 'omp_program::reference' declared here
+   14 | void reference(",108
+108,use of undeclared identifier 'dense_esuhm'; did you mean 'dense_esuhm2'?,"      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:14:6: note: 'omp_program::reference' declared here
+   14 | void reference(
+      |      ^
+main.cpp:163:11: error: use of undeclared identifier 'dense_esuhm'; did you mean 'dense_esuhm2'?
+  163 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^~~~~~~~~~~
+      |           dense_esuhm2
+main.cpp:65:6: note: 'dense_esuhm2' declared here
+   65 | void dense_esuhm2(",108

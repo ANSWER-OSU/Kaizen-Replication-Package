@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 158 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:166:11: error: use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?
+  166 |           dense_esuhm2(batch_size, block_size, input, dense, output_k2, ncols, offset);
+      |           ^~~~~~~~~~~~",000 001 003 011 012 013 014 015 016 019 022 025 026 028 030 038 040 042 043 046 049 050 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 107 108 109 113 114 115 116 119 120 121 128 129 130 131 133 134 135 136 138 140 146 148 149 150 154 156 157 158 162 163 167 172 176 182 187 188 191 193 194 197 202 205 209 213 219 220 221 222 224 229 230 231 236 244 245 247 248 249 250 251 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373
+000,use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:166:11: error: use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?
+  166 |           dense_esuhm2(batch_size, block_size, input, dense, output_k2, ncols, offset);
+      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, int embedding_dim, const int* offset) {",000 001 003 011 012 013 014 015 016 019 022 025 026 028 030 038 040 042 043 046 049 050 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 107 108 109 113 114 115 116 119 120 121 128 129 130 131 133 134 135 136 138 140 146 148 149 150 154 156 157 158 162 163 167 172 176 182 187 188 191 193 194 197 202 205 209 213 219 220 221 222 224 229 230 231 236 244 245 247 248 249 250 251 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373
+081,use of undeclared identifier 'grain_size',"OMP STATUS: 2
+    -> FAIL
+  [Variant 081] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:40:42: error: use of undeclared identifier 'grain_size'
+   40 |     #pragma omp parallel for num_threads(grain_size)
+      |                                          ^
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^",081 317
+221,invalid operands to binary expression ('float *' and 'float *'),"      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, const int embedding_dim, const int* offset) {
+      |      ^
+main.cpp:50:42: error: invalid operands to binary expression ('float *' and 'float *')
+   50 |       #pragma omp parallel for reduction(+ : output) num_threads(grain_size)
+      |                                          ^   ~~~~~~
+main.cpp:163:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  163 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^",221

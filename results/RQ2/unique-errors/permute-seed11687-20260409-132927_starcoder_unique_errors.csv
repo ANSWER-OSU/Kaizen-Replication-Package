@@ -1,0 +1,111 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,use of undeclared identifier 'C',"   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:34:27: warning: self-comparison always evaluates to false [-Wtautological-compare]
+   34 |         for (int d = 0; d < d; d++) {
+      |                           ^
+main.cpp:35:25: error: use of undeclared identifier 'C'
+   35 |           int idx = b * C * T + nh * T * d + t * d + d;
+      |                         ^
+main.cpp:36:36: error: use of undeclared identifier 'C'
+   36 |           Q[idx] = inp[b * T * 3 * C + t * 3 * C + nh * C + d];
+      |                                    ^",000 011 012 014 015 023 026 029 038 040 046 050 059 060 064 069 091 093 094 097 101 106 107 108 109 115 116 119 128 129 131 135 140 146 148 156 157 162 163 167 172 182 188 191 193 197 205 211 220 221 224 229 230 236 244 247 253 261 266 268 270 275 286 287 288 289 290 291 298 301 310 320 323 329 332 339 346 351 355 358 360 365 369 373 381 389 395 405 407 419 422 425 432 438 440 447 451 453 454 456 478 485 486 491 510 515 518 519 520 532 534 536 537 544 549 556 559 561 565 569 572 608 618 625 628 633 635 636 640 642 655 661
+000,expected unqualified-id,"   38 |           V[idx] = inp[b * T * 3 * C + t * 3 * C + nh * C + d + 2 * C];
+      |                                                         ^
+main.cpp:38:69: error: use of undeclared identifier 'C'
+   38 |           V[idx] = inp[b * T * 3 * C + t * 3 * C + nh * C + d + 2 * C];
+      |                                                                     ^
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:98:7: error: use of undeclared identifier 'permute'
+   98 |       permute (out, inp, B, T, C, NH, block_size);
+      |       ^",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 115 116 119 120 121 122 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 167 172 174 176 182 187 188 191 193 194 197 202 205 209 211 213 219 220 221 222 224 229 230 231 236 244 245 247 248 249 250 251 253 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373 377 381 382 384 386 389 391 392 395 397 400 401 403 405 407 413 414 419 422 425 432 433 436 438 440 443 444 445 447 449 450 451 453 454 456 464 467 473 475 477 478 485 486 487 488 491 496 503 510 512 515 517 518 519 520 522 528 532 533 534 535 536 537 544 545 546 548 549 551 556 559 561 562 565 569 570 576 577 578 580 582 586 591 592 596 600 602 604 605 606 608 610 611 612 613 615 617 618 620 621 623 625 627 628 630 631 633 634 635 637 640 642 646 647 649 651 652 655 661
+000,use of undeclared identifier 'permute',"   38 |           V[idx] = inp[b * T * 3 * C + t * 3 * C + nh * C + d + 2 * C];
+      |                                                                     ^
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:98:7: error: use of undeclared identifier 'permute'
+   98 |       permute (out, inp, B, T, C, NH, block_size);
+      |       ^
+main.cpp:108:59: error: use of undeclared identifier 'permute'
+  108 |       float elapsed_time = benchmark_kernel(repeat_times, permute,
+      |                                                           ^",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 115 116 119 120 121 122 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 167 172 174 176 182 187 188 191 193 194 197 202 205 209 211 213 219 220 221 222 224 229 230 231 236 244 245 247 248 249 250 251 253 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373 377 381 382 384 386 389 391 392 395 397 400 401 403 405 407 413 414 419 422 425 432 433 436 438 440 443 444 445 447 449 450 451 453 454 456 464 467 473 475 477 478 485 486 487 488 491 496 503 510 512 515 517 518 519 520 522 528 532 533 534 535 536 537 544 545 546 548 549 551 556 559 561 562 565 569 570 576 577 578 580 582 586 591 592 596 600 602 604 605 606 608 610 611 612 613 615 617 618 620 621 623 625 627 628 630 631 633 634 635 637 640 642 646 647 649 651 652 655 661
+040,use of undeclared identifier 'rest',"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:30:17: error: use of undeclared identifier 'rest'
+   30 |         int d = rest % d;
+      |                 ^
+main.cpp:31:36: error: use of undeclared identifier 'C'
+   31 |         int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh * d) + d;
+      |                                    ^",040 119
+050,use of undeclared identifier 'nh',"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:30:73: error: use of undeclared identifier 'nh'
+   30 |       int inp_idx = (b * T * 3 * C) + (tmp_val529 * 3 * C) + (0 * C) + (nh * d) + d_;
+      |                                                                         ^
+main.cpp:30:34: error: use of undeclared identifier 'C'
+   30 |       int inp_idx = (b * T * 3 * C) + (tmp_val529 * 3 * C) + (0 * C) + (nh * d) + d_;
+      |                                  ^",050
+106,redefinition of 'd_',"   31 |           int rest = idx % (C * T);
+      |                             ^
+main.cpp:32:26: error: use of undeclared identifier 'C'
+   32 |           int b = idx / (C * T);
+      |                          ^
+main.cpp:40:15: error: redefinition of 'd_'
+   40 |           int d_ = rest % d;
+      |               ^
+main.cpp:29:18: note: previous definition is here
+   29 |         for (int d_ = 0; d_ < d; d_++) {
+      |                  ^",106
+156,use of undeclared identifier 'n',"   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:30:25: error: use of undeclared identifier 'C'
+   30 |           int idx = b * C * T + nh_ * T * d + t * d + d_;
+      |                         ^
+main.cpp:31:44: error: use of undeclared identifier 'n'
+   31 |           int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + d_;
+      |                                            ^
+main.cpp:31:52: error: use of undeclared identifier 'C'
+   31 |           int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + d_;
+      |                                                    ^",156 329
+193,use of undeclared identifier 'dummy_ptr738',"   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:30:25: error: use of undeclared identifier 'C'
+   30 |           int idx = b * C * T + nh_ * T * d + n * d + d_;
+      |                         ^
+main.cpp:31:80: error: use of undeclared identifier 'dummy_ptr738'
+   31 |           int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (nh_ * C) + (0 * C) + (dummy_ptr738 * d) + d_;
+      |                                                                                ^
+main.cpp:31:38: error: use of undeclared identifier 'C'
+   31 |           int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (nh_ * C) + (0 * C) + (dummy_ptr738 * d) + d_;
+      |                                      ^",193
+224,use of undeclared identifier 'd_',"   30 |         Q[b * C * T + nh_ * C * T + n * C + d_] = inp[inp_idx];
+      |                             ^
+main.cpp:30:41: error: use of undeclared identifier 'C'
+   30 |         Q[b * C * T + nh_ * C * T + n * C + d_] = inp[inp_idx];
+      |                                         ^
+main.cpp:30:45: error: use of undeclared identifier 'd_'
+   30 |         Q[b * C * T + nh_ * C * T + n * C + d_] = inp[inp_idx];
+      |                                             ^
+main.cpp:31:15: error: use of undeclared identifier 'C'
+   31 |         K[b * C * T + nh_ * C * T + n * C + d_] = inp[inp_idx + C];
+      |               ^",224 230 287 405 477 519 655
+537,use of undeclared identifier 'dead_var532',"   29 |         int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + dead_var532;
+      |                                                  ^
+main.cpp:29:60: error: use of undeclared identifier 'C'
+   29 |         int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + dead_var532;
+      |                                                            ^
+main.cpp:29:77: error: use of undeclared identifier 'dead_var532'
+   29 |         int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + dead_var532;
+      |                                                                             ^
+main.cpp:30:15: error: use of undeclared identifier 'C'
+   30 |         Q[b * C * T + nh_ * T * d + n * d + dead_var532] = inp[inp_idx];
+      |               ^",537 572

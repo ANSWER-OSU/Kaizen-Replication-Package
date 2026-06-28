@@ -1,0 +1,122 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+028,use of undeclared identifier 'tmp_tile'; did you mean 'tmpfile'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 028] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:9: error: use of undeclared identifier 'tmp_tile'; did you mean 'tmpfile'?
+   49 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |         ^~~~~~~~
+      |         tmpfile
+/usr/include/stdio.h:188:14: note: 'tmpfile' declared here
+  188 | extern FILE *tmpfile (void)",028 030 042 049 077 136 148 151 177 222 286 432 478 577 594
+028,subscript of pointer to function type 'FILE *()' (aka '_IO_FILE *()'),"      |         ^~~~~~~~
+      |         tmpfile
+/usr/include/stdio.h:188:14: note: 'tmpfile' declared here
+  188 | extern FILE *tmpfile (void)
+      |              ^
+main.cpp:49:9: error: subscript of pointer to function type 'FILE *()' (aka '_IO_FILE *()')
+   49 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |         ^~~~~~~~
+main.cpp:49:26: error: use of undeclared identifier 'input_tile'
+   49 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                          ^",028 030 042 049 077 136 148 151 177 222 286 432 478 577 594
+028,use of undeclared identifier 'input_tile',"  188 | extern FILE *tmpfile (void)
+      |              ^
+main.cpp:49:9: error: subscript of pointer to function type 'FILE *()' (aka '_IO_FILE *()')
+   49 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |         ^~~~~~~~
+main.cpp:49:26: error: use of undeclared identifier 'input_tile'
+   49 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                          ^
+main.cpp:49:45: error: use of undeclared identifier 'input_tile'
+   49 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                                             ^",028 030 042 049 077 136 148 151 177 222 286 432 478 577 594
+028,use of undeclared identifier 'transformed_tile'; did you mean 'transformed_filter'?,"   53 |         tmp_tile[3][j] = input_tile[1][j] - input_tile[3][j];
+      |                          ^
+main.cpp:53:45: error: use of undeclared identifier 'input_tile'
+   53 |         tmp_tile[3][j] = input_tile[1][j] - input_tile[3][j];
+      |                                             ^
+main.cpp:57:9: error: use of undeclared identifier 'transformed_tile'; did you mean 'transformed_filter'?
+   57 |         transformed_tile[i][0] = tmp_tile[i][0] - tmp_tile[i][2];
+      |         ^~~~~~~~~~~~~~~~
+      |         transformed_filter
+main.cpp:14:35: note: 'transformed_filter' declared here
+   14 |     const DATA_TYPE *__restrict__ transformed_filter ,",028 030 042 049 077 136 148 151 177 222 286 432 478 577 594
+028,"subscripted value is not an array, pointer, or vector","      |         ^~~~~~~~~~~~~~~~
+      |         transformed_filter
+main.cpp:14:35: note: 'transformed_filter' declared here
+   14 |     const DATA_TYPE *__restrict__ transformed_filter ,
+      |                                   ^
+main.cpp:57:28: error: subscripted value is not an array, pointer, or vector
+   57 |         transformed_tile[i][0] = tmp_tile[i][0] - tmp_tile[i][2];
+      |         ~~~~~~~~~~~~~~~~~~~^~
+main.cpp:57:34: error: use of undeclared identifier 'tmp_tile'; did you mean 'tmpfile'?
+   57 |         transformed_tile[i][0] = tmp_tile[i][0] - tmp_tile[i][2];
+      |                                  ^~~~~~~~",028 030 042 049 077 136 148 151 177 222 286 432 478 577 594
+149,extraneous closing brace ('}'),"OMP STATUS: 2
+    -> FAIL
+  [Variant 149] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:99:1: error: extraneous closing brace ('}')
+   99 | }
+      | ^
+1 error generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",149 363
+149,use of undeclared identifier 'winograd_conv2d'; did you mean 'omp_program::winograd_conv2d'?,"    -> FAIL
+  [Variant 149] Building (mode=omp)
+BUILDING OMP VARIANT: /scratch/projects/anklesan/LLM-Code-Porting-Testing/kaizen-output/winograd-seed11687-20260409-132927/translated-outputs-codellama/main-149.cpp
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -DLIBOMP -c main.cpp -o main.o
+main.cpp:187:7: error: use of undeclared identifier 'winograd_conv2d'; did you mean 'omp_program::winograd_conv2d'?
+  187 |       winograd_conv2d(numTeams, numThreads, A, C, B,
+      |       ^~~~~~~~~~~~~~~
+      |       omp_program::winograd_conv2d
+main.cpp:10:6: note: 'omp_program::winograd_conv2d' declared here
+   10 | void winograd_conv2d(",149 363
+412,use of undeclared identifier 'N',"OMP STATUS: 0
+    -> PASS
+  [Variant 412] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:26:68: error: use of undeclared identifier 'N'
+   26 |     for (int tile_j = omp_get_thread_num() / tile_i_size; tile_j < N / tile_j_size; tile_j += omp_get_num_teams()) {
+      |                                                                    ^
+main.cpp:27:70: error: use of undeclared identifier 'N'
+   27 |       for (int tile_i = omp_get_thread_num() % tile_i_size; tile_i < N / tile_i_size; tile_i += tile_i_size) {
+      |                                                                      ^",412
+548,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 548] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:31:9: error: cannot return from OpenMP region
+   31 |         return;
+      |         ^
+main.cpp:33:11: error: redefinition of 'temp_data104'
+   33 |       int temp_data104 = omp_get_thread_num() + offset_i;
+      |           ^",548
+548,redefinition of 'temp_data104',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:31:9: error: cannot return from OpenMP region
+   31 |         return;
+      |         ^
+main.cpp:33:11: error: redefinition of 'temp_data104'
+   33 |       int temp_data104 = omp_get_thread_num() + offset_i;
+      |           ^
+main.cpp:28:11: note: previous definition is here
+   28 |       int temp_data104 = omp_get_thread_num() % (tile_i_size + 2);
+      |           ^",548
+548,redefinition of 'tile_j',"   33 |       int temp_data104 = omp_get_thread_num() + offset_i;
+      |           ^
+main.cpp:28:11: note: previous definition is here
+   28 |       int temp_data104 = omp_get_thread_num() % (tile_i_size + 2);
+      |           ^
+main.cpp:34:11: error: redefinition of 'tile_j'
+   34 |       int tile_j = omp_get_thread_num() / (tile_i_size + 2) + offset_j;
+      |           ^
+main.cpp:29:11: note: previous definition is here
+   29 |       int tile_j = omp_get_thread_num() / (tile_i_size + 2);
+      |           ^",548

@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+023,use of undeclared identifier 'yOffset'; did you mean 'xOffset'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 023] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:15: error: use of undeclared identifier 'yOffset'; did you mean 'xOffset'?
+   38 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |               ^~~~~~~
+      |               xOffset
+main.cpp:26:13: note: 'xOffset' declared here
+   26 |   const int xOffset = 2 * split_dim_size * N;",023 043 063 086 114 130 154 187 224 260 346
+121,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"OMP STATUS: 0
+    -> PASS
+  [Variant 121] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   29 |   while ((3 + 4) < 5) {
+      |   ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",121
+298,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 298] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:55:1: error: function definition is not allowed here
+   55 | {
+      | ^
+main.cpp:146:17: error: expected '}'
+  146 | #endif // LIBOMP
+      |                 ^",298
+298,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:55:1: error: function definition is not allowed here
+   55 | {
+      | ^
+main.cpp:146:17: error: expected '}'
+  146 | #endif // LIBOMP
+      |                 ^
+main.cpp:25:1: note: to match this '{'
+   25 | {
+      | ^",298
+360,"comparison between pointer and integer ('char *(*)(const char *, int) noexcept(true)' and 'int')","OMP STATUS: 0
+    -> PASS
+  [Variant 360] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:11: error: comparison between pointer and integer ('char *(*)(const char *, int) noexcept(true)' and 'int')
+   33 | if (index >= M * split_dim_size * N) return;
+      |     ~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:35:23: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   35 |   const int i = index / split_dim_size / N;
+      |                 ~~~~~ ^ ~~~~~~~~~~~~~~",360
+360,"invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:11: error: comparison between pointer and integer ('char *(*)(const char *, int) noexcept(true)' and 'int')
+   33 | if (index >= M * split_dim_size * N) return;
+      |     ~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:35:23: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   35 |   const int i = index / split_dim_size / N;
+      |                 ~~~~~ ^ ~~~~~~~~~~~~~~
+main.cpp:39:21: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   39 | const int j = index / N % split_dim_size;
+      |               ~~~~~ ^ ~",360

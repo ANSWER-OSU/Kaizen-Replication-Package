@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+164,use of undeclared identifier 'i',"OMP STATUS: 0
+    -> PASS
+  [Variant 164] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:75:5: error: use of undeclared identifier 'i'
+   75 | if (i < numNeurons)
+      |     ^
+main.cpp:77:24: error: use of undeclared identifier 'i'
+   77 |     int neuron_index = i % neurons_per_item;
+      |                        ^",164

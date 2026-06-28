@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+118,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 118] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:64:29: error: cannot return from OpenMP region
+   64 |     if (i >= nx || j >= ny) return;
+      |                             ^
+1 error generated.
+make: *** [Makefile:57: main.o] Error 1
+OMP STATUS: 2",118 165 351 371
+337,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 0
+    -> PASS
+  [Variant 337] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:53:5: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   53 |     float dummy_val33 = 3.14f;
+      |     ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",337
+337,function definition is not allowed here,"   53 |     float dummy_val33 = 3.14f;
+      |     ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^
+main.cpp:452:74: error: function definition is not allowed here
+  452 |                   const float inv_temp, const long long nx, const long long ny) {
+      |                                                                                 ^
+main.cpp:464:38: error: function definition is not allowed here
+  464 | static void usage(const char *pname) {
+      |                                      ^",337
+337,expected '}',"  464 | static void usage(const char *pname) {
+      |                                      ^
+main.cpp:494:33: error: function definition is not allowed here
+  494 | int main(int argc, char **argv) {
+      |                                 ^
+main.cpp:626:2: error: expected '}'
+  626 | }
+      |  ^
+main.cpp:50:223: note: to match this '{'
+   50 | void update_lattice(const int numTeams, const int numThreads, signed char* lattice, const signed char* __restrict op_lattice, const float* __restrict randvals, const float inv_temp, const long long nx, const long long ny) {
+      |                                                                                                                                                                                                                               ^",337

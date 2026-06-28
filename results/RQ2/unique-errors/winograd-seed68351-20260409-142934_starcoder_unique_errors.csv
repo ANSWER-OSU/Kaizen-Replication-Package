@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 257 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:82:1: error: expected unqualified-id
+   82 | ### Context:
+      | ^
+1 error generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",000 001 003 005 007 018 019 020 022 024 026 027 029 032 033 034 037 039 040 045 047 049 050 051 054 065 066 067 068 070 074 078 079 080 081 084 085 086 089 090 092 093 094 095 098 100 101 103 106 107 108 111 113 114 116 117 120 122 124 125 128 132 133 135 138 140 141 146 151 153 155 156 161 162 168 169 174 176 177 179 180 181 183 184 185 186 188 190 192 193 194 195 198 203 206 207 208 209 211 212 213 214 215 216 219 220 221 222 223 225 227 229 232 234 237 238 239 249 250 257 258 259 270 271 272 274 275 279 282 283 284 286 290 292 293 295 298 301 302 305 306 311 313 314 317 320 323 324 325 326 331 334 335 336 337 338 340 341 344 346 348 349 351 354 357 359 362 368 369 371 376 377 383 384 385 386 388 390 392 393 394 400 403 406 407 408 412 413 415 416 417 418 421 423 424 425 430 431 433 434 442 443 446 448 451 452 456 458 459 461 465 468 469 475 476 478 479 480 481 483 484 485 486 489 490 492 498 506 508 512 515 516 520 523 524 533 535 536 539 542 543 544 548 549 551 552 553 555 557 558 559 565 566 571 574 575 577
+311,use of undeclared identifier 'threadIdx',"OMP STATUS: 2
+    -> FAIL
+  [Variant 311] Building on worker 13 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:28: error: use of undeclared identifier 'threadIdx'
+   14 |       int y = 2 * tile_j + threadIdx.y + offset_j;
+      |                            ^
+main.cpp:15:34: error: use of undeclared identifier 'threadIdx'
+   15 |       int x = 2 * dead_data549 + threadIdx.x + offset_i;
+      |                                  ^",311 515
+325,use of undeclared identifier 'j',"OMP STATUS: 2
+    -> FAIL
+  [Variant 325] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:31:21: error: use of undeclared identifier 'j'
+   31 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                     ^
+main.cpp:31:40: error: use of undeclared identifier 'j'
+   31 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                                        ^",325 340 498
+515,use of undeclared identifier 'blockIdx',"OMP STATUS: 2
+    -> FAIL
+  [Variant 515] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:20: error: use of undeclared identifier 'blockIdx'
+   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                                 ^",515
+515,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:20: error: use of undeclared identifier 'blockIdx'
+   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                                 ^
+main.cpp:14:46: error: use of undeclared identifier 'threadIdx'
+   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                                              ^",515

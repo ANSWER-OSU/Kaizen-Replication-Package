@@ -1,0 +1,89 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+052,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 052] Building on worker 30 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:64:29: error: cannot return from OpenMP region
+   64 |     if (j >= ny || i >= nx) return;
+      |                             ^
+1 error generated.
+make: *** [Makefile:57: main.o] Error 1
+OMP STATUS: 2",052 123 125 137 164 225 241 250 298 323 381 393 405
+287,use of undeclared identifier 'jnn'; did you mean 'inn'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 287] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:65:32: error: use of undeclared identifier 'jnn'; did you mean 'inn'?
+   65 |         joff = (i % 2) ? jpp : jnn;
+      |                                ^~~
+      |                                inn
+main.cpp:59:11: note: 'inn' declared here
+   59 |       int inn = (i - 1 >= 0) ? i - 1 : nx - 1;",287 293 423
+300,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 2
+    -> FAIL
+  [Variant 300] Building on worker 22 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:58:5: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   58 |     bool test_ref125 = true;
+      |     ^
+main.cpp:56:61: note: as specified in 'collapse' clause
+   56 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",300
+300,function definition is not allowed here,"   58 |     bool test_ref125 = true;
+      |     ^
+main.cpp:56:61: note: as specified in 'collapse' clause
+   56 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^
+main.cpp:503:74: error: function definition is not allowed here
+  503 |                   const float inv_temp, const long long nx, const long long ny) {
+      |                                                                                 ^
+main.cpp:515:38: error: function definition is not allowed here
+  515 | static void usage(const char *pname) {
+      |                                      ^",300
+300,expected '}',"  515 | static void usage(const char *pname) {
+      |                                      ^
+main.cpp:545:33: error: function definition is not allowed here
+  545 | int main(int argc, char **argv) {
+      |                                 ^
+main.cpp:677:2: error: expected '}'
+  677 | }
+      |  ^
+main.cpp:55:41: note: to match this '{'
+   55 |                     const long long ny) {
+      |                                         ^",300
+356,unknown type name 'int3'; did you mean 'int'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 356] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:50:189: error: unknown type name 'int3'; did you mean 'int'?
+   50 | void update_lattice(const int numTeams, const int numThreads, signed char* lattice, const signed char* __restrict op_lattice, const float* __restrict randvals, const float inv_temp, const int3 volsize) {
+      |                                                                                                                                                                                             ^~~~
+      |                                                                                                                                                                                             int
+main.cpp:52:40: error: member reference base type 'const int' is not a structure or union
+   52 |   for (long long tid = 0; tid < volsize.x * volsize.y; tid++) {",356
+356,member reference base type 'const int' is not a structure or union,"afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:50:189: error: unknown type name 'int3'; did you mean 'int'?
+   50 | void update_lattice(const int numTeams, const int numThreads, signed char* lattice, const signed char* __restrict op_lattice, const float* __restrict randvals, const float inv_temp, const int3 volsize) {
+      |                                                                                                                                                                                             ^~~~
+      |                                                                                                                                                                                             int
+main.cpp:52:40: error: member reference base type 'const int' is not a structure or union
+   52 |   for (long long tid = 0; tid < volsize.x * volsize.y; tid++) {
+      |                                 ~~~~~~~^~
+main.cpp:52:52: error: member reference base type 'const int' is not a structure or union
+   52 |   for (long long tid = 0; tid < volsize.x * volsize.y; tid++) {
+      |                                             ~~~~~~~^~",356
+356,no matching function for call to 'update_lattice',"   72 |     if (randvals[i * volsize.y + j] < acceptance_ratio) {
+      |                      ~~~~~~~^~
+main.cpp:73:26: error: member reference base type 'const int' is not a structure or union
+   73 |       lattice[i * volsize.y + j] = -lij;
+      |                   ~~~~~~~^~
+main.cpp:87:3: error: no matching function for call to 'update_lattice'
+   87 |   update_lattice<true>(blocks, THREADS, lattice_b, lattice_w, randvals, inv_temp, nx, ny / 2);
+      |   ^~~~~~~~~~~~~~~~~~~~
+main.cpp:50:6: note: candidate function template not viable: requires 7 arguments, but 8 were provided
+   50 | void update_lattice(const int numTeams, const int numThreads, signed char* lattice, const signed char* __restrict op_lattice, const float* __restrict randvals, const float inv_temp, const int3 volsize) {
+      |      ^              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",356

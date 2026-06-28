@@ -1,0 +1,89 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 212 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:166:11: error: use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?
+  166 |           dense_esuhm2(batch_size, block_size, input, dense, output_k2, ncols, offset);
+      |           ^~~~~~~~~~~~",000 001 005 006 014 015 016 017 018 019 021 023 024 025 027 028 029 032 033 035 038 039 041 043 045 048 049 050 051 052 055 058 061 067 068 070 073 076 077 082 084 089 091 092 093 095 097 099 100 107 109 114 117 123 125 126 131 133 134 136 137 140 142 144 145 146 147 148 149 150 151 156 158 159 160 164 165 167 168 170 173 179 181 185 187 191 194 197 199 200 204 205 207 211 212 214 217 218 219 220 223 224 225 229 230 231 232 235 236 239 240 241 242 244 246 248 250 251 254 257 259 260 262 265 267 269 271 272 275 277 280 283 284 287 289 292 293 294 298 300 302 303 304 305 309 311 312 315 318 319 320 322 323 324 326 327 330 331 332 334 335 339 341 342 343 344 347 349 350 351 352 354 356 357 358 359 360 362 364 365 366 368 369 371 373 381 382 387 390 391 392 396 397 398 399 400 402 403 405 406 410 412 414 416 418 419 420 421 422 423 432 433
+000,use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:166:11: error: use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?
+  166 |           dense_esuhm2(batch_size, block_size, input, dense, output_k2, ncols, offset);
+      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, int embedding_dim, const int* offset) {",000 001 005 006 014 015 016 017 018 019 021 023 024 025 027 028 029 032 033 035 038 039 041 043 045 048 049 050 051 052 055 058 061 067 068 070 073 076 077 082 084 089 091 092 093 095 097 099 100 107 109 114 117 123 125 126 131 133 134 136 137 140 142 144 145 146 147 148 149 150 151 156 158 159 160 164 165 167 168 170 173 179 181 185 187 191 194 197 199 200 204 205 207 211 212 214 217 218 219 220 223 224 225 229 230 231 232 235 236 239 240 241 242 244 246 248 250 251 254 257 259 260 262 265 267 269 271 272 275 277 280 283 284 287 289 292 293 294 298 300 302 303 304 305 309 311 312 315 318 319 320 322 323 324 326 327 330 331 332 334 335 339 341 342 343 344 347 349 350 351 352 354 356 357 358 359 360 362 364 365 366 368 369 371 373 381 382 387 390 391 392 396 397 398 399 400 402 403 405 406 410 412 414 416 418 419 420 421 422 423 432 433
+050,const-qualified variable cannot be reduction,"      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, const int embedding_dim, const int* offset) {
+      |      ^
+main.cpp:42:47: error: const-qualified variable cannot be reduction
+   42 |       #pragma omp parallel for reduction (+ : tmp_var903) num_threads(numThreads)
+      |                                               ^
+main.cpp:156:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  156 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^",050
+067,use of undeclared identifier 'grain_size',"OMP STATUS: 2
+    -> FAIL
+  [Variant 067] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:42:44: error: use of undeclared identifier 'grain_size'
+   42 |       #pragma omp parallel for num_threads(grain_size)
+      |                                            ^
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^",067 126 131 160 185 236 259 269 272 305 342 349 387 391 403
+250,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 250] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:48:44: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   48 |       #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                            ^
+main.cpp:49:57: error: expected 2 for loops after '#pragma omp parallel for', but found only 1
+   49 |       for (int col_idx = 0; col_idx < range; ++col_idx) {
+      |                                                         ^",250 257 277 292 298 357
+250,"expected 2 for loops after '#pragma omp parallel for', but found only 1","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:48:44: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   48 |       #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                            ^
+main.cpp:49:57: error: expected 2 for loops after '#pragma omp parallel for', but found only 1
+   49 |       for (int col_idx = 0; col_idx < range; ++col_idx) {
+      |                                                         ^
+main.cpp:48:41: note: as specified in 'collapse' clause
+   48 |       #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                         ^",250 257 277 292 298
+406,invalid operands to binary expression ('float *' and 'float *'),"      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, const int embedding_dim, const int* offset) {
+      |      ^
+main.cpp:45:42: error: invalid operands to binary expression ('float *' and 'float *')
+   45 |       #pragma omp parallel for reduction(+ : output) num_threads(numThreads)
+      |                                          ^   ~~~~~~
+main.cpp:158:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  158 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^",406
+421,use of undeclared identifier 'BITS',"OMP STATUS: 2
+    -> FAIL
+  [Variant 421] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:39:46: error: use of undeclared identifier 'BITS'
+   39 |     const int grain_size = 1 << (batch_idx % BITS);
+      |                                              ^
+main.cpp:55:1: error: expected unqualified-id
+   55 | ### Context:
+      | ^",421

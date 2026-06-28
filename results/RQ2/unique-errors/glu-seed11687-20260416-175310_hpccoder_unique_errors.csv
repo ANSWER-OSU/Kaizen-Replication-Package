@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+023,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 023] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:40: error: cannot return from OpenMP region
+   30 |   if (index >= M * split_dim_size * N) return;
+      |                                        ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",023 029 043 091 146 156 220 236 253 266 286 297 329 384
+202,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 0
+    -> PASS
+  [Variant 202] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:52: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   27 |   for (int i = 0; i < M * split_dim_size * N; i++) {
+      |                                                    ^
+main.cpp:26:61: note: as specified in 'collapse' clause
+   26 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",202
+229,use of undeclared identifier 'unusedYoung',"OMP STATUS: 0
+    -> PASS
+  [Variant 229] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:42:63: error: use of undeclared identifier 'unusedYoung'
+   42 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-unusedYoung)));
+      |                                                               ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",229

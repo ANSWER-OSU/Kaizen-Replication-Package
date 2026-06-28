@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 100 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^",000 001 003 006 007 010 011 012 015 016 018 020 023 029 030 031 032 034 035 038 039 040 044 045 046 047 048 052 053 055 057 061 066 068 072 073 074 075 076 081 083 085 087 089 090 091 095 096 097 098 099 100 101 104 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135 136 137 140 141 142 144 148 149 154 155 157 161 163 166 168 171 172 173 176 181 182 185 187 191 194 196 198 200
+000,use of undeclared identifier 'AIDW_Kernel_Tiled',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^
+main.cpp:274:7: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  274 |       AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |       ^",000 001 003 006 007 010 011 012 015 016 018 020 023 029 030 031 032 034 035 038 039 040 044 045 046 047 048 052 053 055 057 061 066 068 072 073 074 075 076 081 083 085 087 089 090 091 095 096 097 098 099 100 101 104 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135 136 137 140 141 142 144 148 149 154 155 157 161 163 166 168 171 172 173 176 181 182 185 187 191 194 196 198 200
+187,use of undeclared identifier 'row'; did you mean 'pow'?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 187] Building on worker 30 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:75:8: error: use of undeclared identifier 'row'; did you mean 'pow'?
+   75 |     iz[row] = z / sum;
+      |        ^~~
+      |        pow
+/usr/lib/llvm-18/bin/../include/c++/v1/math.h:486:20: note: 'pow' declared here
+  486 | using std::__math::pow;",187
+187,reference to overloaded function could not be resolved; did you mean to call it?,"      |        ^~~
+      |        pow
+/usr/lib/llvm-18/bin/../include/c++/v1/math.h:486:20: note: 'pow' declared here
+  486 | using std::__math::pow;
+      |                    ^
+main.cpp:75:8: error: reference to overloaded function could not be resolved; did you mean to call it?
+   75 |     iz[row] = z / sum;
+      |        ^~~
+/usr/lib/llvm-18/bin/../include/c++/v1/__math/exponential_functions.h:161:65: note: possible target for call
+  161 | inline _LIBCPP_HIDE_FROM_ABI typename __promote<_A1, _A2>::type pow(_A1 __x, _A2 __y) _NOEXCEPT {
+      |                                                                 ^",187
+187,use of undeclared identifier 'z',"   75 |     iz[row] = z / sum;
+      |        ^~~
+/usr/lib/llvm-18/bin/../include/c++/v1/__math/exponential_functions.h:161:65: note: possible target for call
+  161 | inline _LIBCPP_HIDE_FROM_ABI typename __promote<_A1, _A2>::type pow(_A1 __x, _A2 __y) _NOEXCEPT {
+      |                                                                 ^
+main.cpp:75:15: error: use of undeclared identifier 'z'
+   75 |     iz[row] = z / sum;
+      |               ^
+main.cpp:75:19: error: use of undeclared identifier 'sum'
+   75 |     iz[row] = z / sum;
+      |                   ^",187
+187,use of undeclared identifier 'sum',"  161 | inline _LIBCPP_HIDE_FROM_ABI typename __promote<_A1, _A2>::type pow(_A1 __x, _A2 __y) _NOEXCEPT {
+      |                                                                 ^
+main.cpp:75:15: error: use of undeclared identifier 'z'
+   75 |     iz[row] = z / sum;
+      |               ^
+main.cpp:75:19: error: use of undeclared identifier 'sum'
+   75 |     iz[row] = z / sum;
+      |                   ^
+main.cpp:79:1: error: expected unqualified-id
+   79 | ### Context:
+      | ^",187

@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+402,use of undeclared identifier 'dummyYou6',"OMP STATUS: 0
+    -> PASS
+  [Variant 402] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:285:28: error: use of undeclared identifier 'dummyYou6'
+  285 |         cold[ix][iy][iz] = dummyYou6;
+      |                            ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",402
+465,no matching function for call to 'boundaryConditionsPhi',"OMP STATUS: 0
+    -> PASS
+  [Variant 465] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:409:7: error: no matching function for call to 'boundaryConditionsPhi'
+  409 |       boundaryConditionsPhi(numTeams, numThreads, (nRarray*)d_phinew);
+      |       ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:190:6: note: candidate function not viable: requires 4 arguments, but 3 were provided
+  190 | void boundaryConditionsPhi(const int numTeams, const int numThreads, void* fake_item837, double phinew[][DATAYSIZE][DATAXSIZE])
+      |      ^                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",465
+491,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 0
+    -> PASS
+  [Variant 491] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:193:47: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+  193 |   for (unsigned iz = 0; iz < DATAZSIZE; iz++) {
+      |                                               ^
+main.cpp:192:61: note: as specified in 'collapse' clause
+  192 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",491

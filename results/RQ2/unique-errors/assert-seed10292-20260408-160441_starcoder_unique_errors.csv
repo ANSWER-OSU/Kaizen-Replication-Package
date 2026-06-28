@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 167 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 128 144 146 161 163 171 184 189 191 197 199 202 206 207 212 216 218 221 226 227 229 230 231 232 253 260 268 269 273 285 296 299 302 307 309 312 316 322 324 334 335 337 349 351 352 379 402 406 415 417 432 450 451 465 466 473 494 499 501 513 514 515 523 524 534 535 544 552 555 558 561 562 572 573 576 586 588 594 600 603 612 615 619 622 631 640 659 667 677 679 682 691 704 707 711 712 726 739 741 745 755 759 777 778 786 790 791 799 800 803 804 811 812 813 817 822 828 855 858 863 870 872 873 875 884 886 887 895 896 899 906 915 920 922 927 936 939 940 941 942
+000,no matching function for call to 'perfKernel',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 144 146 161 163 171 184 191 197 202 207 212 216 218 221 226 227 229 231 232 253 260 268 269 273 285 296 299 302 307 309 312 324 334 335 337 349 351 352 379 402 406 415 417 432 450 465 466 473 494 501 513 523 524 534 535 544 552 555 558 561 562 572 573 576 586 588 600 603 612 615 619 622 631 640 659 667 677 679 682 707 712 726 739 741 745 755 777 786 799 800 804 812 817 822 828 855 858 863 870 872 873 875 883 884 886 887 895 896 906 915 920 922 927 936 939 942
+000,use of undeclared identifier 'perfKernel2',"  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:122:3: error: use of undeclared identifier 'perfKernel2'
+  122 |   perfKernel2(Nblocks, Nthreads);
+      |   ^
+3 errors generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 144 146 161 163 171 184 191 197 202 207 212 216 218 221 226 227 229 231 232 253 260 268 269 273 285 296 299 302 307 309 312 324 334 335 337 349 351 352 379 402 406 415 417 432 450 465 466 473 494 501 513 523 524 534 535 544 552 555 558 561 562 572 573 576 586 588 600 603 612 615 619 622 631 640 659 667 677 679 682 707 712 726 739 741 745 755 777 786 799 800 804 812 817 822 828 855 858 863 870 872 873 875 884 886 887 895 896 906 915 920 922 927 936 939 942
+128,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 128] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:40:47: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   40 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^
+main.cpp:48:1: error: expected unqualified-id
+   48 | ### Context:
+      | ^",128 171 230 296 349 437 440 473 514 515 561 576 594 691 751 813 875 883 922 940
+128,use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?,"   40 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^
+main.cpp:48:1: error: expected unqualified-id
+   48 | ### Context:
+      | ^
+main.cpp:125:3: error: use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?
+  125 |   perfKernel2(Nblocks, Nthreads);
+      |   ^~~~~~~~~~~
+      |   perfKernel
+main.cpp:35:6: note: 'perfKernel' declared here
+   35 | void perfKernel(const int numTeams, const int numThreads) {",128 189 199 206 230 316 322 451 499 514 515 594 691 704 711 759 778 790 791 803 811 813 899 940 941
+322,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 2
+    -> FAIL
+  [Variant 322] Building on worker 22 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:41:5: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   41 |     int s = 0;
+      |     ^~~
+main.cpp:41:5: note: expected an expression statement
+   41 |     int s = 0;
+      |     ^~~",322 704
+322,use of undeclared identifier 's',"   41 |     int s = 0;
+      |     ^~~
+main.cpp:41:5: note: expected an expression statement
+   41 |     int s = 0;
+      |     ^~~
+main.cpp:44:7: error: use of undeclared identifier 's'
+   44 |       s++;
+      |       ^
+main.cpp:45:14: error: use of undeclared identifier 's'
+   45 |       assert(s <= gid);
+      |              ^",322 704

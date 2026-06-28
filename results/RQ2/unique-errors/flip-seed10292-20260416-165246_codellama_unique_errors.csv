@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+317,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 317] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:69:1: error: function definition is not allowed here
+   69 | {
+      | ^
+main.cpp:77:1: error: expected expression
+   77 | template <typename scalar_t>
+      | ^",317 322
+317,expected expression,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:69:1: error: function definition is not allowed here
+   69 | {
+      | ^
+main.cpp:77:1: error: expected expression
+   77 | template <typename scalar_t>
+      | ^
+main.cpp:222:17: error: expected '}'
+  222 | #endif // LIBOMP
+      |                 ^",317 322
+317,expected '}',"   69 | {
+      | ^
+main.cpp:77:1: error: expected expression
+   77 | template <typename scalar_t>
+      | ^
+main.cpp:222:17: error: expected '}'
+  222 | #endif // LIBOMP
+      |                 ^
+main.cpp:30:1: note: to match this '{'
+   30 | {
+      | ^",317 322

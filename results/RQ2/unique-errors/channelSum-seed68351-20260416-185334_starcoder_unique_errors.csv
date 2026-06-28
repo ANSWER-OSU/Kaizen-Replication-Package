@@ -1,0 +1,122 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 94 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:39:1: error: expected unqualified-id
+   39 | ### Context:
+      | ^
+main.cpp:65:1: error: expected unqualified-id
+   65 | ### Context:
+      | ^",000 001 003 005 007 016 018 019 020 022 023 024 026 027 029 032 033 034 037 039 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 096 098 100 101 103 106 107 108 111 113 114 116 117 120 121 122 124 125 128 132 133 135 138 140 141 145 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 184 185
+000,use of undeclared identifier 'ChannelSumNHWC'; did you mean 'ChannelSumNCHW'?,"   39 | ### Context:
+      | ^
+main.cpp:65:1: error: expected unqualified-id
+   65 | ### Context:
+      | ^
+main.cpp:104:5: error: use of undeclared identifier 'ChannelSumNHWC'; did you mean 'ChannelSumNCHW'?
+  104 |     ChannelSumNHWC<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~
+      |     ChannelSumNCHW
+main.cpp:19:6: note: 'ChannelSumNCHW' declared here
+   19 | void ChannelSumNCHW( const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T* sum, T* sumsq) {",000 001 003 005 007 016 018 019 020 022 023 024 026 027 029 032 033 034 037 039 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 096 098 100 101 103 106 107 108 111 113 114 116 117 120 121 122 124 125 128 132 133 135 138 140 141 145 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 184 185
+000,no matching function for call to 'ChannelSumNCHW',"      |     ^~~~~~~~~~~~~~
+      |     ChannelSumNCHW
+main.cpp:19:6: note: 'ChannelSumNCHW' declared here
+   19 | void ChannelSumNCHW( const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T* sum, T* sumsq) {
+      |      ^
+main.cpp:104:5: error: no matching function for call to 'ChannelSumNCHW'
+  104 |     ChannelSumNHWC<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:19:6: note: candidate template ignored: couldn't infer template argument 'kBlockDimX'
+   19 | void ChannelSumNCHW( const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T* sum, T* sumsq) {
+      |      ^",000 001 003 005 007 016 018 019 020 022 023 024 026 027 029 032 033 034 037 039 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 096 098 100 101 103 106 107 108 111 113 114 116 117 120 121 122 124 125 128 132 133 135 138 140 141 145 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 184 185
+000,use of undeclared identifier 'ComputeChannelSumNCHW'; did you mean 'ComputeChannelSumNHWC'?,"   19 | void ChannelSumNCHW( const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T* sum, T* sumsq) {
+      |      ^
+main.cpp:104:5: warning: use of function template name with no prior declaration in function call with explicit template arguments is a C++20 extension [-Wc++20-extensions]
+  104 |     ChannelSumNHWC<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^
+main.cpp:166:9: error: use of undeclared identifier 'ComputeChannelSumNCHW'; did you mean 'ComputeChannelSumNHWC'?
+  166 |         ComputeChannelSumNCHW (N, C, W*H, h_X, h_sum, h_sumsq, time, repeat);
+      |         ^~~~~~~~~~~~~~~~~~~~~
+      |         ComputeChannelSumNHWC
+main.cpp:91:6: note: 'ComputeChannelSumNHWC' declared here
+   91 | void ComputeChannelSumNHWC (",000 001 003 005 007 016 018 019 020 022 023 024 026 027 029 032 033 034 037 039 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 096 098 100 101 103 106 107 108 111 113 114 116 117 120 121 122 124 125 128 132 133 135 138 140 141 145 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 184 185
+003,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 2
+    -> FAIL
+  [Variant 003] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:14: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   33 |     sum[c] = m_val;
+      |              ^~~~~
+main.cpp:33:14: note: expected built-in binary operator
+   33 |     sum[c] = m_val;
+      |              ^~~~~",003 005 007 016 018 019 020 022 023 027 029 032 033 034 039 040 041 049 050 052 067 068 070 074 079 080 081 082 085 093 095 096 100 101 103 107 108 113 114 116 117 121 122 124 133 138 141 145 151 153 155 159 161 166 169 172 173 174 176 177 184 185
+026,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 2
+    -> FAIL
+  [Variant 026] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:14: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   33 |     sum[c] = m_val;
+      |              ^~~~~
+main.cpp:33:14: note: expected built-in binary operator
+   33 |     sum[c] = m_val;
+      |              ^~~~~",026 066 078 135 146
+086,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 086] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:30: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   35 |     #pragma omp parallel for num_teams(numTeams) num_threads(numThreads)
+      |                              ^
+main.cpp:39:7: error: region cannot be closely nested inside 'parallel for' region
+   39 |       #pragma omp barrier
+      |       ^",086
+086,region cannot be closely nested inside 'parallel for' region,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:30: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   35 |     #pragma omp parallel for num_teams(numTeams) num_threads(numThreads)
+      |                              ^
+main.cpp:39:7: error: region cannot be closely nested inside 'parallel for' region
+   39 |       #pragma omp barrier
+      |       ^
+main.cpp:40:7: error: region cannot be closely nested inside 'parallel for' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   40 |       #pragma omp single
+      |       ^",086
+086,region cannot be closely nested inside 'parallel for' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"   35 |     #pragma omp parallel for num_teams(numTeams) num_threads(numThreads)
+      |                              ^
+main.cpp:39:7: error: region cannot be closely nested inside 'parallel for' region
+   39 |       #pragma omp barrier
+      |       ^
+main.cpp:40:7: error: region cannot be closely nested inside 'parallel for' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   40 |       #pragma omp single
+      |       ^
+main.cpp:36:5: error: statement after '#pragma omp parallel for' must be a for loop
+   36 |     {
+      |     ^",086
+086,statement after '#pragma omp parallel for' must be a for loop,"   39 |       #pragma omp barrier
+      |       ^
+main.cpp:40:7: error: region cannot be closely nested inside 'parallel for' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   40 |       #pragma omp single
+      |       ^
+main.cpp:36:5: error: statement after '#pragma omp parallel for' must be a for loop
+   36 |     {
+      |     ^
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^",086
+181,region cannot be nested inside 'target teams distribute' region,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:32:30: warning: extra tokens at the end of '#pragma omp target teams' are ignored [-Wextra-tokens]
+   32 |     #pragma omp target teams atomic update
+      |                              ^
+main.cpp:32:5: error: region cannot be nested inside 'target teams distribute' region
+   32 |     #pragma omp target teams atomic update
+      |     ^
+main.cpp:34:30: warning: extra tokens at the end of '#pragma omp target teams' are ignored [-Wextra-tokens]
+   34 |     #pragma omp target teams atomic update
+      |                              ^",181

@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+141,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 141] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:55:29: error: cannot return from OpenMP region
+   55 |     if (j >= ny || i >= nx) return;
+      |                             ^
+1 error generated.
+make: *** [Makefile:57: main.o] Error 1
+OMP STATUS: 2",141 204
+283,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 0
+    -> PASS
+  [Variant 283] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:58:3: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   58 |   bool temp_ptr528 = true;
+      |   ^
+main.cpp:56:61: note: as specified in 'collapse' clause
+   56 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",283

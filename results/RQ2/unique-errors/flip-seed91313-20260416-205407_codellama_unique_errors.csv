@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+389,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 389] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:36:28: error: cannot return from OpenMP region
+   36 |     if (dummy_var663 >= n) return;
+      |                            ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",389
+450,use of undeclared identifier 'i',"OMP STATUS: 0
+    -> PASS
+  [Variant 450] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:37: error: use of undeclared identifier 'i'
+   49 | dst_offset += cur_indices * strides[i];
+      |                                     ^
+main.cpp:52:16: error: use of undeclared identifier 'linear_index'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^",450
+450,use of undeclared identifier 'linear_index',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:37: error: use of undeclared identifier 'i'
+   49 | dst_offset += cur_indices * strides[i];
+      |                                     ^
+main.cpp:52:16: error: use of undeclared identifier 'linear_index'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^
+main.cpp:52:42: error: use of undeclared identifier 'dst_offset'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^",450
+450,use of undeclared identifier 'dst_offset',"   49 | dst_offset += cur_indices * strides[i];
+      |                                     ^
+main.cpp:52:16: error: use of undeclared identifier 'linear_index'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^
+main.cpp:52:42: error: use of undeclared identifier 'dst_offset'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^
+main.cpp:54:1: error: extraneous closing brace ('}')
+   54 | }
+      | ^",450
+450,extraneous closing brace ('}'),"   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^
+main.cpp:52:42: error: use of undeclared identifier 'dst_offset'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^
+main.cpp:54:1: error: extraneous closing brace ('}')
+   54 | }
+      | ^
+4 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",450
+450,use of undeclared identifier 'flip_kernel',"  155 |       flip_kernel<scalar_t>(
+      |       ^
+main.cpp:212:1: error: extraneous closing brace ('}')
+  212 | }
+      | ^
+main.cpp:132:5: error: use of undeclared identifier 'flip_kernel'
+  132 |     flip_kernel<scalar_t>(
+      |     ^
+main.cpp:202:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  202 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",450

@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:55:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   55 |     #pragma omp master
+      |     ^",001 002 003 006 010 040 061 085 089 101 105 114 116 118 131 134 167 172 185 246 250 254 259 267 269 273 284 320 321 331 337 338 360 368 372 384 424 449
+001,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:55:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   55 |     #pragma omp master
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",001 061 114 185 273
+002,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:56:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   56 |     #pragma omp single
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",002 040 118 172 246 320 337 372 384 424
+030,expected expression,"OMP STATUS: 0
+    -> PASS
+  [Variant 030] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:78:1: error: expected expression
+   78 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:225:17: error: expected '}'
+  225 | #endif // LIBOMP
+      |                 ^",030 157 237 251 300 426
+030,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:78:1: error: expected expression
+   78 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:225:17: error: expected '}'
+  225 | #endif // LIBOMP
+      |                 ^
+main.cpp:27:1: note: to match this '{'
+   27 | {
+      | ^",030 157 237 251 300 426
+368,use of undeclared identifier 'tid',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:56:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   56 |     #pragma omp barrier
+      |     ^
+main.cpp:58:9: error: use of undeclared identifier 'tid'
+   58 |     if (tid == 0) {
+      |         ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",368

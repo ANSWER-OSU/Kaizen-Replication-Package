@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,no matching function for call to 'flip_kernel',"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:128:5: error: no matching function for call to 'flip_kernel'
+  128 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:198:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  198 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",001 003 011 012 013 015 016 019 022 023 025 026 028 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 116 119 121 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 157 158 162 163 167 174 176 182 187 188 191 193 194 197 202 205 209 211 213 219 220 221 222 224 229 230 231 236 245 247 248 249 251 253 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373 377 381 384 386 389 391 392 395 400 401 403 405 407 413 414 419 422 425 432 433 436 438 440 443 444 445 447 449 451 454
+081,cannot return from OpenMP region,"OMP STATUS: 2
+    -> FAIL
+  [Variant 081] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:28: error: cannot return from OpenMP region
+   31 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:130:5: error: no matching function for call to 'flip_kernel'
+  130 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~",081 133 275 298 354 360 445

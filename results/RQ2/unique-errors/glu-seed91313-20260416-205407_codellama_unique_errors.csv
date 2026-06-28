@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+241,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 0
+    -> PASS
+  [Variant 241] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:3: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   30 |   bool dummy_data664 = true;
+      |   ^
+main.cpp:28:61: note: as specified in 'collapse' clause
+   28 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",241 373 391 436 454
+317,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 0
+    -> PASS
+  [Variant 317] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:41: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   45 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |                                      ~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:45:5: note: expected in right hand side of expression
+   45 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",317 376
+320,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"OMP STATUS: 0
+    -> PASS
+  [Variant 320] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   29 |   while (10 <= 5) {
+      |   ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",320
+331,redefinition of 'i' with a different type: 'const int' vs 'int',"OMP STATUS: 0
+    -> PASS
+  [Variant 331] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:15: error: redefinition of 'i' with a different type: 'const int' vs 'int'
+   30 |     const int i = tmp_ptr551 / split_dim_size / N;
+      |               ^
+main.cpp:29:12: note: previous definition is here
+   29 |   for (int i = 0; i < M * split_dim_size * N; ++i) {
+      |            ^",331 421
+331,use of undeclared identifier 'tmp_ptr551',"   30 |     const int i = tmp_ptr551 / split_dim_size / N;
+      |               ^
+main.cpp:29:12: note: previous definition is here
+   29 |   for (int i = 0; i < M * split_dim_size * N; ++i) {
+      |            ^
+main.cpp:30:19: error: use of undeclared identifier 'tmp_ptr551'
+   30 |     const int i = tmp_ptr551 / split_dim_size / N;
+      |                   ^
+main.cpp:31:19: error: use of undeclared identifier 'tmp_ptr551'
+   31 |     const int j = tmp_ptr551 / N % split_dim_size;
+      |                   ^",331
+352,use of undeclared identifier 'unused_node458',"OMP STATUS: 0
+    -> PASS
+  [Variant 352] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:3: error: use of undeclared identifier 'unused_node458'
+   30 |   unused_node458 = 0;
+      |   ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",352

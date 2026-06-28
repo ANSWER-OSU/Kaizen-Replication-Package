@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+179,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 179] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:64:1: error: function definition is not allowed here
+   64 | {
+      | ^
+main.cpp:72:1: error: expected expression
+   72 | template <typename scalar_t>
+      | ^",179
+179,expected expression,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:64:1: error: function definition is not allowed here
+   64 | {
+      | ^
+main.cpp:72:1: error: expected expression
+   72 | template <typename scalar_t>
+      | ^
+main.cpp:217:17: error: expected '}'
+  217 | #endif // LIBOMP
+      |                 ^",179
+179,expected '}',"   64 | {
+      | ^
+main.cpp:72:1: error: expected expression
+   72 | template <typename scalar_t>
+      | ^
+main.cpp:217:17: error: expected '}'
+  217 | #endif // LIBOMP
+      |                 ^
+main.cpp:30:1: note: to match this '{'
+   30 | {
+      | ^",179
+376,use of undeclared identifier 'i',"OMP STATUS: 0
+    -> PASS
+  [Variant 376] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:54: error: use of undeclared identifier 'i'
+   38 |       cur_indices = cur_indices / strides_contiguous[i];
+      |                                                      ^
+main.cpp:39:53: error: use of undeclared identifier 'i'
+   39 |       rem = temp - cur_indices * strides_contiguous[i];
+      |                                                     ^",376

@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,use of undeclared identifier 'gridDim',"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^",001 016 030 031 035 038 039 052 055 068 072 073 090 095 098 099 113 123 129 133 161 181 187 215 216 217 220 234 246 251 259 273 283 300 302 310 312 313 314 318 329 347 355 356 360 379 384 389 407 408 414 421 425 459 467 469 475 479 481 485 493 499 501 523 524 529 539 546 549 554 557 569 585 591 598 599 602 620 637 643 652 656 664 666 670 671 674 685 686 696 698 731 736 738 740 742 747 758 759 760 775 778 780 781 786 787 795 805 814 826 834 840 842 858 860 870 873 877 897 909 914 932 963 967
+001,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^
+main.cpp:38:28: error: use of undeclared identifier 'blockDim'
+   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                            ^",001 016 030 031 035 038 039 052 055 068 072 073 090 095 098 099 113 123 129 133 161 181 187 215 216 217 220 234 246 251 259 273 283 300 302 310 312 313 314 318 329 347 355 356 360 379 384 389 407 408 414 421 425 459 467 469 475 479 481 485 493 499 501 523 524 529 539 546 549 554 557 569 585 591 598 599 602 620 637 643 652 656 664 666 670 671 674 676 685 686 696 698 731 736 738 740 742 747 758 759 760 775 778 780 781 786 787 795 805 814 826 834 840 842 858 860 870 873 877 897 909 914 932 963 967
+001,no matching function for call to 'perfKernel',"   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                            ^
+main.cpp:38:41: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                                         ^
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 0 arguments, but 2 were provided
+   35 | void perfKernel()
+      |      ^",001 016 030 031 035 038 039 052 055 068 072 073 090 095 098 099 113 123 129 133 161 181 187 215 216 217 220 234 246 251 259 273 283 300 302 310 312 313 314 318 329 347 355 356 360 379 384 389 407 408 414 421 425 459 467 469 475 479 481 485 493 499 501 523 524 529 539 546 549 554 557 569 585 591 598 599 602 620 637 643 652 656 664 666 670 671 674 676 685 686 696 698 731 736 738 740 742 747 758 759 760 775 778 780 781 786 787 795 805 814 826 834 840 842 858 860 870 873 877 897 909 914 932 963 967
+016,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                            ^
+main.cpp:38:41: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                                         ^
+main.cpp:46:7: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   46 |       assert(s <= gid);
+      |       ^~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:7: note: expanded from macro 'assert'
+   93 |      (static_cast <bool> (expr)                                         \
+      |       ^~~~~~~~~~~",016 030 031 035 038 039 052 055 068 072 073 090 098 113 123 129 133 161 181 187 215 216 220 246 259 279 300 310 312 355 360 379 384 389 407 408 421 424 425 469 481 485 499 523 524 529 554 569 585 591 652 670 671 674 686 696 740 747 759 775 781 786 805 808 834 842 853 860 870 897
+031,use of undeclared identifier 'blockIdx',"OMP STATUS: 2
+    -> FAIL
+  [Variant 031] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'blockIdx'
+   37 |   #pragma omp target teams distribute parallel for num_teams(blockIdx.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:86: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(blockIdx.x) num_threads(blockDim.x)
+      |                                                                                      ^",031 038 052 095 098 099 133 161 187 234 251 273 283 300 302 313 314 318 329 347 360 384 389 407 414 425 459 467 475 479 485 499 501 523 524 529 539 549 554 557 569 591 598 599 602 637 643 652 664 666 670 671 676 696 698 731 736 738 740 742 747 758 759 775 778 780 786 787 795 805 814 826 834 840 858 860 870 873 897 909 932 967
+676,use of undeclared identifier 'threadIdx',"   49 |   for (int n = 1; n <= blockIdx.x * blockDim.x + threadIdx.x; n++) {
+      |                        ^
+main.cpp:49:37: error: use of undeclared identifier 'blockDim'
+   49 |   for (int n = 1; n <= blockIdx.x * blockDim.x + threadIdx.x; n++) {
+      |                                     ^
+main.cpp:49:50: error: use of undeclared identifier 'threadIdx'
+   49 |   for (int n = 1; n <= blockIdx.x * blockDim.x + threadIdx.x; n++) {
+      |                                                  ^
+main.cpp:51:17: error: use of undeclared identifier 'blockIdx'
+   51 |     assert(s <= blockIdx.x * blockDim.x + threadIdx.x);
+      |                 ^",676

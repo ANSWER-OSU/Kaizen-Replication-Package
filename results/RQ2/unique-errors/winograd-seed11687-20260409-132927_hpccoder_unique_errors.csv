@@ -1,0 +1,122 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,use of undeclared identifier 'BLOCK_SIZE',"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:19:29: error: use of undeclared identifier 'BLOCK_SIZE'
+   19 |           x = 2 * (tile_i * BLOCK_SIZE + i) + offset_i;
+      |                             ^
+main.cpp:20:29: error: use of undeclared identifier 'BLOCK_SIZE'
+   20 |           y = 2 * (tile_j * BLOCK_SIZE + j) + offset_j;
+      |                             ^",001 003 013 014 016 025 026 028 030 042 056 059 103 108 114 115 128 134 150 177 193 220 221 222 256 262 269 275 303 339 351 363 365 395 438 451 510 528 562 580 592
+011,use of undeclared identifier 'multipliedYou'; did you mean 'multiplied_tile'?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 011] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:52:28: error: use of undeclared identifier 'multipliedYou'; did you mean 'multiplied_tile'?
+   52 |         tmp_tile_1[1][j] = multipliedYou[1][j] - multiplied_tile[2][j] - multiplied_tile[3][j];
+      |                            ^~~~~~~~~~~~~
+      |                            multiplied_tile
+main.cpp:43:17: note: 'multiplied_tile' declared here
+   43 |       DATA_TYPE multiplied_tile[4][4];",011 012 019 043 046 049 071 086 091 094 097 103 119 121 122 136 149 154 182 187 191 193 197 209 210 219 248 249 269 286 287 288 291 296 297 298 300 302 321 329 332 335 336 339 346 355 360 377 389 391 399 406 414 443 446 449 456 467 496 517 522 534 536 544 548 549 551 556 576 578 586 591 594 603
+268,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 268] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:85:26: error: function definition is not allowed here
+   85 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:213:17: error: expected '}'
+  213 | #endif // LIBOMP
+      |                 ^",268 548
+268,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:85:26: error: function definition is not allowed here
+   85 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:213:17: error: expected '}'
+  213 | #endif // LIBOMP
+      |                 ^
+main.cpp:12:57: note: to match this '{'
+   12 |   for (int tile_j = 0; tile_j < tile_j_size; ++ tile_j) {
+      |                                                         ^",268 548
+405,use of undeclared identifier 'TILE_J_SIZE',"OMP STATUS: 0
+    -> PASS
+  [Variant 405] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:15:26: error: use of undeclared identifier 'TILE_J_SIZE'
+   15 |       int t_j = tile_j * TILE_J_SIZE + offset_j;
+      |                          ^
+main.cpp:16:26: error: use of undeclared identifier 'TILE_I_SIZE'
+   16 |       int t_i = tile_i * TILE_I_SIZE + offset_i;
+      |                          ^",405
+405,use of undeclared identifier 'TILE_I_SIZE',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:15:26: error: use of undeclared identifier 'TILE_J_SIZE'
+   15 |       int t_j = tile_j * TILE_J_SIZE + offset_j;
+      |                          ^
+main.cpp:16:26: error: use of undeclared identifier 'TILE_I_SIZE'
+   16 |       int t_i = tile_i * TILE_I_SIZE + offset_i;
+      |                          ^
+2 errors generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",405
+433,use of undeclared identifier 'blockIdx',"OMP STATUS: 0
+    -> PASS
+  [Variant 433] Building on worker 29 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:15:24: error: use of undeclared identifier 'blockIdx'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                        ^
+main.cpp:15:37: error: use of undeclared identifier 'blockDim'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                     ^",433
+433,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:15:24: error: use of undeclared identifier 'blockIdx'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                        ^
+main.cpp:15:37: error: use of undeclared identifier 'blockDim'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                     ^
+main.cpp:15:50: error: use of undeclared identifier 'threadIdx'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                                  ^",433
+433,use of undeclared identifier 'threadIdx',"   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                        ^
+main.cpp:15:37: error: use of undeclared identifier 'blockDim'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                     ^
+main.cpp:15:50: error: use of undeclared identifier 'threadIdx'
+   15 |       int tile_i_idx = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                                  ^
+main.cpp:16:24: error: use of undeclared identifier 'blockIdx'
+   16 |       int tile_j_idx = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                        ^",433
+536,use of undeclared identifier 'TILE_SIZE',"OMP STATUS: 0
+    -> PASS
+  [Variant 536] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:15:33: error: use of undeclared identifier 'TILE_SIZE'
+   15 |       int tile_i_idx = tile_i * TILE_SIZE + offset_i;
+      |                                 ^
+main.cpp:16:33: error: use of undeclared identifier 'TILE_SIZE'
+   16 |       int tile_j_idx = tile_j * TILE_SIZE + offset_j;
+      |                                 ^",536
+537,use of undeclared identifier 'TILE_WIDTH',"OMP STATUS: 2
+    -> FAIL
+  [Variant 537] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:15:33: error: use of undeclared identifier 'TILE_WIDTH'
+   15 |       int tile_i_idx = tile_i * TILE_WIDTH + offset_i;
+      |                                 ^
+main.cpp:16:33: error: use of undeclared identifier 'TILE_WIDTH'
+   16 |       int tile_j_idx = tile_j * TILE_WIDTH + offset_j;
+      |                                 ^",537 565

@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+020,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 020] Building on worker 7 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:106:26: error: function definition is not allowed here
+  106 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:234:17: error: expected '}'
+  234 | #endif // LIBOMP
+      |                 ^",020 037 039 045 054 065 066 078 085 095 111 113 114 132 141 155 156 207 209 238 313 324 346 377 425 434 465 558 574
+020,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:106:26: error: function definition is not allowed here
+  106 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:234:17: error: expected '}'
+  234 | #endif // LIBOMP
+      |                 ^
+main.cpp:20:1: note: to match this '{'
+   20 | {
+      | ^",020 037 039 045 054 065 066 078 085 095 111 113 114 132 141 155 156 207 209 238 313 324 346 377 425 434 465 558 574
+024,use of undeclared identifier 'tile_i',"OMP STATUS: 0
+    -> PASS
+  [Variant 024] Building on worker 9 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:38:23: error: use of undeclared identifier 'tile_i'
+   38 |           int x = 2 * tile_i + i;
+      |                       ^
+main.cpp:39:23: error: use of undeclared identifier 'tile_j'
+   39 |           int y = 2 * tile_j + j;
+      |                       ^",024 489
+024,use of undeclared identifier 'tile_j',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:38:23: error: use of undeclared identifier 'tile_i'
+   38 |           int x = 2 * tile_i + i;
+      |                       ^
+main.cpp:39:23: error: use of undeclared identifier 'tile_j'
+   39 |           int y = 2 * tile_j + j;
+      |                       ^
+main.cpp:83:23: error: use of undeclared identifier 'tile_j'
+   83 |           int y = 2 * tile_j + j;
+      |                       ^",024 489
+024,extraneous closing brace ('}'),"   83 |           int y = 2 * tile_j + j;
+      |                       ^
+main.cpp:84:23: error: use of undeclared identifier 'tile_i'
+   84 |           int x = 2 * tile_i + i;
+      |                       ^
+main.cpp:93:1: error: extraneous closing brace ('}')
+   93 | }
+      | ^
+5 errors generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",024
+024,use of undeclared identifier 'winograd_conv2d'; did you mean 'omp_program::winograd_conv2d'?,"   83 |           int y = 2 * tile_j + j;
+      |                       ^
+main.cpp:84:23: error: use of undeclared identifier 'tile_i'
+   84 |           int x = 2 * tile_i + i;
+      |                       ^
+main.cpp:181:7: error: use of undeclared identifier 'winograd_conv2d'; did you mean 'omp_program::winograd_conv2d'?
+  181 |       winograd_conv2d(numTeams, numThreads, A, C, B,
+      |       ^~~~~~~~~~~~~~~
+      |       omp_program::winograd_conv2d
+main.cpp:10:6: note: 'omp_program::winograd_conv2d' declared here
+   10 | void winograd_conv2d(",024
+111,use of undeclared identifier 'TILE_SIZE',"OMP STATUS: 0
+    -> PASS
+  [Variant 111] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:34:28: error: use of undeclared identifier 'TILE_SIZE'
+   34 |       int j_off = tile_j * TILE_SIZE + offset_j;
+      |                            ^
+main.cpp:35:28: error: use of undeclared identifier 'TILE_SIZE'
+   35 |       int i_off = tile_i * TILE_SIZE + offset_i;
+      |                            ^",111

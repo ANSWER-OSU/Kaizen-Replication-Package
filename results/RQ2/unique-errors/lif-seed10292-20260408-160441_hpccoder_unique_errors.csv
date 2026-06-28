@@ -1,0 +1,111 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+007,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 007] Building on worker 7 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:116:1: error: extraneous closing brace ('}')
+  116 | }
+      | ^
+main.cpp:220:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  220 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",007 018 020 023 024 028 029 030 031 039 042 043 046 049 050 052 058 060 063 065 068 081 084 090 091 093 112 120 121 128 141 146 149 152 161 171 174 184 190 193 202 207 212 214 216 218 221 227 229 241 251 253 260 263 273 277 280 285 287 292 295 296 300 302 303 309 319 320 321 327 330 335 346 350 362 363 368 369 370 371 378 379 385 388 393 400 402 405 406 412 416 418 423 427 432 437 438 444 446 457 464 466 471 487 493 503 505 506 508 515 533 534 544 545 555 556 558 576 583 591 593 594 600 603 605 610 613 619 634 637 642 644 646 663 667 671 675 678 680 691 693 699 708 720 722 723 724 726 727 738 739 747 751 753 754 755 759 760 761 765 776 778 786 791 794 800 803 806 813 817 821 822 824 828 832 835 836
+007,use of undeclared identifier 'lif'; did you mean 'omp_program::lif'?,"    -> PASS
+  [Variant 007] Building (mode=omp)
+BUILDING OMP VARIANT: /scratch/projects/anklesan/LLM-Code-Porting-Testing/kaizen-output/lif-seed10292-20260408-160441/translated-outputs-hpccoder/main-007.cpp
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -DLIBOMP -c main.cpp -o main.o
+main.cpp:183:5: error: use of undeclared identifier 'lif'; did you mean 'omp_program::lif'?
+  183 |     lif(numTeams,
+      |     ^~~
+      |     omp_program::lif
+main.cpp:61:6: note: 'omp_program::lif' declared here
+   61 | void lif (",007 018 020 023 024 028 029 030 031 039 042 043 046 049 050 052 058 060 063 065 068 081 084 090 091 093 112 120 121 128 141 146 149 152 161 171 174 184 190 193 202 207 212 214 216 218 221 227 229 241 251 253 260 263 273 277 280 285 287 292 295 296 300 302 303 309 319 320 321 327 330 335 346 350 362 363 368 369 370 371 378 379 385 388 393 400 402 405 406 412 416 418 423 427 432 437 438 444 446 457 464 466 471 487 493 503 505 506 508 515 533 534 544 545 555 556 558 576 583 591 593 594 600 603 605 610 613 619 634 637 642 644 646 663 667 671 675 678 680 691 693 699 708 720 722 723 724 726 727 738 739 747 751 753 754 755 759 760 761 765 776 778 786 791 794 800 803 806 813 817 821 822 824 828 832 835 836
+007,use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?,"      |     ^~~
+      |     omp_program::lif
+main.cpp:61:6: note: 'omp_program::lif' declared here
+   61 | void lif (
+      |      ^
+main.cpp:204:5: error: use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?
+  204 |     reference(num_neurons, 
+      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:12:6: note: 'omp_program::reference' declared here
+   12 | void reference (",007 018 020 023 024 028 029 030 031 039 042 043 046 049 050 052 058 060 063 065 068 081 084 090 091 093 112 120 121 128 141 146 149 152 161 171 174 184 190 193 202 207 212 214 216 218 221 227 229 241 251 253 260 263 273 277 280 285 287 292 295 296 300 302 303 309 319 320 321 327 330 335 346 350 362 363 368 369 370 371 378 379 385 388 393 400 402 405 406 412 416 418 423 427 432 437 438 444 446 457 464 466 471 487 493 503 505 506 508 515 533 534 544 545 555 556 558 576 583 591 593 594 600 603 605 610 613 619 634 637 642 644 646 663 667 671 675 678 680 691 693 699 708 720 722 723 724 726 727 738 739 747 751 753 754 755 759 760 761 765 776 778 786 791 794 800 803 806 813 817 821 822 824 828 832 835 836
+039,use of undeclared identifier 'tauYou_ref'; did you mean 'tau_ref'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 039] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:107:18: error: use of undeclared identifier 'tauYou_ref'; did you mean 'tau_ref'?
+  107 |       ref_time = tauYou_ref + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^~~~~~~~~~
+      |                  tau_ref
+main.cpp:67:25: note: 'tau_ref' declared here
+   67 |     float tau_rc, float tau_ref,",039 091 115 216 292 296 308 321 371 379 408 415 481 505 506 515 556 593 630 688 746 755 759
+063,use of undeclared identifier 'tauYou',"OMP STATUS: 2
+    -> FAIL
+  [Variant 063] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:108:18: error: use of undeclared identifier 'tauYou'
+  108 |       ref_time = tauYou + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^
+main.cpp:119:1: error: extraneous closing brace ('}')
+  119 | }
+      | ^",063 214 285 346 349 350 362 405 418 423 440 444 465 493 499 501 558 570 585 603 605 637 642 644 678 680 765 778 779 791 800 817 836
+123,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 0
+    -> PASS
+  [Variant 123] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:86:15: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   86 |     voltage = fmaxf(voltage + dV, 0.f);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:86:15: note: expected built-in binary operator
+   86 |     voltage = fmaxf(voltage + dV, 0.f);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~",123 270 334 586
+169,use of undeclared identifier 'dummyYou_array',"OMP STATUS: 0
+    -> PASS
+  [Variant 169] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:113:24: error: use of undeclared identifier 'dummyYou_array'
+  113 |     reftime_array[i] = dummyYou_array[i] = dummy_data84;
+      |                        ^
+main.cpp:221:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  221 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",169
+199,use of undeclared identifier 'tauYoung',"OMP STATUS: 0
+    -> PASS
+  [Variant 199] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:108:18: error: use of undeclared identifier 'tauYoung'
+  108 |       ref_time = tauYoung + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^
+main.cpp:223:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  223 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",199 212 278 332 487 718 723 780
+389,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 2
+    -> FAIL
+  [Variant 389] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:102:26: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+  102 |       voltage_array[i] = 0.f;
+      |                          ^~~
+main.cpp:102:26: note: expected built-in binary operator
+  102 |       voltage_array[i] = 0.f;
+      |                          ^~~",389
+391,use of undeclared identifier 'dummyYoung',"OMP STATUS: 2
+    -> FAIL
+  [Variant 391] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:104:24: error: use of undeclared identifier 'dummyYoung'
+  104 |     reftime_array[i] = dummyYoung;
+      |                        ^
+main.cpp:212:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  212 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",391 692

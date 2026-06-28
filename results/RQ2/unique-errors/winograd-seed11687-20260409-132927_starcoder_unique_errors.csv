@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 262 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:82:1: error: expected unqualified-id
+   82 | ### Context:
+      | ^
+1 error generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 071 077 080 086 091 093 094 097 103 106 107 108 113 114 115 116 119 120 121 122 128 129 130 131 134 135 136 138 145 146 148 149 150 151 154 157 158 162 163 172 174 175 176 177 182 187 188 191 193 194 197 202 205 209 210 211 213 216 219 220 221 222 224 228 229 230 231 235 236 244 245 247 248 249 250 251 255 256 260 261 262 266 268 269 270 274 275 286 287 288 290 291 292 294 295 296 297 298 300 301 302 303 305 307 308 309 312 313 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 356 360 361 363 365 369 377 381 384 386 389 391 392 395 397 399 401 403 405 406 407 412 413 414 417 419 423 425 432 433 436 438 440 441 443 444 446 447 449 450 451 453 454 456 464 467 473 475 477 478 484 487 488 491 496 503 510 512 513 517 518 519 520 522 528 532 533 534 535 536 537 542 544 545 546 548 549 551 556 557 558 559 562 565 569 570 572 576 577 578 580 582 583 584 586 591 592 594 596 600 602 603
+274,use of undeclared identifier 'j',"OMP STATUS: 2
+    -> FAIL
+  [Variant 274] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:31:21: error: use of undeclared identifier 'j'
+   31 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                     ^
+main.cpp:31:40: error: use of undeclared identifier 'j'
+   31 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                                        ^",274
+300,use of undeclared identifier 'blockIdx',"OMP STATUS: 2
+    -> FAIL
+  [Variant 300] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:20: error: use of undeclared identifier 'blockIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                 ^",300
+300,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:20: error: use of undeclared identifier 'blockIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                 ^
+main.cpp:14:46: error: use of undeclared identifier 'threadIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                              ^",300
+300,use of undeclared identifier 'threadIdx',"   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                 ^
+main.cpp:14:46: error: use of undeclared identifier 'threadIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                              ^
+main.cpp:93:1: error: expected unqualified-id
+   93 | ### Context:
+      | ^",300 603
+422,expected expression,"OMP STATUS: 2
+    -> FAIL
+  [Variant 422] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:92:1: error: expected expression
+   92 | ### Context:
+      | ^
+main.cpp:231:17: error: expected '}'
+  231 | #endif // LIBOMP
+      |                 ^",422
+422,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:92:1: error: expected expression
+   92 | ### Context:
+      | ^
+main.cpp:231:17: error: expected '}'
+  231 | #endif // LIBOMP
+      |                 ^
+main.cpp:12:56: note: to match this '{'
+   12 |   for (int tile_j = 0; tile_j < tile_j_size; tile_j++) {
+      |                                                        ^",422

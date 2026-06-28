@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+029,declaration of 'T' shadows template parameter,"OMP STATUS: 0
+    -> PASS
+  [Variant 029] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:108:13: error: declaration of 'T' shadows template parameter
+  108 |     const T T x2_c1 = x2_row[1];
+      |             ^
+main.cpp:89:20: note: template parameter is declared here
+   89 | template <typename T>
+      |                    ^",029 091 130
+029,expected ';' at end of declaration,"  108 |     const T T x2_c1 = x2_row[1];
+      |             ^
+main.cpp:89:20: note: template parameter is declared here
+   89 | template <typename T>
+      |                    ^
+main.cpp:108:14: error: expected ';' at end of declaration
+  108 |     const T T x2_c1 = x2_row[1];
+      |              ^
+      |              ;
+main.cpp:109:11: error: unknown type name 'T'
+  109 |     const T x2_c2 = x2_row[2];",029 091 130 150
+029,unknown type name 'T',"      |                    ^
+main.cpp:108:14: error: expected ';' at end of declaration
+  108 |     const T T x2_c1 = x2_row[1];
+      |              ^
+      |              ;
+main.cpp:109:11: error: unknown type name 'T'
+  109 |     const T x2_c2 = x2_row[2];
+      |           ^
+main.cpp:111:11: error: unknown type name 'T'
+  111 |     const T val0 = x1_c1 * x2_c2 - x1_c2 * x2_c1 ;
+      |           ^",029 091 130
+029,use of undeclared identifier 'x2_c1',"  109 |     const T x2_c2 = x2_row[2];
+      |           ^
+main.cpp:111:11: error: unknown type name 'T'
+  111 |     const T val0 = x1_c1 * x2_c2 - x1_c2 * x2_c1 ;
+      |           ^
+main.cpp:111:44: error: use of undeclared identifier 'x2_c1'
+  111 |     const T val0 = x1_c1 * x2_c2 - x1_c2 * x2_c1 ;
+      |                                            ^
+main.cpp:113:11: error: unknown type name 'T'
+  113 |     const T val1 = x1_c2 * x2_c0 - x1_c0 * x2_c2 ;
+      |           ^",029 091 130
+029,default initialization of an object of const type 'const float',"  115 |     const T val2 = x1_c0 * x2_c1 - x1_c1 * x2_c0 ;
+      |           ^
+main.cpp:115:28: error: use of undeclared identifier 'x2_c1'
+  115 |     const T val2 = x1_c0 * x2_c1 - x1_c1 * x2_c0 ;
+      |                            ^
+main.cpp:108:13: error: default initialization of an object of const type 'const float'
+  108 |     const T T x2_c1 = x2_row[1];
+      |             ^
+      |               = 0.0
+main.cpp:175:7: note: in instantiation of function template specialization 'cross3_kernel<float>' requested here
+  175 |       cross3_kernel(numTeams, numThreads, nrows, o3, a, b);",029 091 130
+029,default initialization of an object of const type 'const double',"  175 |       cross3_kernel(numTeams, numThreads, nrows, o3, a, b);
+      |       ^
+main.cpp:213:3: note: in instantiation of function template specialization 'eval<float>' requested here
+  213 |   eval<float>(nrows, repeat);
+      |   ^
+main.cpp:108:13: error: default initialization of an object of const type 'const double'
+  108 |     const T T x2_c1 = x2_row[1];
+      |             ^
+      |               = 0.0
+main.cpp:175:7: note: in instantiation of function template specialization 'cross3_kernel<double>' requested here
+  175 |       cross3_kernel(numTeams, numThreads, nrows, o3, a, b);",029 091 130
+150,use of undeclared identifier 'dummyYou',"OMP STATUS: 0
+    -> PASS
+  [Variant 150] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:118:36: error: use of undeclared identifier 'dummyYou'
+  118 |     const T val2 = x1_c0 * x2_c1 - dummyYou must output the OpenMP code for the given CUDA code.
+      |                                    ^
+main.cpp:118:44: error: expected ';' at end of declaration
+  118 |     const T val2 = x1_c0 * x2_c1 - dummyYou must output the OpenMP code for the given CUDA code.
+      |                                            ^",150

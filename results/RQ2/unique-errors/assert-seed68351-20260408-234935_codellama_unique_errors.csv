@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,use of undeclared identifier 'gridDim',"Found 168 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^",000 001 018 026 029 034 040 041 049 050 068 079 081 085 086 090 093 094 098 106 113 120 124 135 155 159 162 168 188 193 194 195 206 207 212 216 220 225 227 230 232 234 237 238 239 249 250 253 257 272 274 282 286 301 320 334 337 338 341 349 354 359 369 371 384 388 390 400 413 431 434 458 461 463 465 469 471 473 475 476 478 481 484 489 492 494 498 506 508 510 512 515 538 549 551 553 555 559 565 566 575 580 582 590 596 604 612 617 630 633 662 667 671 684 686 697 698 704 718 720 721 727 729 730 739 742 753 754 760 763 766 769 777 781 784 788 790 794 805 809 810 811 812 813 833 839 841 842 846 847 854 855 859 861 865 882 886 888 896 897 899 903 905 907 925
+000,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^
+main.cpp:38:27: error: use of undeclared identifier 'blockDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^",000 001 018 026 029 034 040 041 049 050 068 079 081 085 086 090 093 094 098 106 113 120 124 135 155 159 162 168 188 193 194 195 206 207 212 216 220 225 227 230 232 234 237 238 239 249 250 253 257 272 274 282 286 301 320 334 337 338 341 349 354 359 369 371 384 388 390 400 413 431 434 458 461 463 465 469 471 473 475 476 478 481 484 489 492 494 498 506 508 510 512 515 538 549 551 553 555 559 565 566 575 580 582 590 596 604 612 617 630 633 662 667 671 684 686 697 698 704 718 720 721 727 729 730 739 742 753 754 760 763 766 769 777 781 784 788 790 794 805 809 810 811 812 813 833 839 841 842 846 847 854 855 859 861 865 882 886 888 896 897 899 903 905 907 925
+000,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'","   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^
+main.cpp:38:40: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 001 018 026 029 034 040 041 049 050 068 079 081 085 086 090 093 094 098 106 113 120 124 135 155 159 162 168 188 193 194 195 206 207 212 216 220 225 227 230 232 234 237 238 239 249 250 253 257 272 274 282 286 301 320 334 337 338 341 349 354 359 369 371 384 388 390 400 413 431 434 458 461 463 465 469 471 473 475 476 478 481 484 489 492 494 498 506 508 510 512 515 538 549 551 553 555 559 565 566 575 580 582 590 596 604 612 617 630 633 662 667 671 684 686 697 698 704 718 720 721 727 729 730 739 742 753 754 760 763 766 769 777 781 784 788 790 794 805 809 810 811 812 813 833 839 841 842 846 847 854 855 859 861 865 882 886 888 896 897 899 903 905 907 925
+000,no matching function for call to 'perfKernel',"   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 0 arguments, but 2 were provided
+   35 | void perfKernel()
+      |      ^",000 001 018 026 029 034 040 041 049 050 068 079 081 085 086 090 093 094 095 098 106 113 120 124 135 138 140 155 159 162 168 188 193 194 195 206 207 212 216 220 225 227 230 232 234 237 238 239 249 250 253 257 272 274 282 286 301 320 334 337 338 341 349 354 359 369 371 384 388 390 400 413 431 434 458 461 463 465 469 471 473 475 476 478 481 484 489 492 494 498 506 508 510 512 515 538 549 551 553 555 559 565 566 575 580 582 590 596 604 612 617 630 633 662 667 671 684 686 697 698 704 718 720 721 727 729 730 739 742 753 754 760 763 766 769 777 781 784 788 790 794 805 809 810 811 812 813 833 839 841 842 846 847 854 855 859 861 865 882 886 888 896 897 899 903 905 907 925
+766,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'","   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^
+main.cpp:38:40: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:42:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   42 |     for (int i = 0; false; i++) {
+      |                     ^~~~~
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~",766 888

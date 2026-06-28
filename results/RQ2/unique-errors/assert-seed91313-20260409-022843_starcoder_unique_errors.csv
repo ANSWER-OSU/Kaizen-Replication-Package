@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 171 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 003 016 030 031 035 038 039 052 055 068 072 073 076 090 095 098 099 112 113 121 123 129 133 141 161 181 187 198 215 216 217 220 234 237 246 251 254 259 260 270 273 279 283 300 302 310 312 313 314 317 318 329 331 347 352 355 356 360 368 376 379 384 389 391 407 408 414 418 421 424 425 459 467 469 475 479 481 485 492 493 499 501 504 506 515 522 523 524 527 529 531 535 537 539 546 549 553 554 557 569 573 585 591 598 599 602 620 632 637 643 651 652 656 664 666 670 671 674 676 685 686 696 698 716 731 734 736 738 740 742 747 758 759 760 778 780 781 783 786 787 795 805 808 814 826 832 834 840 842 853 858 860 870 873 877 897 909 914 917 927 928 932 963 967
+000,no matching function for call to 'perfKernel',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 003 029 031 076 091 095 112 121 161 217 234 237 251 254 283 300 302 313 317 318 347 352 356 368 376 384 414 424 459 467 479 492 493 501 506 515 524 535 537 546 554 557 591 598 599 620 632 637 651 656 664 666 671 685 696 698 716 731 734 738 740 742 747 756 758 778 780 840 858 860 873 877 897 914 917 928
+000,use of undeclared identifier 'perfKernel2',"  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:122:3: error: use of undeclared identifier 'perfKernel2'
+  122 |   perfKernel2(Nblocks, Nthreads);
+      |   ^
+3 errors generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",000 003 031 076 095 112 121 161 217 234 237 251 254 283 300 302 313 317 318 347 352 356 368 376 384 414 424 459 467 479 492 493 501 506 515 524 535 537 546 554 557 591 598 599 620 632 637 651 656 664 666 671 685 696 698 716 731 734 738 740 742 747 758 778 780 840 858 860 873 877 897 914 917 928
+001,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:39:47: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   39 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^
+1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",001 029 038 091 112 133 216 317 318 376 485 529 585 756 759 786 787 826 842
+016,use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:126:3: error: use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?
+  126 |   perfKernel2(Nblocks, Nthreads);
+      |   ^~~~~~~~~~~
+      |   perfKernel
+main.cpp:35:6: note: 'perfKernel' declared here
+   35 | void perfKernel(const int numTeams, const int numThreads) {",016 030 035 038 039 052 055 068 072 073 090 098 099 113 123 129 133 141 181 187 198 215 216 220 246 259 260 270 273 279 310 312 314 329 331 355 360 379 389 391 407 408 418 421 425 469 475 481 485 499 504 522 523 527 529 531 539 549 553 569 573 585 602 643 652 670 674 676 686 736 759 760 781 783 786 787 795 805 808 814 826 832 834 842 853 870 909 927 932 963 967
+318,unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute',"OMP STATUS: 2
+    -> FAIL
+  [Variant 318] Building on worker 22 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:36:59: error: unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute'
+   36 |   #pragma omp target teams distribute num_teams(numTeams) num_threads(numThreads)
+      |                                                           ^
+main.cpp:41:48: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   41 |     #pragma omp parallel for reduction (+:ngt) num_teams(numTeams) num_threads(numThreads)
+      |                                                ^",318

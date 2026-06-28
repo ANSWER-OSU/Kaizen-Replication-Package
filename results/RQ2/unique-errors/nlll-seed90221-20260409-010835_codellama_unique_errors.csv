@@ -1,0 +1,144 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"Found 230 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",000 001 005 016 019 021 025 027 032 033 035 038 039 041 043 049 050 051 055 073 079 092 093 097 109 114 123 134 140 144 146 151 158 171 199 207 212 214 219 220 229 239 240 242 254 260 275 277 287 289 293 294 303 324 330 332 343 351 354 358 360 371 373 381 402 418 449 453
+001,use of undeclared identifier 'tid',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   48 |     #pragma omp barrier
+      |     ^
+main.cpp:49:9: error: use of undeclared identifier 'tid'
+   49 |     if (tid == 0) {
+      |         ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",001 032 033 055 097 158 205 220 351 373 453
+050,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   48 |     #pragma omp barrier
+      |     ^
+main.cpp:49:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   49 |     #pragma omp master
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",050 079 144 219 229 303
+109,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   48 |     #pragma omp barrier
+      |     ^
+main.cpp:49:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   49 |     #pragma omp single
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",109 123 240 260 330 332 360
+207,use of undeclared identifier 'unused_data485',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   48 |     #pragma omp barrier
+      |     ^
+main.cpp:50:9: error: use of undeclared identifier 'unused_data485'
+   50 |     if (unused_data485 == 0) {
+      |         ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",207
+294,expected expression,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:76:1: error: expected expression
+   76 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:223:17: error: expected '}'
+  223 | #endif // LIBOMP
+      |                 ^",294
+294,expected '}',"   50 |     #pragma omp barrier
+      |     ^
+main.cpp:76:1: error: expected expression
+   76 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:223:17: error: expected '}'
+  223 | #endif // LIBOMP
+      |                 ^
+main.cpp:27:1: note: to match this '{'
+   27 | {
+      | ^",294
+326,invalid operands to binary expression ('float[64]' and 'float'),"OMP STATUS: 2
+    -> FAIL
+  [Variant 326] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:57:22: error: invalid operands to binary expression ('float[64]' and 'float')
+   57 |           acc_weight += acc_weight[i];
+      |           ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:102:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+  102 |       nll_loss_forward_reduce2d_kernel
+      |       ^",326
+326,invalid operands to binary expression ('float[128]' and 'float'),"  183 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:211:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  211 |   driver<float, int>(argv);
+      |   ^
+main.cpp:57:22: error: invalid operands to binary expression ('float[128]' and 'float')
+   57 |           acc_weight += acc_weight[i];
+      |           ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:102:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 128>' requested here
+  102 |       nll_loss_forward_reduce2d_kernel
+      |       ^",326
+326,invalid operands to binary expression ('float[256]' and 'float'),"  183 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:211:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  211 |   driver<float, int>(argv);
+      |   ^
+main.cpp:57:22: error: invalid operands to binary expression ('float[256]' and 'float')
+   57 |           acc_weight += acc_weight[i];
+      |           ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:102:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 256>' requested here
+  102 |       nll_loss_forward_reduce2d_kernel
+      |       ^",326
+326,invalid operands to binary expression ('float[512]' and 'float'),"  183 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:211:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  211 |   driver<float, int>(argv);
+      |   ^
+main.cpp:57:22: error: invalid operands to binary expression ('float[512]' and 'float')
+   57 |           acc_weight += acc_weight[i];
+      |           ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:102:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 512>' requested here
+  102 |       nll_loss_forward_reduce2d_kernel
+      |       ^",326
+326,invalid operands to binary expression ('float[1024]' and 'float'),"  183 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:211:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  211 |   driver<float, int>(argv);
+      |   ^
+main.cpp:57:22: error: invalid operands to binary expression ('float[1024]' and 'float')
+   57 |           acc_weight += acc_weight[i];
+      |           ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:102:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 1024>' requested here
+  102 |       nll_loss_forward_reduce2d_kernel
+      |       ^",326
+396,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp for' directive into a parallel region?,"OMP STATUS: 0
+    -> PASS
+  [Variant 396] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:53:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp for' directive into a parallel region?
+   53 |     #pragma omp for reduction(+ : output_acc) reduction(+ : total_weight_acc)
+      |     ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",396

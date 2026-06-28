@@ -1,0 +1,210 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 230 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:53:1: error: expected unqualified-id
+   53 | ### Context:
+      | ^
+main.cpp:174:3: warning: use of function template name with no prior declaration in function call with explicit template arguments is a C++20 extension [-Wc++20-extensions]
+  174 |   EVAL(64);
+      |   ^",000 001 005 006 014 015 016 017 018 019 021 023 024 025 027 028 029 032 033 035 036 038 039 041 043 045 048 049 050 051 052 053 055 058 061 067 068 073 076 077 079 082 084 089 091 092 093 095 096 097 099 100 107 109 114 117 123 125 126 131 133 134 136 137 140 142 144 145 146 147 148 149 150 151 155 156 158 159 160 164 165 167 168 171 173 179 181 183 185 187 191 197 199 200 204 205 207 211 212 214 215 217 218 219 220 223 224 225 229 230 231 232 235 236 239 240 241 242 246 248 250 251 254 257 259 260 262 265 267 269 271 272 275 277 280 283 284 287 289 290 292 293 294 298 300 301 302 303 304 305 309 311 312 315 318 319 320 322 323 324 326 327 330 331 332 334 335 339 341 342 343 344 347 349 350 351 352 354 356 357 358 359 360 362 364 365 366 368 369 371 373 381 382 387 390 391 392 396 397 398 399 400 402 403 405 406 410 412 414 416 418 419 420 421 422 423 432 433 436 438 439 440 446 449 450 451 452 453 465 469
+000,use of undeclared identifier 'eval',"  178 |   EVAL(1024);
+      |   ^
+main.cpp:170:3: note: expanded from macro 'EVAL'
+  170 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:174:3: error: use of undeclared identifier 'eval'
+  174 |   EVAL(64);
+      |   ^
+main.cpp:170:3: note: expanded from macro 'EVAL'
+  170 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^",000 001 005 006 014 015 016 017 018 019 021 023 024 025 027 028 029 032 033 035 036 038 039 041 043 045 048 049 050 051 052 053 055 058 061 067 068 073 076 077 079 082 084 089 091 092 093 095 096 097 099 100 107 109 114 117 123 125 126 131 133 134 136 137 140 142 144 145 146 147 148 149 150 151 155 156 158 159 160 164 165 167 168 171 173 179 181 183 185 187 191 197 199 200 204 205 207 211 212 214 215 217 218 219 220 223 224 225 229 230 231 232 235 236 239 240 241 242 246 248 250 251 254 257 259 260 262 265 267 269 271 272 275 277 280 283 284 287 289 290 292 293 294 298 300 301 302 303 304 305 309 311 312 315 318 319 320 322 323 324 326 327 330 331 332 334 335 339 341 342 343 344 347 349 350 351 352 354 356 357 358 359 360 362 364 365 366 368 369 371 373 381 382 387 390 391 392 396 397 398 399 400 402 403 405 406 410 412 414 416 418 419 420 421 422 423 432 433 436 438 439 440 446 449 450 451 452 453 465 469
+005,use of undeclared identifier 'nframe',"OMP STATUS: 2
+    -> FAIL
+  [Variant 005] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:25: error: use of undeclared identifier 'nframe'
+   30 |     for (int j = 0; j < nframe; j++) {
+      |                         ^
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^",005 019 021 025 035 043 048 052 091 093 096 123 125 134 137 155 183 220 284 331 334 358 405 421
+006,use of undeclared identifier 'kdim',"OMP STATUS: 2
+    -> FAIL
+  [Variant 006] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:32:36: error: use of undeclared identifier 'kdim'
+   32 |         sm_input -= (input[i * N * kdim + j * kdim + t] * cur_weight);
+      |                                    ^
+main.cpp:32:47: error: use of undeclared identifier 'kdim'
+   32 |         sm_input -= (input[i * N * kdim + j * kdim + t] * cur_weight);
+      |                                               ^",006 015 016 025 028 035 052 089 096 155 200 242 250 304 330 373 421 469
+014,use of undeclared identifier 'total_weight',"OMP STATUS: 2
+    -> FAIL
+  [Variant 014] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:10: error: use of undeclared identifier 'total_weight'
+   41 |         *total_weight += cur_weight;
+      |          ^
+main.cpp:54:17: error: use of undeclared identifier 'total_weight'
+   54 |     *output /= *total_weight;
+      |                 ^",014 023 033 036 050 053 068 076 079 167 199 219 229 235 254 283 294 365 414 419
+017,use of undeclared identifier 'tid',"OMP STATUS: 2
+    -> FAIL
+  [Variant 017] Building on worker 7 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:9: error: use of undeclared identifier 'tid'
+   37 |     if (tid == 0) {
+      |         ^
+main.cpp:46:1: error: expected unqualified-id
+   46 | ### Context:
+      | ^",017 032 091 149 181 246 265 271 320 330 354 364 368 396 399 410 433 465
+027,use of undeclared identifier 'acc_weight',"OMP STATUS: 2
+    -> FAIL
+  [Variant 027] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:43:19: error: use of undeclared identifier 'acc_weight'
+   43 |   *total_weight = acc_weight;
+      |                   ^
+main.cpp:46:1: error: expected unqualified-id
+   46 | ### Context:
+      | ^",027 039 049 068 077 100 117 142 150 164 179 187 217 218 246 248 254 260 265 271 287 301 320 322 323 339 341 344 360 365 391 422 450
+036,statement after '#pragma omp target teams distribute' must be a for loop,"   41 |         (*total_weight) += cur_weight;
+      |           ^
+main.cpp:45:19: error: use of undeclared identifier 'total_weight'
+   45 |     (*output) /= *total_weight;
+      |                   ^
+main.cpp:45:5: error: statement after '#pragma omp target teams distribute' must be a for loop
+   45 |     (*output) /= *total_weight;
+      |     ^
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^",036 076 167 235 283 294 414
+038,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 2
+    -> FAIL
+  [Variant 038] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:28: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   38 |       input[i] = input_val / reduction_size;
+      |                  ~~~~~~~~~~^~~~~~~~~~~~~~~~
+main.cpp:38:7: note: expected in right hand side of expression
+   38 |       input[i] = input_val / reduction_size;
+      |       ^~~~~~~~",038 039 049 073 099 126 140 232 239 240 298 319 324 373 392 451
+039,use of undeclared identifier 'sm_inputs',"OMP STATUS: 2
+    -> FAIL
+  [Variant 039] Building on worker 22 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:43:16: error: use of undeclared identifier 'sm_inputs'
+   43 |       sum_i += sm_inputs[tid];
+      |                ^
+main.cpp:44:16: error: use of undeclared identifier 'acc_weight'
+   44 |       sum_w += acc_weight[tid];
+      |                ^",039 100 117 265 301 320 323 339 341 422 450
+131,use of undeclared identifier 'tmp_val914',"OMP STATUS: 2
+    -> FAIL
+  [Variant 131] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:43:21: error: use of undeclared identifier 'tmp_val914'
+   43 |     *total_weight = tmp_val914;
+      |                     ^
+main.cpp:47:1: error: expected unqualified-id
+   47 | ### Context:
+      | ^",131
+164,use of undeclared identifier 'acc_weight'; did you mean 'cur_weight'?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:5: error: use of undeclared identifier 'acc_weight'
+   38 |     acc_weight[i] = 0;
+      |     ^
+main.cpp:47:7: error: use of undeclared identifier 'acc_weight'; did you mean 'cur_weight'?
+   47 |       acc_weight[omp_get_thread_num()] += cur_weight;
+      |       ^~~~~~~~~~
+      |       cur_weight
+main.cpp:44:16: note: 'cur_weight' declared here
+   44 |       scalar_t cur_weight =",164 260 265 287 320 323 360 422 450
+179,use of undeclared identifier 'cur_weight',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:5: error: use of undeclared identifier 'acc_weight'
+   38 |     acc_weight[i] += cur_weight;
+      |     ^
+main.cpp:38:22: error: use of undeclared identifier 'cur_weight'
+   38 |     acc_weight[i] += cur_weight;
+      |                      ^
+main.cpp:52:1: error: expected unqualified-id
+   52 | ### Context:
+      | ^",179
+236,use of undeclared identifier 'sum_weight',"OMP STATUS: 2
+    -> FAIL
+  [Variant 236] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:46:21: error: use of undeclared identifier 'sum_weight'
+   46 |     *total_weight = sum_weight;
+      |                     ^
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^",236
+265,use of undeclared identifier 'output_acc',"   34 |   if (tid == 0) {
+      |       ^
+main.cpp:37:27: error: use of undeclared identifier 'acc_weight'
+   37 |       total_weight_acc += acc_weight[i];
+      |                           ^
+main.cpp:41:17: error: use of undeclared identifier 'output_acc'
+   41 |       *output = output_acc / total_weight_acc;
+      |                 ^
+main.cpp:43:17: error: use of undeclared identifier 'output_acc'
+   43 |       *output = output_acc;
+      |                 ^",265 320
+312,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 312] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:30: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   47 |     #pragma omp parallel for num_teams(numTeams) num_threads(numThreads)
+      |                              ^
+main.cpp:92:1: error: expected unqualified-id
+   92 | ### Context:
+      | ^",312 422
+360,use of undeclared identifier 't',"   36 |     accscalar_t cur_weight = (weights != nullptr) ? weights[target[i]] : 1;
+      |                 ^
+main.cpp:48:29: error: use of undeclared identifier 'acc_weight'
+   48 |         total_weight_acc += acc_weight[j];
+      |                             ^
+main.cpp:52:25: error: use of undeclared identifier 't'
+   52 |       output[i * kdim + t] = output_acc / total_weight_acc;
+      |                         ^
+main.cpp:54:25: error: use of undeclared identifier 't'
+   54 |       output[i * kdim + t] = output_acc;
+      |                         ^",360
+369,use of undeclared identifier 'dummy_data540',"OMP STATUS: 2
+    -> FAIL
+  [Variant 369] Building on worker 28 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:42:9: error: use of undeclared identifier 'dummy_data540'
+   42 |     if (dummy_data540 == 0) {
+      |         ^
+main.cpp:48:1: error: expected unqualified-id
+   48 | ### Context:
+      | ^",369
+422,"expected 2 for loops after '#pragma omp parallel for', but found only 1","      |       ^~~~~~~~~~
+      |       cur_weight
+main.cpp:34:16: note: 'cur_weight' declared here
+   34 |       scalar_t cur_weight = (weights != nullptr) ? weights[t] : 1;
+      |                ^
+main.cpp:31:84: error: expected 2 for loops after '#pragma omp parallel for', but found only 1
+   31 |   for (int temp_buf890 = 0; temp_buf890 < nframe; temp_buf890 += NLL_LOSS_THREADS) {
+      |                                                                                    ^
+main.cpp:30:37: note: as specified in 'collapse' clause
+   30 |   #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                     ^",422

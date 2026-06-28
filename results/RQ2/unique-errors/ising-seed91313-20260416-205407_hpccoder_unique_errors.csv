@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","Found 199 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:52:49: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   52 |   for (long long tid = 0; tid < nx * ny; tid++) {
+      |                                                 ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(nx) num_threads(ny)
+      |                                                             ^",000 001 002 003 006 007 010 011 016 018 020 030 031 034 038 040 044 045 047 052 053 055 057 061 062 076 078 081 085 087 090 097 098 099 100 103 109 110 113 118 121 130 131 134 140 141 144 149 154 157 161 172 173 181 182 194 196 198 200 209 216 217 220 228 230 232 233 234 235 237 238 241 245 246 250 259 260 265 267 269 276 280 282 288 289 294 299 300 304 306 313 314 317 318 319 321 324 325 326 328 329 330 332 334 337 339 340 343 344 346 347 355 360 364 365 366 367 368 371 372 376 379 383 384 385 391 395 397
+000,no matching function for call to 'update_lattice',"   52 |   for (long long tid = 0; tid < nx * ny; tid++) {
+      |                                                 ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(nx) num_threads(ny)
+      |                                                             ^
+main.cpp:92:3: error: no matching function for call to 'update_lattice'
+   92 |   update_lattice<true>(blocks, THREADS, lattice_b, lattice_w, randvals, inv_temp, nx, ny / 2);
+      |   ^~~~~~~~~~~~~~~~~~~~
+main.cpp:50:6: note: candidate function template not viable: requires 6 arguments, but 8 were provided
+   50 | void update_lattice(signed char* lattice, const signed char* __restrict op_lattice, const float* __restrict randvals, const float inv_temp, const long long nx, const long long ny) {
+      |      ^              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 001 002 003 006 007 010 011 012 016 018 020 023 029 030 031 032 034 035 038 039 040 044 045 046 047 048 052 053 055 057 061 062 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 101 103 105 108 109 110 112 113 116 118 121 122 123 129 130 131 133 134 135 136 140 141 144 148 149 154 155 157 161 163 166 167 168 170 172 173 176 181 182 185 187 191 194 196 198 200 209 215 216 217 219 220 228 230 232 233 234 235 236 237 238 241 242 244 245 246 247 250 251 253 254 259 260 264 265 267 269 270 273 276 279 280 282 283 288 289 294 297 299 300 302 303 304 306 308 310 312 313 314 315 317 318 319 320 321 324 325 326 328 329 330 331 332 333 334 337 338 339 340 341 343 344 346 347 352 355 356 360 362 364 365 366 367 368 371 372 373 376 379 383 384 385 389 391 395 396 397
+061,cannot return from OpenMP region,"OMP STATUS: 2
+    -> FAIL
+  [Variant 061] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:58:29: error: cannot return from OpenMP region
+   58 |     if (i >= nx || j >= ny) return;
+      |                             ^
+main.cpp:52:49: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   52 |   for (long long tid = 0; tid < nx * ny; tid++) {
+      |                                                 ^",061 108 110 116 131 167 320 330 340
+250,use of undeclared identifier 'i',"   53 |     printf(""Dead code executed\n"");
+      |     ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(nx) num_threads(ny)
+      |                                                             ^
+main.cpp:59:16: error: use of undeclared identifier 'i'
+   59 |     int ipp = (i + 1 < nx) ? i + 1 : 0;
+      |                ^
+main.cpp:59:30: error: use of undeclared identifier 'i'
+   59 |     int ipp = (i + 1 < nx) ? i + 1 : 0;
+      |                              ^",250

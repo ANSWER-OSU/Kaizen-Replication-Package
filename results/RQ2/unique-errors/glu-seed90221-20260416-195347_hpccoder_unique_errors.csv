@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+142,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 142] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:22:42: error: cannot return from OpenMP region
+   22 |     if (index >= M * split_dim_size * N) return;
+      |                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",142 148 217 219 259 301 327 347 352 412
+219,use of undeclared identifier 'dummyYoung',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:42: error: cannot return from OpenMP region
+   30 |     if (index >= M * split_dim_size * N) return;
+      |                                          ^
+main.cpp:40:63: error: use of undeclared identifier 'dummyYoung'
+   40 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-dummyYoung)));
+      |                                                               ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",219
+220,redefinition of 'i' with a different type: 'const int' vs 'int',"OMP STATUS: 2
+    -> FAIL
+  [Variant 220] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:15: error: redefinition of 'i' with a different type: 'const int' vs 'int'
+   31 |     const int i = index / split_dim_size / N;
+      |               ^
+main.cpp:27:12: note: previous definition is here
+   27 |   for (int i = 0; i < M * split_dim_size * N; ++i) {
+      |            ^",220
+315,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"OMP STATUS: 0
+    -> PASS
+  [Variant 315] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int temp_buf863 = 2 * split_dim_size * N;
+      |   ^
+main.cpp:30:32: error: use of undeclared identifier 'temp_buf863'
+   30 |     const float x1 = Xdata[i * temp_buf863 + unused_buf368 * N + k];
+      |                                ^",315 366
+315,use of undeclared identifier 'temp_buf863',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int temp_buf863 = 2 * split_dim_size * N;
+      |   ^
+main.cpp:30:32: error: use of undeclared identifier 'temp_buf863'
+   30 |     const float x1 = Xdata[i * temp_buf863 + unused_buf368 * N + k];
+      |                                ^
+main.cpp:31:32: error: use of undeclared identifier 'temp_buf863'
+   31 |     const float x2 = Xdata[i * temp_buf863 + (unused_buf368 + split_dim_size) * N + k];
+      |                                ^",315 366

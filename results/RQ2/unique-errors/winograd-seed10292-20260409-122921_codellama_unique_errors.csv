@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+078,use of undeclared identifier 'tile_j',"OMP STATUS: 0
+    -> PASS
+  [Variant 078] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:64:19: error: use of undeclared identifier 'tile_j'
+   64 |       int y = 2 * tile_j + omp_get_thread_num() % 2;
+      |                   ^
+main.cpp:65:19: error: use of undeclared identifier 'tile_i'
+   65 |       int x = 2 * tile_i + omp_get_thread_num() / 2;
+      |                   ^",078
+078,use of undeclared identifier 'tile_i',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:64:19: error: use of undeclared identifier 'tile_j'
+   64 |       int y = 2 * tile_j + omp_get_thread_num() % 2;
+      |                   ^
+main.cpp:65:19: error: use of undeclared identifier 'tile_i'
+   65 |       int x = 2 * tile_i + omp_get_thread_num() / 2;
+      |                   ^
+main.cpp:60:76: warning: array index 2 is past the end of the array (that has type 'float[2][4]') [-Warray-bounds]
+   60 |       final_tile[t / 4][0] = tmp_tile_1[0][t / 4] + tmp_tile_1[1][t / 4] + tmp_tile_1[2][t / 4];
+      |                                                                            ^          ~",078

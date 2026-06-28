@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"Found 200 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",000 001 011 013 015 019 022 025 026 038 046 049 050 055 057 081 093 106 113 121 134 136 138 157 162 174 213 219 230 244 245 249 275 295 298 302 303 307 308 312 317 319 320 327 335 336 346 350 351 389 403 414 419 425 440 443 445 451
+011,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:52:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   52 |     #pragma omp single
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",011 015 038 046 050 093 157 244 249 275 303 336
+057,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:54:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   54 |     #pragma omp barrier
+      |     ^
+main.cpp:56:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   56 |     #pragma omp master
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",057 134 298 317 419 425
+136,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp for' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:55:7: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp for' directive into a parallel region?
+   55 |       #pragma omp for reduction(+ : output_acc, total_weight_acc)
+      |       ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",136
+156,expected expression,"OMP STATUS: 0
+    -> PASS
+  [Variant 156] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected expression
+   83 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:230:17: error: expected '}'
+  230 | #endif // LIBOMP
+      |                 ^",156 268
+156,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected expression
+   83 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:230:17: error: expected '}'
+  230 | #endif // LIBOMP
+      |                 ^
+main.cpp:27:1: note: to match this '{'
+   27 | {
+      | ^",156 268

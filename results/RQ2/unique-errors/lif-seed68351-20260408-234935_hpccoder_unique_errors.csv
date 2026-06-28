@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+074,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 074] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:117:1: error: extraneous closing brace ('}')
+  117 | }
+      | ^
+main.cpp:221:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  221 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",074 125 223 230 311 335 337 359 408 417 418 424 430 453 466 473 494 512 520 552 584 686 696 777 779 788 828
+074,use of undeclared identifier 'lif'; did you mean 'omp_program::lif'?,"    -> PASS
+  [Variant 074] Building (mode=omp)
+BUILDING OMP VARIANT: /scratch/projects/anklesan/LLM-Code-Porting-Testing/kaizen-output/lif-seed68351-20260408-234935/translated-outputs-hpccoder/main-074.cpp
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -DLIBOMP -c main.cpp -o main.o
+main.cpp:184:5: error: use of undeclared identifier 'lif'; did you mean 'omp_program::lif'?
+  184 |     lif(numTeams,
+      |     ^~~
+      |     omp_program::lif
+main.cpp:61:6: note: 'omp_program::lif' declared here
+   61 | void lif (",074 125 223 230 311 335 337 359 408 417 418 424 430 453 466 473 494 512 520 552 584 686 696 777 779 788 828
+074,use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?,"      |     ^~~
+      |     omp_program::lif
+main.cpp:61:6: note: 'omp_program::lif' declared here
+   61 | void lif (
+      |      ^
+main.cpp:205:5: error: use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?
+  205 |     reference(num_neurons, 
+      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:12:6: note: 'omp_program::reference' declared here
+   12 | void reference (",074 125 223 230 311 335 337 359 408 417 418 424 430 453 466 473 494 512 520 552 584 686 696 777 779 788 828
+492,use of undeclared identifier 'tauYou_ref'; did you mean 'tau_ref'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 492] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:109:18: error: use of undeclared identifier 'tauYou_ref'; did you mean 'tau_ref'?
+  109 |       ref_time = tauYou_ref + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^~~~~~~~~~
+      |                  tau_ref
+main.cpp:67:25: note: 'tau_ref' declared here
+   67 |     float tau_rc, float tau_ref,",492
+613,use of undeclared identifier 'tauYoung',"OMP STATUS: 0
+    -> PASS
+  [Variant 613] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:100:18: error: use of undeclared identifier 'tauYoung'
+  100 |       ref_time = tauYoung + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^
+main.cpp:214:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  214 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",613
+794,use of undeclared identifier 'tauYou',"OMP STATUS: 0
+    -> PASS
+  [Variant 794] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:112:18: error: use of undeclared identifier 'tauYou'
+  112 |       ref_time = tauYou + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^
+main.cpp:227:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  227 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",794

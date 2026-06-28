@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,use of undeclared identifier 'tid',"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:18: error: use of undeclared identifier 'tid'
+   35 |     for (int i = tid; i < nframe; i += NLL_LOSS_THREADS) {
+      |                  ^
+main.cpp:40:19: error: use of undeclared identifier 'tid'
+   40 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^",001 019 021 023 025 027 028 032 033 035 038 039 043 045 048 049 050 051 053 055 058 061 067 068 073 076 077 082 084 091 093 095 096 099 100 109 114 117 123 126 131 133 134 136 137 144 145 146 147 149 150 151 156 158 159 160 165 167 168 173 179 185 187 191 197 199 204 212 214 215 218 219 224 225 229 230 231 235 236 239 241 246 248 259 260 262 265 271 280 287 289 290 293 294 298 301 302 305 309 311 318 320 323 324 326 327 330 332 334 335 339 341 342 343 347 349 350 351 356 357 358 359 360 362 364 365 368 371 382 387 390 391 392 396 399 400 402 403 406 410 412 414 416 418 421 432 436 438 446 449 450 451 453 465
+038,use of undeclared identifier 'output_acc',"   40 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:41:20: error: use of undeclared identifier 'tid'
+   41 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:48:68: error: use of undeclared identifier 'output_acc'
+   48 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:50:7: error: use of undeclared identifier 'output_acc'
+   50 |       output_acc += sm_inputs[tid];
+      |       ^",038 114 214 319
+058,statement after '#pragma omp target teams distribute' must be a for loop,"   46 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:47:20: error: use of undeclared identifier 'tid'
+   47 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:31:3: error: statement after '#pragma omp target teams distribute' must be a for loop
+   31 |   {
+      |   ^
+3 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",058
+144,use of undeclared identifier 'unusedYoung',"   41 |         temp_buf863[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * unused_buf368);
+      |                     ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(unusedYoung);
+      |                    ^
+main.cpp:42:53: error: use of undeclared identifier 'unusedYoung'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(unusedYoung);
+      |                                                     ^
+3 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",144
+292,use of undeclared identifier 'dummyYou1',"OMP STATUS: 2
+    -> FAIL
+  [Variant 292] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:43:70: error: use of undeclared identifier 'dummyYou1'
+   43 |         acc_weight[i % NLL_LOSS_THREADS] += static_cast<accscalar_t>(dummyYou1);
+      |                                                                      ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",292 406
+319,use of undeclared identifier 'total_weight_acc',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:67:39: error: use of undeclared identifier 'output_acc'
+   67 |       *output = static_cast<scalar_t>(output_acc / total_weight_acc);
+      |                                       ^
+main.cpp:67:52: error: use of undeclared identifier 'total_weight_acc'
+   67 |       *output = static_cast<scalar_t>(output_acc / total_weight_acc);
+      |                                                    ^
+main.cpp:71:39: error: use of undeclared identifier 'output_acc'
+   71 |       *output = static_cast<scalar_t>(output_acc);
+      |                                       ^",319
+381,use of undeclared identifier 'threadIdx',"OMP STATUS: 0
+    -> PASS
+  [Variant 381] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:39:19: error: use of undeclared identifier 'threadIdx'
+   39 |         sm_inputs[threadIdx.x] -= static_cast<accscalar_t>(input[frame * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:40:20: error: use of undeclared identifier 'threadIdx'
+   40 |         acc_weight[threadIdx.x] += static_cast<accscalar_t>(cur_weight);
+      |                    ^",381

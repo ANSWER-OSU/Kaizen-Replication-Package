@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 69 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:120:1: error: expected unqualified-id
+  120 | ### Context:
+      | ^
+main.cpp:214:3: error: use of undeclared identifier 'eval'
+  214 |   eval<float>(nrows, repeat);
+      |   ^",000 001 002 003 006 007 010 012 016 020 023 029 030 031 032 034 035 038 039 040 044 045 047 048 052 053 055 057 061 062 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 101 103 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135
+000,use of undeclared identifier 'eval',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:120:1: error: expected unqualified-id
+  120 | ### Context:
+      | ^
+main.cpp:214:3: error: use of undeclared identifier 'eval'
+  214 |   eval<float>(nrows, repeat);
+      |   ^
+main.cpp:217:3: error: use of undeclared identifier 'eval'
+  217 |   eval<double>(nrows, repeat);
+      |   ^",000 001 002 003 006 007 010 012 016 020 023 029 030 031 032 034 035 038 039 040 044 045 047 048 052 053 055 057 061 062 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 101 103 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135

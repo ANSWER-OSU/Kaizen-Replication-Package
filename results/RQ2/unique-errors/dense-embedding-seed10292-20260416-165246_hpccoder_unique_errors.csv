@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+067,use of undeclared identifier 'range',"OMP STATUS: 0
+    -> PASS
+  [Variant 067] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:47:45: error: use of undeclared identifier 'range'
+   47 |     for (int nested_idx = idx; nested_idx < range; nested_idx += embedding_dim) {
+      |                                             ^
+main.cpp:48:21: error: use of undeclared identifier 'unused_val446'
+   48 |       output[offset[unused_val446] + nested_idx] = input[offset[unused_val446] + nested_idx] + dense_elem;
+      |                     ^",067
+067,use of undeclared identifier 'unused_val446',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:47:45: error: use of undeclared identifier 'range'
+   47 |     for (int nested_idx = idx; nested_idx < range; nested_idx += embedding_dim) {
+      |                                             ^
+main.cpp:48:21: error: use of undeclared identifier 'unused_val446'
+   48 |       output[offset[unused_val446] + nested_idx] = input[offset[unused_val446] + nested_idx] + dense_elem;
+      |                     ^
+main.cpp:48:65: error: use of undeclared identifier 'unused_val446'
+   48 |       output[offset[unused_val446] + nested_idx] = input[offset[unused_val446] + nested_idx] + dense_elem;
+      |                                                                 ^",067
+378,use of undeclared identifier 'tid',"OMP STATUS: 0
+    -> PASS
+  [Variant 378] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:46:29: error: use of undeclared identifier 'tid'
+   46 |     for (int dummy_val634 = tid; dummy_val634 < embedding_dim; dummy_val634 += grain_size) {
+      |                             ^
+1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",378
+393,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"OMP STATUS: 0
+    -> PASS
+  [Variant 393] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:43:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   43 |   while (100 < 50) {
+      |   ^
+1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",393

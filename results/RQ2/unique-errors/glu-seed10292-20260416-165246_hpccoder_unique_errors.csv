@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+050,use of undeclared identifier 'unusedYoung',"OMP STATUS: 0
+    -> PASS
+  [Variant 050] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:63: error: use of undeclared identifier 'unusedYoung'
+   35 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-unusedYoung)));
+      |                                                               ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",050 051 060 078 232 243 346
+064,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 064] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:24:42: error: cannot return from OpenMP region
+   24 |     if (index >= M * split_dim_size * N) return;
+      |                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",064 083 091 122 378

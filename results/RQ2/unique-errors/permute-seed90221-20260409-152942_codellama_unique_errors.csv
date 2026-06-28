@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,use of undeclared identifier 'C',"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:63:36: error: use of undeclared identifier 'C'
+   63 |           K[K_idx] = inp[inp_idx + C];
+      |                                    ^
+main.cpp:64:40: error: use of undeclared identifier 'C'
+   64 |           V[V_idx] = inp[inp_idx + 2 * C];
+      |                                        ^",000 001 015 016 018 023 032 036 050 055 068 070 079 092 093 109 134 142 144 147 156 158 165 167 168 183 197 204 207 211 212 218 220 223 244 251 267 275 277 280 283 300 303 315 324 327 347 359 362 365 366 382 400 412 416 418 419 423 432 436 453 469 486 493 494 496 508 511 513 515 516 538 545 549 552 554 571 574 576 583 587 598 599 621 626 627 638 640 642 650 653 665
+000,no matching function for call to 'permute_kernel',"   63 |           K[K_idx] = inp[inp_idx + C];
+      |                                    ^
+main.cpp:64:40: error: use of undeclared identifier 'C'
+   64 |           V[V_idx] = inp[inp_idx + 2 * C];
+      |                                        ^
+main.cpp:87:3: error: no matching function for call to 'permute_kernel'
+   87 |   permute_kernel(num_blocks, block_size, Q, K, V, inp, B, T, NH, HS);
+      |   ^~~~~~~~~~~~~~
+main.cpp:24:6: note: candidate function not viable: requires 8 arguments, but 10 were provided
+   24 | void permute_kernel(
+      |      ^",000 001 005 006 011 014 015 016 017 018 019 021 023 024 025 027 028 029 032 033 035 036 038 039 041 043 045 048 049 050 051 052 053 055 058 061 067 068 070 073 076 077 079 082 084 089 091 092 093 095 096 097 099 100 107 109 114 117 123 125 126 131 133 134 136 137 140 142 144 145 146 147 148 149 150 151 155 156 158 159 160 164 165 167 168 170 171 173 179 181 183 185 187 191 194 197 199 200 204 205 207 211 212 214 215 217 218 219 220 223 224 225 229 230 231 232 235 236 239 240 241 242 244 246 248 250 251 254 257 259 260 262 265 267 269 271 272 275 277 280 283 284 287 289 290 292 293 294 298 300 301 302 303 304 305 309 310 311 312 315 318 319 320 322 323 324 326 327 330 331 332 334 335 339 341 342 343 344 347 349 350 351 352 354 356 357 358 359 360 362 364 365 366 368 369 371 373 381 382 387 390 391 392 396 397 398 399 400 402 403 405 406 410 412 414 416 418 419 420 421 422 423 432 433 436 438 439 440 446 449 450 451 452 453 465 469 471 473 475 476 480 481 482 483 486 489 490 491 493 494 495 496 497 500 505 507 508 510 511 513 515 516 524 525 527 528 530 534 535 537 538 539 540 543 544 545 549 551 552 554 556 557 558 560 562 563 569 571 572 574 576 577 578 579 581 583 587 588 590 591 593 598 599 604 607 612 613 615 616 621 622 626 627 631 633 634 637 638 639 640 642 646 647 650 652 653 655 657 658 659 662 663 665 666
+096,"expected 4 for loops after '#pragma omp target teams distribute parallel for', but found only 1","   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:35:31: error: expected 4 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   35 |   for (int b = 0; b < B; b++) {
+      |                               ^
+main.cpp:34:61: note: as specified in 'collapse' clause
+   34 |   #pragma omp target teams distribute parallel for collapse(4) num_teams(B) num_threads(C * T)
+      |                                                             ^",096
+165,use of undeclared identifier 'd_',"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:42:46: error: use of undeclared identifier 'd_'
+   42 |         Q[((((b * NH) + nh_) * T) + n) * d + d_] = inp[inp_idx];
+      |                                              ^
+main.cpp:43:46: error: use of undeclared identifier 'd_'
+   43 |         K[((((b * NH) + nh_) * T) + n) * d + d_] = inp[inp_idx + C];
+      |                                              ^",165 280 598
+272,use of undeclared identifier 'n',"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:37:44: error: use of undeclared identifier 'n'
+   37 |         int inp_idx = b * T * 3 * NH * d + n * 3 * NH * d + 0 * NH * d + nh_ * d + d_;
+      |                                            ^
+main.cpp:47:44: error: use of undeclared identifier 'n'
+   47 |         int inp_idx = b * T * 3 * NH * d + n * 3 * NH * d + 1 * NH * d + nh_ * d + d_;
+      |                                            ^",272
+344,increment clause of OpenMP for loop must perform simple addition or subtraction on loop variable 'd_',"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:34:34: error: increment clause of OpenMP for loop must perform simple addition or subtraction on loop variable 'd_'
+   34 |         for (int d_ = 0; d_ < d; d++) {
+      |                                  ^~~
+main.cpp:62:3: error: no matching function for call to 'permute_kernel'
+   62 |   permute_kernel(num_blocks, block_size, Q, K, V, inp, B, T, NH, HS);
+      |   ^~~~~~~~~~~~~~",344 399

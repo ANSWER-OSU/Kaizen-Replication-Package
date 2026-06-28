@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+045,use of undeclared identifier 'yOffset'; did you mean 'xOffset'?,"OMP STATUS: 0
+    -> PASS
+  [Variant 045] Building on worker 22 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:15: error: use of undeclared identifier 'yOffset'; did you mean 'xOffset'?
+   38 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |               ^~~~~~~
+      |               xOffset
+main.cpp:26:13: note: 'xOffset' declared here
+   26 |   const int xOffset = 2 * split_dim_size * N;",045 075 113 151 184 231 307 320
+069,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'","OMP STATUS: 0
+    -> PASS
+  [Variant 069] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   29 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",069 266
+093,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"OMP STATUS: 0
+    -> PASS
+  [Variant 093] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   29 |   while (10 <= 5) {
+      |   ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",093 145 215
+322,"invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')","OMP STATUS: 0
+    -> PASS
+  [Variant 322] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:21: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   37 | const int i = index / split_dim_size / N;
+      |               ~~~~~ ^ ~~~~~~~~~~~~~~
+main.cpp:41:21: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   41 | const int j = index / N % split_dim_size;
+      |               ~~~~~ ^ ~",322 369

@@ -1,0 +1,408 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 242 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:42:1: error: expected unqualified-id
+   42 | ### Context:
+      | ^
+main.cpp:87:3: error: use of undeclared identifier 'property'
+   87 |   property(""shape"", shape);
+      |   ^",000 001 002 003 006 007 010 012 016 020 023 029 030 031 032 034 035 038 039 040 044 045 047 048 052 053 055 057 061 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 103 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135 140 141 144 148 149 150 154 155 157 161 163 167 168 170 172 173 176 181 182 185 187 191 194 196 198 200 209 215 216 217 219 220 232 233 234 235 236 237 238 241 242 244 245 246 247 250 251 254 259 260 264 267 270 273 276 279 280 283 284 288 289 294 299 300 302 303 304 306 310 312 313 314 315 317 318 319 320 321 324 325 326 328 329 330 331 332 333 334 337 338 341 344 346 347 352 355 356 360 362 363 364 365 366 368 369 371 372 373 376 379 383 384 385 389 391 395 396 397 403 407 408 411 413 414 415 416 418 419 421 424 425 426 430 432 435 436 441 448 449 450 451 454 455 459 460 461 467 470 474 479 481 483 485 492 493 494 495 497 499 501 503 504 506 507 510
+000,use of undeclared identifier 'property',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:42:1: error: expected unqualified-id
+   42 | ### Context:
+      | ^
+main.cpp:87:3: error: use of undeclared identifier 'property'
+   87 |   property(""shape"", shape);
+      |   ^
+main.cpp:88:3: error: use of undeclared identifier 'property'
+   88 |   property(""flip_dims"", flip);
+      |   ^",000 001 002 003 006 007 010 012 016 020 023 029 030 031 032 034 035 038 039 040 044 045 047 048 052 053 055 057 061 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 103 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135 140 141 144 148 149 150 154 155 157 161 163 167 168 170 172 173 176 181 182 185 187 191 194 196 198 200 209 215 216 217 219 220 232 233 234 235 236 237 238 241 242 244 245 246 247 250 251 254 259 260 264 267 270 273 276 279 280 283 284 288 289 294 299 300 302 303 304 306 310 312 313 314 315 317 318 319 320 321 324 325 326 328 329 330 331 332 333 334 337 338 341 344 346 347 352 355 356 360 362 363 364 365 366 368 369 371 372 373 376 379 383 384 385 389 391 395 396 397 403 407 408 411 413 414 415 416 418 419 421 424 425 426 430 432 435 436 441 448 449 450 451 454 455 459 460 461 467 470 474 479 481 483 485 492 493 494 495 497 499 501 503 504 506 507 510
+000,no matching function for call to 'flip_kernel',"   88 |   property(""flip_dims"", flip);
+      |   ^
+main.cpp:89:3: error: use of undeclared identifier 'property'
+   89 |   property(""stride"", stride);
+      |   ^
+main.cpp:122:5: error: no matching function for call to 'flip_kernel'
+  122 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:192:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  192 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",000 001 002 003 006 007 010 012 016 020 023 029 030 031 032 034 035 038 039 040 044 045 047 048 052 053 055 057 061 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 103 105 108 109 110 112 113 114 116 118 121 122 123 129 131 133 134 135 140 141 144 148 149 150 154 155 157 161 163 167 168 170 172 173 176 181 182 185 187 191 194 196 198 200 209 215 216 217 219 220 232 233 234 235 236 237 238 241 242 244 245 247 250 251 254 259 260 264 267 270 273 276 279 280 283 284 288 289 294 299 300 302 303 304 306 310 312 313 314 315 317 318 319 320 321 324 325 326 328 329 330 332 333 334 337 338 341 344 346 347 352 355 356 360 362 363 364 365 366 368 369 371 372 373 376 379 383 384 385 389 391 395 396 397 403 407 411 413 414 415 416 418 419 421 424 425 426 430 432 435 436 441 448 449 450 451 454 455 459 460 461 467 470 474 479 481 483 485 492 493 494 495 497 499 501 503 504 507 510
+072,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 072] Building on worker 30 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:23:68: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   23 |   #pragma omp parallel for reduction(+ : hidden_partial_sum[:hid]) num_teams(numTeams) num_threads(numThreads)
+      |                                                                    ^
+main.cpp:32:1: error: expected unqualified-id
+   32 | ### Context:
+      | ^",072 216 238 270 280 347 365 372 389 461
+101,function definition is not allowed here,"OMP STATUS: 2
+    -> FAIL
+  [Variant 101] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:417:1: error: function definition is not allowed here
+  417 | {
+      | ^
+main.cpp:425:1: error: expected expression
+  425 | template <typename scalar_t>
+      | ^",101 253 269 422 469
+101,expected expression,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:417:1: error: function definition is not allowed here
+  417 | {
+      | ^
+main.cpp:425:1: error: expected expression
+  425 | template <typename scalar_t>
+      | ^
+main.cpp:570:17: error: expected '}'
+  570 | #endif // LIBOMP
+      |                 ^",101 253 269 422 469
+101,expected '}',"  417 | {
+      | ^
+main.cpp:425:1: error: expected expression
+  425 | template <typename scalar_t>
+      | ^
+main.cpp:570:17: error: expected '}'
+  570 | #endif // LIBOMP
+      |                 ^
+main.cpp:411:128: note: to match this '{'
+  411 | void kernel_lookup(const int numTeams, const int numThreads, const int N, const int D, const int C, const int* X, scalar_t* Y) {
+      |                                                                                                                                ^",101 253 269 367 422 469 496
+130,unknown type name 'scalar_t',"OMP STATUS: 2
+    -> FAIL
+  [Variant 130] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:17:66: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t* in_tensor, scalar_t* out_tensor, const int64_t n, const int64_t* flip_dims, const int64_t flip_dims_size, const int64_t* strides, const int64_t* strides_contiguous, const int64_t* shape, const int64_t total_dims) {
+      |                                                                  ^
+main.cpp:17:87: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t* in_tensor, scalar_t* out_tensor, const int64_t n, const int64_t* flip_dims, const int64_t flip_dims_size, const int64_t* strides, const int64_t* strides_contiguous, const int64_t* shape, const int64_t total_dims) {
+      |                                                                                       ^",130
+130,'scalar_t' does not refer to a value,"   94 |   property(""flip_dims"", flip);
+      |   ^
+main.cpp:95:3: error: use of undeclared identifier 'property'
+   95 |   property(""stride"", stride);
+      |   ^
+main.cpp:128:17: error: 'scalar_t' does not refer to a value
+  128 |     flip_kernel<scalar_t>(
+      |                 ^
+main.cpp:64:20: note: declared here
+   64 | template <typename scalar_t>
+      |                    ^",130
+253,redefinition of 'flip_kernel',"OMP STATUS: 2
+    -> FAIL
+  [Variant 253] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:42:6: error: redefinition of 'flip_kernel'
+   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:30:6: note: previous definition is here
+   30 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^",253 269 343 367 422 469 475 480 496
+253,use of undeclared identifier 'input_weights',"   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:30:6: note: previous definition is here
+   30 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:196:20: error: use of undeclared identifier 'input_weights'
+  196 |         gate_val = input_weights[row * hid + row];
+      |                    ^
+main.cpp:227:14: error: use of undeclared identifier 'input_weights'
+  227 |       g[0] = input_weights[row * hid + row];
+      |              ^",253 367
+253,expected ')',"  302 |       g[2] = input_weights[row * hid + row + 2];
+      |              ^
+main.cpp:303:14: error: use of undeclared identifier 'input_weights'
+  303 |       g[3] = input_weights[row * hid + row + 3];
+      |              ^
+main.cpp:315:72: error: expected ')'
+  315 |     #pragma omp target teams distribute parallel for num_teams(numTeams
+      |                                                                        ^
+main.cpp:315:63: note: to match this '('
+  315 |     #pragma omp target teams distribute parallel for num_teams(numTeams
+      |                                                               ^",253 343 469
+269,use of undeclared identifier 'batch_col',"   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:30:6: note: previous definition is here
+   30 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:183:9: error: use of undeclared identifier 'batch_col'
+  183 |     if (batch_col < last_batch) {
+      |         ^
+main.cpp:201:9: error: use of undeclared identifier 'batch_col'
+  201 |     if (batch_col < last_batch || is_last_step) {
+      |         ^",269
+270,use of undeclared identifier 'col',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:23:66: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   23 |   #pragma omp parallel for reduction (+ : hidden_partial_sum[:]) num_teams(numTeams) num_threads(numThreads)
+      |                                                                  ^
+main.cpp:25:49: error: use of undeclared identifier 'col'
+   25 |     scalar_t weight = input_weights[row * hid + col];
+      |                                                 ^
+main.cpp:32:1: error: expected unqualified-id
+   32 | ### Context:
+      | ^",270 347 365 372
+343,invalid parameter name: 'void' is a keyword,"   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:30:6: note: previous definition is here
+   30 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:295:1: error: invalid parameter name: 'void' is a keyword
+  295 | void property (const char* name, std::vector<int64_t> p)
+      | ^
+main.cpp:295:6: error: expected ')'
+  295 | void property (const char* name, std::vector<int64_t> p)
+      |      ^",343
+343,expected ';' at end of declaration,"  295 | void property (const char* name, std::vector<int64_t> p)
+      |      ^
+main.cpp:291:17: note: to match this '('
+  291 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const int hid, const int batch, const int stride, const int filter_width, const int dilation_width, const int padding, const int pool_width, const int pool_height, const int channels, const int ksize, const int kstride, const int n, const int divisor, const int activation, const int is_training, const float dropout_rate, const int hid_size, const int num_layers, const int forward_only, scalar_t*__restrict
+      |                 ^
+main.cpp:444:2: error: expected ';' at end of declaration
+  444 | }
+      |  ^
+      |  ;
+4 errors generated.
+make: *** [<builtin>: main.o] Error 1",343 367
+367,expected '(' for function-style cast or type construction,"  299 |         gate_val_forward = input_weights[row * hid + row];
+      |                            ^
+main.cpp:300:29: error: use of undeclared identifier 'input_weights'
+  300 |         gate_val_backward = input_weights[row * hid + row];
+      |                             ^
+main.cpp:344:6: error: expected '(' for function-style cast or type construction
+  344 | void property (const char* name, std::vector<int64_t> p)
+      | ~~~~ ^
+main.cpp:493:2: error: expected ';' at end of declaration
+  493 | }
+      |  ^",367
+384,use of undeclared identifier 'FLT_EPSILON',"OMP STATUS: 2
+    -> FAIL
+  [Variant 384] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:51: error: use of undeclared identifier 'FLT_EPSILON'
+   29 |       y[i * D + j] = (sum_x - sum_y) / (epsilon + FLT_EPSILON);
+      |                                                   ^
+main.cpp:34:1: error: expected unqualified-id
+   34 | ### Context:
+      | ^",384
+422,use of undeclared identifier 'hidden_partial_sum',"   44 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:31:6: note: previous definition is here
+   31 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:65:5: error: use of undeclared identifier 'hidden_partial_sum'
+   65 |     hidden_partial_sum[row] = sum;
+      |     ^
+main.cpp:78:5: error: use of undeclared identifier 'hidden_partial_sum'
+   78 |     hidden_partial_sum[row] = sum;
+      |     ^",422
+422,use of undeclared identifier 'output',"   65 |     hidden_partial_sum[row] = sum;
+      |     ^
+main.cpp:78:5: error: use of undeclared identifier 'hidden_partial_sum'
+   78 |     hidden_partial_sum[row] = sum;
+      |     ^
+main.cpp:104:5: error: use of undeclared identifier 'output'
+  104 |     output[row] = sum;
+      |     ^
+main.cpp:274:39: error: comparison between pointer and integer ('int' and 'const int *')
+  274 |       if (lookup_id >= 0 && lookup_id < lookup_table_size) {
+      |                             ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~",422
+422,comparison between pointer and integer ('int' and 'const int *'),"   78 |     hidden_partial_sum[row] = sum;
+      |     ^
+main.cpp:104:5: error: use of undeclared identifier 'output'
+  104 |     output[row] = sum;
+      |     ^
+main.cpp:274:39: error: comparison between pointer and integer ('int' and 'const int *')
+  274 |       if (lookup_id >= 0 && lookup_id < lookup_table_size) {
+      |                             ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+main.cpp:299:39: error: comparison between pointer and integer ('int' and 'const int *')
+  299 |       if (lookup_id >= 0 && lookup_id < lookup_table_size) {
+      |                             ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~",422
+422,expected ';' after expression,"  299 |       if (lookup_id >= 0 && lookup_id < lookup_table_size) {
+      |                             ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+main.cpp:328:39: error: comparison between pointer and integer ('int' and 'const int *')
+  328 |       if (lookup_id >= 0 && lookup_id < lookup_table_size) {
+      |                             ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+main.cpp:347:32: error: expected ';' after expression
+  347 |       label_length = max_label_
+      |                                ^
+      |                                ;
+main.cpp:347:22: error: use of undeclared identifier 'max_label_'
+  347 |       label_length = max_label_",422
+422,use of undeclared identifier 'max_label_',"      |                             ~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~
+main.cpp:347:32: error: expected ';' after expression
+  347 |       label_length = max_label_
+      |                                ^
+      |                                ;
+main.cpp:347:22: error: use of undeclared identifier 'max_label_'
+  347 |       label_length = max_label_
+      |                      ^
+main.cpp:352:1: error: function definition is not allowed here
+  352 | {
+      | ^",422
+469,"expected 4 for loops after '#pragma omp target teams distribute parallel for', but found only 3","   62 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:40:6: note: previous definition is here
+   40 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:144:41: error: expected 4 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  144 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:141:105: note: as specified in 'collapse' clause
+  141 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(4)
+      |                                                                                                         ^",469
+469,"expected 5 for loops after '#pragma omp target teams distribute parallel for', but found only 3","  144 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:141:105: note: as specified in 'collapse' clause
+  141 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(4)
+      |                                                                                                         ^
+main.cpp:170:41: error: expected 5 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  170 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:167:105: note: as specified in 'collapse' clause
+  167 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(5)
+      |                                                                                                         ^",469
+469,"expected 6 for loops after '#pragma omp target teams distribute parallel for', but found only 3","  170 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:167:105: note: as specified in 'collapse' clause
+  167 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(5)
+      |                                                                                                         ^
+main.cpp:196:41: error: expected 6 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  196 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:193:105: note: as specified in 'collapse' clause
+  193 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(6)
+      |                                                                                                         ^",469
+469,"expected 7 for loops after '#pragma omp target teams distribute parallel for', but found only 3","  196 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:193:105: note: as specified in 'collapse' clause
+  193 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(6)
+      |                                                                                                         ^
+main.cpp:222:41: error: expected 7 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  222 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:219:105: note: as specified in 'collapse' clause
+  219 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(7)
+      |                                                                                                         ^",469
+469,"expected 8 for loops after '#pragma omp target teams distribute parallel for', but found only 3","  222 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:219:105: note: as specified in 'collapse' clause
+  219 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(7)
+      |                                                                                                         ^
+main.cpp:248:41: error: expected 8 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  248 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:245:105: note: as specified in 'collapse' clause
+  245 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(8)
+      |                                                                                                         ^",469
+469,"expected 9 for loops after '#pragma omp target teams distribute parallel for', but found only 3","  248 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:245:105: note: as specified in 'collapse' clause
+  245 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(8)
+      |                                                                                                         ^
+main.cpp:274:41: error: expected 9 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  274 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:271:105: note: as specified in 'collapse' clause
+  271 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(9)
+      |                                                                                                         ^",469
+469,"expected 10 for loops after '#pragma omp target teams distribute parallel for', but found only 3","  274 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:271:105: note: as specified in 'collapse' clause
+  271 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(9)
+      |                                                                                                         ^
+main.cpp:300:41: error: expected 10 for loops after '#pragma omp target teams distribute parallel for', but found only 3
+  300 |       for (int col = 0; col < k; col++) {
+      |                                         ^
+main.cpp:297:105: note: as specified in 'collapse' clause
+  297 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(10)
+      |                                                                                                         ^~",469
+475,use of undeclared identifier 'weight',"   58 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:38:6: note: previous definition is here
+   38 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:88:24: error: use of undeclared identifier 'weight'
+   88 |         input[index] = weight[index];
+      |                        ^
+main.cpp:91:5: error: region cannot be nested inside 'target teams distribute parallel for' region
+   91 |     #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(2) reduction(+ : hidden_partial_sum)
+      |     ^",475 480 496
+475,region cannot be nested inside 'target teams distribute parallel for' region,"   38 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:88:24: error: use of undeclared identifier 'weight'
+   88 |         input[index] = weight[index];
+      |                        ^
+main.cpp:91:5: error: region cannot be nested inside 'target teams distribute parallel for' region
+   91 |     #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(2) reduction(+ : hidden_partial_sum)
+      |     ^
+main.cpp:113:26: error: use of undeclared identifier 'weight'
+  113 |           input[index] = weight[index];
+      |                          ^",475
+475,"expected 5 for loops after '#pragma omp target teams distribute parallel for', but found only 4","  191 |           input[index] = weight[index];
+      |                          ^
+main.cpp:194:7: error: region cannot be nested inside 'target teams distribute parallel for' region
+  194 |       #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(2) reduction(+ : hidden_partial_sum)
+      |       ^
+main.cpp:190:11: error: expected 5 for loops after '#pragma omp target teams distribute parallel for', but found only 4
+  190 |           int index = batch_id * layers * hid * hid + layer_id * hid * hid + row * hid + col;
+      |           ^
+main.cpp:185:105: note: as specified in 'collapse' clause
+  185 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(5)
+      |                                                                                                         ^",475
+480,use of undeclared identifier 'i',"  183 |     val = val * weight[col * hid + row];
+      |                 ^
+main.cpp:197:19: error: use of undeclared identifier 'weight'
+  197 |       val = val * weight[col * hid + row];
+      |                   ^
+main.cpp:200:7: error: use of undeclared identifier 'i'
+  200 |   if (i % last_step == 0) {
+      |       ^
+main.cpp:215:21: error: use of undeclared identifier 'weight'
+  215 |         val = val * weight[col * hid + row];
+      |                     ^",480
+480,use of undeclared identifier 'layer_',"  215 |         val = val * weight[col * hid + row];
+      |                     ^
+main.cpp:219:7: error: use of undeclared identifier 'i'
+  219 |   if (i % last_step == 0) {
+      |       ^
+main.cpp:230:90: error: use of undeclared identifier 'layer_'
+  230 |   scalar_t val = (col < 2) ? input[context_index * batch_size * seq_len * num_elements + layer_
+      |                                                                                          ^
+main.cpp:234:1: error: expected ']'
+  234 | void property (const char* name, std::vector<int64_t> p)
+      | ^",480
+480,expected ']',"  219 |   if (i % last_step == 0) {
+      |       ^
+main.cpp:230:90: error: use of undeclared identifier 'layer_'
+  230 |   scalar_t val = (col < 2) ? input[context_index * batch_size * seq_len * num_elements + layer_
+      |                                                                                          ^
+main.cpp:234:1: error: expected ']'
+  234 | void property (const char* name, std::vector<int64_t> p)
+      | ^
+main.cpp:230:35: note: to match this '['
+  230 |   scalar_t val = (col < 2) ? input[context_index * batch_size * seq_len * num_elements + layer_
+      |                                   ^",480 496
+480,expected ':',"  234 | void property (const char* name, std::vector<int64_t> p)
+      | ^
+main.cpp:230:35: note: to match this '['
+  230 |   scalar_t val = (col < 2) ? input[context_index * batch_size * seq_len * num_elements + layer_
+      |                                   ^
+main.cpp:388:17: error: expected ':'
+  388 | #endif // LIBOMP
+      |                 ^
+      |                 : 
+main.cpp:230:28: note: to match this '?'
+  230 |   scalar_t val = (col < 2) ? input[context_index * batch_size * seq_len * num_elements + layer_",480

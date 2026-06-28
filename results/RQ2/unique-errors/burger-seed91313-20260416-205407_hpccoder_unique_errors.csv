@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+161,no matching function for call to 'core',"OMP STATUS: 0
+    -> PASS
+  [Variant 161] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:185:5: error: no matching function for call to 'core'
+  185 |     core(numTeams1, numThreads, u_new, v_new, u, v, x_points, y_points, nu, del_t, del_x, del_y);
+      |     ^~~~
+main.cpp:14:6: note: candidate function not viable: requires 10 arguments, but 12 were provided
+   14 | void core (
+      |      ^",161

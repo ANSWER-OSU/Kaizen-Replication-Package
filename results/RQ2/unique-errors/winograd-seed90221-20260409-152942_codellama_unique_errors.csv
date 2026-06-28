@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:100:26: error: function definition is not allowed here
+  100 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:228:17: error: expected '}'
+  228 | #endif // LIBOMP
+      |                 ^",001 026 032 055 099 205 211 301 303 315 356 357 451 505
+001,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:100:26: error: function definition is not allowed here
+  100 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:228:17: error: expected '}'
+  228 | #endif // LIBOMP
+      |                 ^
+main.cpp:20:1: note: to match this '{'
+   20 | {
+      | ^",001 026 032 055 099 205 211 301 303 315 356 357 451 505
+362,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 362] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:102:1: error: extraneous closing brace ('}')
+  102 | }
+      | ^
+1 error generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",362
+362,use of undeclared identifier 'winograd_conv2d'; did you mean 'omp_program::winograd_conv2d'?,"    -> PASS
+  [Variant 362] Building (mode=omp)
+BUILDING OMP VARIANT: /scratch/projects/anklesan/LLM-Code-Porting-Testing/kaizen-output/winograd-seed90221-20260409-152942/translated-outputs-codellama/main-362.cpp
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -DLIBOMP -c main.cpp -o main.o
+main.cpp:190:7: error: use of undeclared identifier 'winograd_conv2d'; did you mean 'omp_program::winograd_conv2d'?
+  190 |       winograd_conv2d(numTeams, numThreads, A, C, B,
+      |       ^~~~~~~~~~~~~~~
+      |       omp_program::winograd_conv2d
+main.cpp:10:6: note: 'omp_program::winograd_conv2d' declared here
+   10 | void winograd_conv2d(",362

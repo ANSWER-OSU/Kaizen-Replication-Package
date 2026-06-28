@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+189,use of undeclared identifier 'gridDim',"OMP STATUS: 0
+    -> PASS
+  [Variant 189] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^",189 199 206 212 229 230 273 296 299 322 349 363 369 432 437 440 449 499 515 523 555 572 576 586 594 600 612 619 640 704 751 777 778 790 803 839 875 883 899 908 941
+189,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^
+main.cpp:38:28: error: use of undeclared identifier 'blockDim'
+   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                            ^",189 199 206 212 229 230 273 296 299 322 349 363 369 432 437 440 449 499 515 523 555 572 576 586 594 600 612 619 640 704 751 777 778 790 803 839 875 883 899 908 941
+189,no matching function for call to 'perfKernel',"   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                            ^
+main.cpp:38:41: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                                         ^
+main.cpp:115:3: error: no matching function for call to 'perfKernel'
+  115 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 0 arguments, but 2 were provided
+   35 | void perfKernel()
+      |      ^",189 199 206 212 229 230 273 296 299 322 349 363 369 432 437 440 449 499 515 523 555 572 576 586 594 600 612 619 640 704 751 777 778 790 803 839 875 883 899 908 941
+199,use of undeclared identifier 'blockIdx',"OMP STATUS: 0
+    -> PASS
+  [Variant 199] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'blockIdx'
+   37 |   #pragma omp target teams distribute parallel for num_teams(blockIdx.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:86: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(blockIdx.x) num_threads(blockDim.x)
+      |                                                                                      ^",199 230 322 363 369 440 449 499 515 523 555 572 594 600 612 619 704 751 777 778 790 839 899 908 941
+206,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                            ^
+main.cpp:38:41: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid <= blockDim.x * gridDim.x; gid++) {
+      |                                         ^
+main.cpp:46:7: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   46 |       assert(s <= gid);
+      |       ^~~~~~~~~~~~~~~~
+/usr/include/assert.h:93:7: note: expanded from macro 'assert'
+   93 |      (static_cast <bool> (expr)                                         \
+      |       ^~~~~~~~~~~",206 230 440 499 515 594 619 778 828 899
+523,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'","   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^
+main.cpp:38:40: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:117:3: error: no matching function for call to 'perfKernel'
+  117 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",523

@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+297,use of undeclared identifier 'batch_idx',"OMP STATUS: 0
+    -> PASS
+  [Variant 297] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:47:30: error: use of undeclared identifier 'batch_idx'
+   47 |     const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                              ^
+main.cpp:47:54: error: use of undeclared identifier 'batch_idx'
+   47 |     const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                                                      ^",297
+297,default initialization of an object of const type 'const int',"   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                       ^
+main.cpp:51:63: error: use of undeclared identifier 'batch_idx'
+   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                                                               ^
+main.cpp:47:15: error: default initialization of an object of const type 'const int'
+   47 |     const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |               ^
+      |                     = 0
+main.cpp:158:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  158 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);",297 335
+297,default initialization of an object of const type 'const float',"      |               ^
+      |                     = 0
+main.cpp:158:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  158 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^
+main.cpp:49:15: error: default initialization of an object of const type 'const float'
+   49 |       const T dense_elem = dense[batch_idx * embedding_dim + idx];
+      |               ^
+      |                          = 0.0
+7 errors generated.
+make: *** [Makefile:56: main.o] Error 1",297 335
+335,use of undeclared identifier 'i',"OMP STATUS: 0
+    -> PASS
+  [Variant 335] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:42:28: error: use of undeclared identifier 'i'
+   42 |   const int range = offset[i + 1] - offset[i];
+      |                            ^
+main.cpp:42:44: error: use of undeclared identifier 'i'
+   42 |   const int range = offset[i + 1] - offset[i];
+      |                                            ^",335

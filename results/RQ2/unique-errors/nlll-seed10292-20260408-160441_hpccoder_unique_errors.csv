@@ -1,0 +1,111 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+001,use of undeclared identifier 'tid',"OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:19: error: use of undeclared identifier 'tid'
+   41 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^",001 002 003 004 005 006 007 018 020 022 023 024 029 031 037 039 040 043 045 046 052 058 060 063 064 065 068 069 071 075 083 084 090 093 094 097 104 108 112 113 118 120 122 123 127 128 140 143 145 146 149 150 153 159 161 163 167 169 171 179 189 190 193 197 198 205 207 214 215 216 218 220 221 226 227 229 230 231 232 235 236 241 251 252 253 254 260 263 266 269 273 277 278 280 284 285 287 289 292 297 299 300 302 303 307 308 309 316 320 321 322 324 330 332 343 345 349 350 351 355 356 361 362 366 368 369 370 371 374 378 388 389 397 402 405 408 413 415 416 434 436 437 438 443 446 449 450 451 457 464 466 467 473
+115,use of undeclared identifier 'sm_inputs',"OMP STATUS: 2
+    -> FAIL
+  [Variant 115] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:19: error: use of undeclared identifier 'sm_inputs'
+   49 |     output_acc += sm_inputs[i];
+      |                   ^
+main.cpp:50:22: error: use of undeclared identifier 'acc_weight'
+   50 |     unused_val436 += acc_weight[i];
+      |                      ^",115 335 465
+115,use of undeclared identifier 'acc_weight',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:19: error: use of undeclared identifier 'sm_inputs'
+   49 |     output_acc += sm_inputs[i];
+      |                   ^
+main.cpp:50:22: error: use of undeclared identifier 'acc_weight'
+   50 |     unused_val436 += acc_weight[i];
+      |                      ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",115 335 465
+149,use of undeclared identifier 'output_acc',"   40 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:41:20: error: use of undeclared identifier 'tid'
+   41 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:48:68: error: use of undeclared identifier 'output_acc'
+   48 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:50:7: error: use of undeclared identifier 'output_acc'
+   50 |       output_acc += sm_inputs[tmp_buf639];
+      |       ^",149 161 179 214 226 252 289 366 374 434 436
+161,use of undeclared identifier 'tmp_data130',"   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:47:7: error: use of undeclared identifier 'output_acc'
+   47 |       output_acc += sm_inputs[i];
+      |       ^
+main.cpp:49:68: error: use of undeclared identifier 'tmp_data130'
+   49 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : tmp_data130)
+      |                                                                    ^
+main.cpp:51:7: error: use of undeclared identifier 'tmp_data130'
+   51 |       tmp_data130 += acc_weight[i];
+      |       ^",161
+164,use of undeclared identifier 'i',"OMP STATUS: 2
+    -> FAIL
+  [Variant 164] Building on worker 9 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:60:9: error: use of undeclared identifier 'i'
+   60 |     if (i == 0) {
+      |         ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",164
+179,use of undeclared identifier 'unused_val436',"   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:47:7: error: use of undeclared identifier 'output_acc'
+   47 |       output_acc += sm_inputs[tid];
+      |       ^
+main.cpp:49:68: error: use of undeclared identifier 'unused_val436'
+   49 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : unused_val436)
+      |                                                                    ^
+main.cpp:51:7: error: use of undeclared identifier 'unused_val436'
+   51 |       unused_val436 += acc_weight[tid];
+      |       ^",179 214 252 289 366 374 434 436
+206,use of undeclared identifier 'dead_data217',"OMP STATUS: 2
+    -> FAIL
+  [Variant 206] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:19: error: use of undeclared identifier 'dead_data217'
+   41 |         sm_inputs[dead_data217] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'dead_data217'
+   42 |         acc_weight[dead_data217] += static_cast<accscalar_t>(cur_weight);
+      |                    ^",206
+465,'accscalar_t' does not refer to a value,"OMP STATUS: 2
+    -> FAIL
+  [Variant 465] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:35: error: 'accscalar_t' does not refer to a value
+   45 |   #pragma omp target update from (accscalar_t [numThreads])
+      |                                   ^
+main.cpp:14:39: note: declared here
+   14 | template <typename scalar_t, typename accscalar_t, typename index_t, int NLL_LOSS_THREADS>
+      |                                       ^",465
+465,expected at least one 'to' clause or 'from' clause specified to '#pragma omp target update',"   45 |   #pragma omp target update from (accscalar_t [numThreads])
+      |                                   ^
+main.cpp:14:39: note: declared here
+   14 | template <typename scalar_t, typename accscalar_t, typename index_t, int NLL_LOSS_THREADS>
+      |                                       ^
+main.cpp:45:3: error: expected at least one 'to' clause or 'from' clause specified to '#pragma omp target update'
+   45 |   #pragma omp target update from (accscalar_t [numThreads])
+      |   ^
+main.cpp:52:21: error: use of undeclared identifier 'sm_inputs'
+   52 |       output_acc += sm_inputs[i];
+      |                     ^",465

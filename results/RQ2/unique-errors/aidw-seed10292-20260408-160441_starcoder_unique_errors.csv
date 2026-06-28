@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 92 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 042 043 045 046 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 081 085 086 087 088 090 091 093 094 097 103 104 106 108 112 113 115 118 120 121 122 123 127 128 138 141 143 145 146 149 151 152 153 155 159 161 163 165 168 169 171 174 177 179 183 189 191 193 197 198 199
+000,use of undeclared identifier 'AIDW_Kernel_Tiled',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^
+main.cpp:274:7: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  274 |       AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |       ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 042 043 045 046 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 081 085 086 087 088 090 091 093 094 097 103 104 106 108 112 113 115 118 120 121 122 123 127 128 138 141 143 145 146 149 151 152 153 155 159 161 163 165 168 169 171 174 177 179 183 189 191 193 197 198 199
+127,use of undeclared identifier 'z',"OMP STATUS: 2
+    -> FAIL
+  [Variant 127] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:80:15: error: use of undeclared identifier 'z'
+   80 |     iz[tid] = z / sum;
+      |               ^
+main.cpp:80:19: error: use of undeclared identifier 'sum'
+   80 |     iz[tid] = z / sum;
+      |                   ^",127
+127,use of undeclared identifier 'sum',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:80:15: error: use of undeclared identifier 'z'
+   80 |     iz[tid] = z / sum;
+      |               ^
+main.cpp:80:19: error: use of undeclared identifier 'sum'
+   80 |     iz[tid] = z / sum;
+      |                   ^
+main.cpp:84:1: error: expected unqualified-id
+   84 | ### Context:
+      | ^",127

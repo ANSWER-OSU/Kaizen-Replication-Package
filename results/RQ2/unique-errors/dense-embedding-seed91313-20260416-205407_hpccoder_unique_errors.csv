@@ -1,0 +1,89 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+362,use of undeclared identifier 'batch_idx',"OMP STATUS: 0
+    -> PASS
+  [Variant 362] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:46:28: error: use of undeclared identifier 'batch_idx'
+   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                            ^
+main.cpp:46:52: error: use of undeclared identifier 'batch_idx'
+   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                                                    ^",362 363
+362,extraneous closing brace ('}'),"   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                       ^
+main.cpp:51:63: error: use of undeclared identifier 'batch_idx'
+   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                                                               ^
+main.cpp:55:1: error: extraneous closing brace ('}')
+   55 | }
+      | ^
+main.cpp:46:13: error: default initialization of an object of const type 'const int'
+   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |             ^",362 363
+362,default initialization of an object of const type 'const int',"   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                                                               ^
+main.cpp:55:1: error: extraneous closing brace ('}')
+   55 | }
+      | ^
+main.cpp:46:13: error: default initialization of an object of const type 'const int'
+   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |             ^
+      |                   = 0
+main.cpp:158:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  158 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);",362 363
+362,default initialization of an object of const type 'const float',"      |             ^
+      |                   = 0
+main.cpp:158:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  158 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^
+main.cpp:49:15: error: default initialization of an object of const type 'const float'
+   49 |       const T dense_elem = dense[batch_idx * embedding_dim + idx];
+      |               ^
+      |                          = 0.0
+8 errors generated.
+make: *** [Makefile:56: main.o] Error 1",362 363
+362,use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?,"   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                       ^
+main.cpp:51:63: error: use of undeclared identifier 'batch_idx'
+   51 |         output[offset[batch_idx] + nested_idx] = input[offset[batch_idx] + nested_idx] + dense_elem;
+      |                                                               ^
+main.cpp:144:5: error: use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?
+  144 |     reference(input, dense, output_ref, ncols, batch_size, offset);
+      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:14:6: note: 'omp_program::reference' declared here
+   14 | void reference(",362 363
+362,use of undeclared identifier 'dense_esuhm'; did you mean 'dense_esuhm2'?,"      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:14:6: note: 'omp_program::reference' declared here
+   14 | void reference(
+      |      ^
+main.cpp:158:11: error: use of undeclared identifier 'dense_esuhm'; did you mean 'dense_esuhm2'?
+  158 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^~~~~~~~~~~
+      |           dense_esuhm2
+main.cpp:60:6: note: 'dense_esuhm2' declared here
+   60 | void dense_esuhm2(",362 363
+363,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"OMP STATUS: 2
+    -> FAIL
+  [Variant 363] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:43:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   43 |   const int grain_size = numThreads;
+      |   ^
+main.cpp:46:28: error: use of undeclared identifier 'batch_idx'
+   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                            ^",363
+363,use of undeclared identifier 'grain_size',"   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                            ^
+main.cpp:46:52: error: use of undeclared identifier 'batch_idx'
+   46 |   const int range = offset[batch_idx + 1] - offset[batch_idx];
+      |                                                    ^
+main.cpp:47:42: error: use of undeclared identifier 'grain_size'
+   47 |     #pragma omp parallel for num_threads(grain_size)
+      |                                          ^
+main.cpp:49:34: error: use of undeclared identifier 'batch_idx'
+   49 |       const T dense_elem = dense[batch_idx * embedding_dim + idx];
+      |                                  ^",363

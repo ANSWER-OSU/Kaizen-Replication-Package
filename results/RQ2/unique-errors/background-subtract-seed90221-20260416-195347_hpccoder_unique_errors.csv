@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+052,cannot return from OpenMP region,"OMP STATUS: 0
+    -> PASS
+  [Variant 052] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:56:23: error: cannot return from OpenMP region
+   56 |     if (i >= imgSize) return;
+      |                       ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",052 125 164 220 284 331 339

@@ -1,0 +1,144 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 221 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^
+main.cpp:95:3: error: use of undeclared identifier 'property'
+   95 |   property(""shape"", shape);
+      |   ^",000 001 002 003 004 005 006 007 018 020 022 023 024 028 029 030 031 037 039 040 042 043 045 046 050 051 052 055 058 060 063 064 065 067 068 069 071 075 078 081 083 084 088 090 091 093 094 097 104 108 112 113 115 118 120 121 122 123 127 128 140 141 143 144 145 146 149 150 151 152 153 155 159 161 163 164 166 167 169 171 174 177 179 184 189 190 191 193 197 198 199 202 205 206 207 212 214 215 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 254 260 263 266 268 269 270 271 273 277 278 280 284 285 287 289 292 295 296 297 299 300 302 303 307 308 309 312 316 317 318 320 321 322 324 327 330 332 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 388 389 391 393 394 397 400 402 405 406 408 412 413 415 416 417 418 423 432 434 436 437 438 439 440 443 444 446 449 450 451 452 456 457 464 466 467 471 473 478
+000,use of undeclared identifier 'property',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^
+main.cpp:95:3: error: use of undeclared identifier 'property'
+   95 |   property(""shape"", shape);
+      |   ^
+main.cpp:96:3: error: use of undeclared identifier 'property'
+   96 |   property(""flip_dims"", flip);
+      |   ^",000 001 002 003 004 005 006 007 018 020 022 023 024 028 029 030 031 037 039 040 042 043 045 046 050 051 052 055 058 060 063 064 065 067 068 069 071 075 078 081 083 084 088 090 091 093 094 097 104 108 112 113 115 118 120 121 122 123 127 128 140 141 143 144 145 146 149 150 151 152 153 155 159 161 163 164 166 167 169 171 174 177 179 184 189 190 191 193 197 198 199 202 205 206 207 212 214 215 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 254 260 263 266 268 269 270 271 273 277 278 280 284 285 287 289 292 295 296 297 299 300 302 303 307 308 309 312 316 317 318 320 321 322 324 327 330 332 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 388 389 391 393 394 397 400 402 405 406 408 412 413 415 416 417 418 423 432 434 436 437 438 439 440 443 444 446 449 450 451 452 456 457 464 466 467 471 473 478
+002,no matching function for call to 'flip_kernel',"  166 |   property(""flip_dims"", flip);
+      |   ^
+main.cpp:167:3: error: use of undeclared identifier 'property'
+  167 |   property(""stride"", stride);
+      |   ^
+main.cpp:200:5: error: no matching function for call to 'flip_kernel'
+  200 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:270:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  270 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",002 004 005 007 018 020 022 023 024 028 029 030 031 039 040 042 043 046 050 051 052 055 058 060 063 064 065 067 068 071 078 081 083 084 088 090 091 093 094 097 104 108 112 113 115 118 120 121 122 123 127 128 140 141 143 144 145 146 149 152 159 161 163 164 166 167 169 171 174 177 179 184 189 190 191 193 197 198 199 202 205 207 212 214 215 216 218 220 221 223 226 227 230 231 232 235 236 240 241 243 251 252 253 254 260 263 266 268 269 270 271 273 277 280 285 287 289 292 295 296 299 300 302 308 309 312 316 318 320 321 322 324 327 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 388 393 394 400 402 405 406 408 412 415 416 417 418 423 432 434 436 437 438 439 443 446 449 450 451 452 456 457 464 466 467 471 473 478
+058,unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute',"OMP STATUS: 2
+    -> FAIL
+  [Variant 058] Building on worker 28 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:63:88: error: unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute'
+   63 |     #pragma omp target teams distribute reduction (+ : energy_sum) num_teams(numTeams) num_threads(numThreads)
+      |                                                                                        ^
+main.cpp:114:90: error: unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute'
+  114 |       #pragma omp target teams distribute reduction (+ : energy_sum) num_teams(numTeams) num_threads(numThreads)
+      |                                                                                          ^",058
+118,use of undeclared identifier 'dst_offset',"OMP STATUS: 2
+    -> FAIL
+  [Variant 118] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:40:42: error: use of undeclared identifier 'dst_offset'
+   40 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^
+main.cpp:44:1: error: expected unqualified-id
+   44 | ### Context:
+      | ^",118 270 271
+206,unknown type name 'scalar_t',"OMP STATUS: 2
+    -> FAIL
+  [Variant 206] Building on worker 29 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:17:91: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t stream_id, const scalar_t* in_tensor, scalar_t* out_tensor, const int64_t n, const int64_t* flip_dims, const int64_t flip_dims_size, const int64_t* strides, const int64_t* strides_contiguous, const int64_t* shape, const int64_t total_dims) {
+      |                                                                                           ^
+main.cpp:17:112: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t stream_id, const scalar_t* in_tensor, scalar_t* out_tensor, const int64_t n, const int64_t* flip_dims, const int64_t flip_dims_size, const int64_t* strides, const int64_t* strides_contiguous, const int64_t* shape, const int64_t total_dims) {
+      |                                                                                                                ^",206
+206,'scalar_t' does not refer to a value,"   99 |   property(""flip_dims"", flip);
+      |   ^
+main.cpp:100:3: error: use of undeclared identifier 'property'
+  100 |   property(""stride"", stride);
+      |   ^
+main.cpp:133:17: error: 'scalar_t' does not refer to a value
+  133 |     flip_kernel<scalar_t>(
+      |                 ^
+main.cpp:69:20: note: declared here
+   69 | template <typename scalar_t>
+      |                    ^",206
+223,'break' statement cannot be used in OpenMP for loop,"OMP STATUS: 2
+    -> FAIL
+  [Variant 223] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:58:9: error: 'break' statement cannot be used in OpenMP for loop
+   58 |         break;
+      |         ^
+main.cpp:87:9: error: 'break' statement cannot be used in OpenMP for loop
+   87 |         break;
+      |         ^",223
+236,use of undeclared identifier 'input_weights',"OMP STATUS: 2
+    -> FAIL
+  [Variant 236] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:85:31: error: use of undeclared identifier 'input_weights'
+   85 |       grad_in[index] = grad * input_weights[index];
+      |                               ^
+main.cpp:102:31: error: use of undeclared identifier 'input_weights'
+  102 |       grad_in[index] = grad * input_weights[index];
+      |                               ^",236
+327,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 327] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:23:68: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   23 |   #pragma omp parallel for reduction(+ : hidden_partial_sum[:hid]) num_teams(numTeams) num_threads(numThreads)
+      |                                                                    ^
+main.cpp:25:49: error: use of undeclared identifier 'i'
+   25 |     scalar_t weight = input_weights[row * hid + i];
+      |                                                 ^",327
+327,use of undeclared identifier 'i',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:23:68: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   23 |   #pragma omp parallel for reduction(+ : hidden_partial_sum[:hid]) num_teams(numTeams) num_threads(numThreads)
+      |                                                                    ^
+main.cpp:25:49: error: use of undeclared identifier 'i'
+   25 |     scalar_t weight = input_weights[row * hid + i];
+      |                                                 ^
+main.cpp:27:61: error: use of undeclared identifier 'i'
+   27 |       hidden_partial_sum[col] += weight * input[col * hid + i];
+      |                                                             ^",327 400
+465,redefinition of 'flip_kernel',"OMP STATUS: 2
+    -> FAIL
+  [Variant 465] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:44:6: error: redefinition of 'flip_kernel'
+   44 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:31:6: note: previous definition is here
+   31 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^",465
+465,use of undeclared identifier 'hidden_partial_sum',"   44 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:31:6: note: previous definition is here
+   31 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:65:5: error: use of undeclared identifier 'hidden_partial_sum'
+   65 |     hidden_partial_sum[row] = sum;
+      |     ^
+main.cpp:78:5: error: use of undeclared identifier 'hidden_partial_sum'
+   78 |     hidden_partial_sum[row] = sum;
+      |     ^",465

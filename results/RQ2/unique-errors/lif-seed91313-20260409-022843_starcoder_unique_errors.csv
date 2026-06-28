@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 400 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:108:1: error: expected unqualified-id
+  108 | ### Context:
+      | ^
+1 error generated.
+make: *** [Makefile:57: main.o] Error 1
+OMP STATUS: 2",000 001 002 003 006 007 010 012 016 020 023 029 030 031 032 034 035 038 039 040 044 045 047 048 052 053 055 057 061 068 072 073 074 075 076 078 081 085 087 089 090 091 095 096 097 098 099 100 101 103 105 108 109 110 112 113 114 116 118 121 122 123 129 130 131 133 134 135 140 141 144 148 149 150 154 155 157 161 163 167 168 170 172 173 176 181 182 185 187 191 194 196 198 200 209 215 216 217 219 220 232 233 234 235 236 237 238 241 242 244 245 246 247 250 251 253 254 259 260 264 267 269 270 273 276 279 280 283 284 288 289 294 299 300 302 303 304 306 310 312 313 314 315 317 318 319 320 321 324 325 326 328 329 330 331 332 333 334 337 338 341 343 344 346 347 352 355 356 360 362 363 364 365 366 367 368 369 371 372 373 376 379 383 384 385 389 391 395 396 397 403 407 408 411 413 414 415 416 418 419 421 422 424 425 426 430 432 435 436 441 448 449 450 451 454 455 459 460 461 467 469 470 474 475 479 480 481 483 485 492 493 494 495 496 497 498 499 501 503 504 506 507 510 514 515 516 522 523 524 526 527 528 529 530 531 533 535 536 537 538 539 544 546 549 550 552 553 554 557 558 566 568 569 570 571 574 575 578 582 585 589 591 595 598 599 602 609 614 619 620 622 623 629 632 634 635 637 638 639 640 643 651 652 653 656 659 660 661 663 664 666 670 671 672 674 675 676 677 678 681 682 685 686 688 690 691 693 696 697 698 701 709 710 712 713 714 716 719 722 725 731 734 736 737 738 739 740 742 747 748 751 754 756 757 758 759 760 764 768 772 775 778 779 780 781 782 783 784 786 787 788 792 795 797 805 806 808 811 814 818 822 826 830 832 834 836 839 840 842 847 849 850 852 853 856 858 859 860 863 870
+089,use of undeclared identifier 'spike',"OMP STATUS: 2
+    -> FAIL
+  [Variant 089] Building on worker 7 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:84:17: error: use of undeclared identifier 'spike'
+   84 |     spikes[i] = spike;
+      |                 ^
+main.cpp:88:1: error: expected unqualified-id
+   88 | ### Context:
+      | ^",089
+090,use of undeclared identifier 'test_obj241',"OMP STATUS: 2
+    -> FAIL
+  [Variant 090] Building on worker 8 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:94:5: error: use of undeclared identifier 'test_obj241'
+   94 |     test_obj241++;
+      |     ^
+main.cpp:114:1: error: expected unqualified-id
+  114 | ### Context:
+      | ^",090
+270,use of undeclared identifier 'BLOCK_DIM',"OMP STATUS: 2
+    -> FAIL
+  [Variant 270] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:64:20: error: use of undeclared identifier 'BLOCK_DIM'
+   64 |     float shared_A[BLOCK_DIM*BLOCK_DIM];
+      |                    ^
+main.cpp:64:30: error: use of undeclared identifier 'BLOCK_DIM'
+   64 |     float shared_A[BLOCK_DIM*BLOCK_DIM];
+      |                              ^",270
+492,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 492] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:74:28: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   74 |   #pragma omp parallel for num_teams(numTeams) num_threads(numThreads)
+      |                            ^
+main.cpp:120:1: error: expected unqualified-id
+  120 | ### Context:
+      | ^",492
+619,expected '}',"  446 | ### Response status:
+      | ^
+main.cpp:502:1: error: expected unqualified-id
+  502 | ### Response status:
+      | ^
+main.cpp:648:17: error: expected '}'
+  648 | #endif // LIBOMP
+      |                 ^
+main.cpp:9:23: note: to match this '{'
+    9 | namespace omp_program {
+      |                       ^",619
+842,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","OMP STATUS: 2
+    -> FAIL
+  [Variant 842] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:87:15: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   87 |     voltage = fmaxf(voltage + dV, 0.f);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:87:15: note: expected built-in binary operator
+   87 |     voltage = fmaxf(voltage + dV, 0.f);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~",842

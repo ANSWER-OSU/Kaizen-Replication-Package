@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+075,unexpected OpenMP clause 'grainsize' in directive '#pragma omp parallel for',"OMP STATUS: 0
+    -> PASS
+  [Variant 075] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:52:30: error: unexpected OpenMP clause 'grainsize' in directive '#pragma omp parallel for'
+   52 |     #pragma omp parallel for grainsize(grain_size)
+      |                              ^
+1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",075 101 105 108 116 161 185 238 310 329 343 389 411 413
+095,expected expression,"OMP STATUS: 0
+    -> PASS
+  [Variant 095] Building on worker 8 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:66:1: error: expected expression
+   66 | template <typename T>
+      | ^
+main.cpp:213:17: error: expected '}'
+  213 | #endif // LIBOMP
+      |                 ^",095
+095,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:66:1: error: expected expression
+   66 | template <typename T>
+      | ^
+main.cpp:213:17: error: expected '}'
+  213 | #endif // LIBOMP
+      |                 ^
+main.cpp:44:1: note: to match this '{'
+   44 | {
+      | ^",095

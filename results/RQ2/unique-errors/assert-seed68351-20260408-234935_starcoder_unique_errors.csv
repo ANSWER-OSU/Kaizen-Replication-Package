@@ -1,0 +1,122 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 168 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 029 040 041 050 085 090 094 095 098 113 135 138 159 193 194 237 250 257 272 274 286 301 320 341 349 359 369 390 400 434 458 463 465 471 473 475 476 481 492 494 508 510 512 515 551 555 559 565 566 575 582 590 596 604 612 617 630 633 671 686 720 721 729 739 742 766 769 784 790 794 810 811 813 842 846 847 854 855 859 861 882 886 888 896 899 903 905 925
+000,no matching function for call to 'perfKernel',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 050 113 138 159 162 216 249 250 286 320 341 359 388 400 434 465 471 476 481 492 494 498 508 510 555 565 566 575 582 590 612 630 686 704 718 721 729 742 769 784 790 794 810 811 813 833 846 859 861 882 886 899 905 925
+000,use of undeclared identifier 'perfKernel2',"  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:122:3: error: use of undeclared identifier 'perfKernel2'
+  122 |   perfKernel2(Nblocks, Nthreads);
+      |   ^
+3 errors generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",000 050 113 138 159 250 286 320 341 359 400 434 465 471 476 481 492 494 508 510 555 565 566 575 582 590 612 630 686 721 729 742 769 784 790 794 810 811 813 846 859 861 882 886 905 925
+001,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:39:47: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   39 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^
+main.cpp:43:47: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   43 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^",001 018 026 029 034 040 041 049 068 079 081 085 090 093 094 095 098 106 120 124 135 155 162 168 195 206 207 212 216 220 225 227 232 234 237 238 239 249 253 257 274 334 337 338 354 371 384 388 390 413 458 461 465 469 473 475 478 484 538 553 559 580 604 617 633 662 667 697 704 727 730 754 760 781 788 805 809 813 833 841 896 897 907
+029,use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?,"   43 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^
+main.cpp:51:1: error: expected unqualified-id
+   51 | ### Context:
+      | ^
+main.cpp:128:3: error: use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?
+  128 |   perfKernel2(Nblocks, Nthreads);
+      |   ^~~~~~~~~~~
+      |   perfKernel
+main.cpp:35:6: note: 'perfKernel' declared here
+   35 | void perfKernel(const int numTeams, const int numThreads) {",029 040 041 085 090 094 095 098 135 193 194 237 257 272 274 301 349 369 390 458 463 473 475 512 515 551 559 596 604 617 633 671 720 766 842 847 854 855 888 896 903
+341,invalid suffix on literal; C++11 requires a space between literal and identifier [-Wreserved-user-defined-literal],"   70 | ### Response info:
+      | ^
+main.cpp:71:10: warning: missing terminating '""' character [-Winvalid-pp-token]
+   71 | {""code"": ""void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS, const int *__restrict d_tisspoints, const float *__restrict d_gtt, const float *__restrict d_gbartt, float *__restrict d_ct, const float *__restrict d_ctprev, const float *__restrict d_qt, int nnt, int nntDev, int step, int isp) {
+      |          ^
+main.cpp:96:5: error: invalid suffix on literal; C++11 requires a space between literal and identifier [-Wreserved-user-defined-literal]
+   96 | "", ""status"": ""success""}
+      |     ^
+      |      
+main.cpp:96:1: error: expected unqualified-id
+   96 | "", ""status"": ""success""}",341 471 476 555 721
+465,unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute',"OMP STATUS: 2
+    -> FAIL
+  [Variant 465] Building on worker 13 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:36:59: error: unexpected OpenMP clause 'num_threads' in directive '#pragma omp target teams distribute'
+   36 |   #pragma omp target teams distribute num_teams(numTeams) num_threads(numThreads)
+      |                                                           ^
+main.cpp:41:48: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   41 |     #pragma omp parallel for reduction (+:ngt) num_teams(numTeams) num_threads(numThreads)
+      |                                                ^",465 813
+575,region cannot be nested inside 'target teams distribute parallel for' region,"OMP STATUS: 2
+    -> FAIL
+  [Variant 575] Building on worker 7 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:40:1: error: region cannot be nested inside 'target teams distribute parallel for' region
+   40 | #pragma omp target teams distribute parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      | ^
+main.cpp:44:1: error: region cannot be nested inside 'target teams distribute parallel for' region
+   44 | #pragma omp target teams distribute parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      | ^",575
+739,invalid preprocessing directive,"      |                                      ^
+main.cpp:139:1: warning: missing terminating '""' character [-Winvalid-pp-token]
+  139 | ""}
+      | ^
+main.cpp:139:1: error: expected unqualified-id
+main.cpp:141:3: error: invalid preprocessing directive
+  141 | # Context:
+      |   ^
+main.cpp:144:3: error: invalid preprocessing directive
+  144 | # Response:
+      |   ^",739
+739,a type specifier is required for all declarations,"  168 | # Response status:
+      |   ^
+main.cpp:171:3: error: invalid preprocessing directive
+  171 | # Response headers:
+      |   ^
+main.cpp:169:1: error: a type specifier is required for all declarations
+  169 | SUCCESS
+      | ^
+main.cpp:174:3: error: invalid preprocessing directive
+  174 | # Request headers:
+      |   ^",739
+739,expected ';' after top level declarator,"  169 | SUCCESS
+      | ^
+main.cpp:174:3: error: invalid preprocessing directive
+  174 | # Request headers:
+      |   ^
+main.cpp:172:3: error: expected ';' after top level declarator
+  172 | {}
+      |   ^
+      |   ;
+main.cpp:175:38: warning: missing terminating '""' character [-Winvalid-pp-token]
+  175 | {""numTeams"":1,""numThreads"":16,""code"":""__global__ void perfKernel() {",739

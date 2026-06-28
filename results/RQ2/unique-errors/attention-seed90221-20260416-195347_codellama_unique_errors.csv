@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+095,use of undeclared identifier 'i',"OMP STATUS: 2
+    -> FAIL
+  [Variant 095] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: use of undeclared identifier 'i'
+   50 | if (i < n)
+      |     ^
+main.cpp:51:11: error: use of undeclared identifier 'i'
+   51 |     score[i] = __expf(dot_product[i]) / exp_sum[0];
+      |           ^",095

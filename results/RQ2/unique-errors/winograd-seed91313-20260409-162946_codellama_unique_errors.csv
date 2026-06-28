@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+061,function definition is not allowed here,"OMP STATUS: 0
+    -> PASS
+  [Variant 061] Building on worker 29 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:105:26: error: function definition is not allowed here
+  105 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:233:17: error: expected '}'
+  233 | #endif // LIBOMP
+      |                 ^",061 085 118 185 260 303 328 331
+061,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:105:26: error: function definition is not allowed here
+  105 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:233:17: error: expected '}'
+  233 | #endif // LIBOMP
+      |                 ^
+main.cpp:20:1: note: to match this '{'
+   20 | {
+      | ^",061 085 118 185 260 303 328 331
+318,use of undeclared identifier 'j',"OMP STATUS: 0
+    -> PASS
+  [Variant 318] Building on worker 9 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:47:21: error: use of undeclared identifier 'j'
+   47 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                     ^
+main.cpp:47:40: error: use of undeclared identifier 'j'
+   47 |         tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                                        ^",318

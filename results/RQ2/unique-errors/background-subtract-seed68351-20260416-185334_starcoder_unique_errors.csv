@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 157 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:1: error: expected unqualified-id
+   27 | ### Context:
+      | ^
+main.cpp:47:1: error: expected unqualified-id
+   47 | ### Context:
+      | ^",000 001 003 004 007 018 019 020 022 023 026 027 033 034 037 039 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 079 080 081 082 084 085 086 090 093 094 095 096 100 101 103 106 107 108 113 114 116 117 120 121 122 124 125 128 132 133 135 138 140 141 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 183 184 185 186 188 190 193 194 195 198 203 204 205 207 208 209 211 212 213 215 216 219 220 221 223 225 227 230 232 234 237 238 239 243 253 257 258 261 270 271 272 274 275 279 282 283 286 292 293 295 298 300 301 302 305 306 311 313 314 317 320 321 323 324 325 334 335 336 337 340 341 344 346
+212,use of undeclared identifier 'blockDim',"OMP STATUS: 2
+    -> FAIL
+  [Variant 212] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:29: error: use of undeclared identifier 'blockDim'
+   20 |       size_t dummy_data93 = blockDim.x * block_id + thread_id;
+      |                             ^
+main.cpp:33:1: error: expected unqualified-id
+   33 | ### Context:
+      | ^",212 215 239 274

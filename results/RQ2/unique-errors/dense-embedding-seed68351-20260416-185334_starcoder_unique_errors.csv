@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 191 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:166:11: error: use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?
+  166 |           dense_esuhm2(batch_size, block_size, input, dense, output_k2, ncols, offset);
+      |           ^~~~~~~~~~~~",000 001 003 005 007 016 018 019 020 022 023 024 026 027 029 032 033 034 037 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 100 101 103 106 107 108 111 113 114 116 117 118 120 122 124 125 128 132 133 135 138 140 141 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 184 185 186 188 190 192 193 194 195 198 203 204 206 207 208 209 211 212 213 214 215 216 219 220 221 223 225 227 230 232 234 237 238 239 249 250 253 257 258 270 272 274 275 279 282 283 286 290 292 293 295 300 301 302 305 306 311 313 314 317 320 321 323 324 325 326 334 335 336 337 340 341 344 348 349 351 354 357 359 362 368 369 371 376 377 384 385 386 388 390 392 393 394 400 401 403 406 407 408 412 413 415 416
+000,use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^
+main.cpp:166:11: error: use of undeclared identifier 'dense_esuhm2'; did you mean 'dense_esuhm'?
+  166 |           dense_esuhm2(batch_size, block_size, input, dense, output_k2, ncols, offset);
+      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, int embedding_dim, const int* offset) {",000 001 003 005 007 016 018 019 020 022 023 024 026 027 029 032 033 034 037 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 100 101 103 106 107 108 111 113 114 116 117 118 120 122 124 125 128 132 133 135 138 140 141 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 179 180 181 184 185 186 188 190 192 193 194 195 198 203 204 206 207 208 209 211 212 213 214 215 216 219 220 221 223 225 227 230 232 234 237 238 239 249 250 253 257 258 270 272 274 275 279 282 283 286 290 292 293 295 300 301 302 305 306 311 313 314 317 320 321 323 324 325 326 334 335 336 337 340 341 344 348 349 351 354 357 359 362 368 369 371 376 377 384 385 386 388 390 392 393 394 400 401 403 406 407 408 412 413 415 416
+133,use of undeclared identifier 'grain_size',"OMP STATUS: 2
+    -> FAIL
+  [Variant 133] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:40:51: error: use of undeclared identifier 'grain_size'
+   40 |     for (int idx = 0; idx < embedding_dim; idx += grain_size) {
+      |                                                   ^
+main.cpp:49:1: error: expected unqualified-id
+   49 | ### Context:
+      | ^",133 209 306 377
+180,section length is unspecified and cannot be inferred because subscripted value is not an array,"      |           ^~~~~~~~~~~~
+      |           dense_esuhm
+main.cpp:36:6: note: 'dense_esuhm' declared here
+   36 | void dense_esuhm(const int numTeams, const int numThreads, const T* input, const T* dense, T* output, const int embedding_dim, const int* offset) {
+      |      ^
+main.cpp:42:54: error: section length is unspecified and cannot be inferred because subscripted value is not an array
+   42 |       #pragma omp parallel for reduction (+ : output[:]) num_threads(numThreads)
+      |                                                      ^
+main.cpp:155:11: note: in instantiation of function template specialization 'dense_esuhm<float>' requested here
+  155 |           dense_esuhm(batch_size, block_size, input, dense, output_k1, ncols, offset);
+      |           ^",180 193
+209,'break' statement cannot be used in OpenMP for loop,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:42:29: error: use of undeclared identifier 'grain_size'
+   42 |       const int idx = tid * grain_size + tid;
+      |                             ^
+main.cpp:44:9: error: 'break' statement cannot be used in OpenMP for loop
+   44 |         break;
+      |         ^
+main.cpp:54:1: error: expected unqualified-id
+   54 | ### Context:
+      | ^",209
+295,use of undeclared identifier 'i',"OMP STATUS: 2
+    -> FAIL
+  [Variant 295] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:51:34: error: use of undeclared identifier 'i'
+   51 |       output[offset[batch_idx] + i] = input[offset[batch_idx] + i] + dense_elem;
+      |                                  ^
+main.cpp:51:65: error: use of undeclared identifier 'i'
+   51 |       output[offset[batch_idx] + i] = input[offset[batch_idx] + i] + dense_elem;
+      |                                                                 ^",295 301

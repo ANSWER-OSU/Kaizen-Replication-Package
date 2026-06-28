@@ -1,0 +1,89 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,no matching function for call to 'ChannelSumNCHW',"Found 91 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:82:5: error: no matching function for call to 'ChannelSumNCHW'
+   82 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:19:6: note: candidate template ignored: couldn't infer template argument 'kBlockDimX'
+   19 | void ChannelSumNCHW(const int numTeams, const int numThreads, const int N, const int C, const int HxW, const T* X, T*__restrict__ sum, T*__restrict__ sumsq)
+      |      ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 042 043 045 046 049 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 078 081 083 084 087 088 090 091 093 094 097 104 106 108 112 113 115 118 120 121 122 123 127 128 140 141 143 144 145 146 149 150 151 152 153 155 159 161 163 164 166 167 169 171 174 177 179 184 189
+003,use of undeclared identifier 'c',"OMP STATUS: 2
+    -> FAIL
+  [Variant 003] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:40:11: error: use of undeclared identifier 'c'
+   40 |       sum[c] += m_val;
+      |           ^
+main.cpp:41:13: error: use of undeclared identifier 'c'
+   41 |       sumsq[c] += v_val;
+      |             ^",003 004 005 040 043 088 094 104 108 115 144 166 171
+004,use of undeclared identifier 'threadIdx',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:9: warning: use of function template name with no prior declaration in function call with explicit template arguments is a C++20 extension [-Wc++20-extensions]
+   41 |         BlockReduce<T, kBlockDimX, kBlockDimY>(m_val, v_val);
+      |         ^
+main.cpp:43:11: error: use of undeclared identifier 'threadIdx'
+   43 |       if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |           ^
+main.cpp:43:31: error: use of undeclared identifier 'threadIdx'
+   43 |       if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |                               ^",004 106 144 177 189
+030,use of undeclared identifier 'm_val',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:9: warning: use of function template name with no prior declaration in function call with explicit template arguments is a C++20 extension [-Wc++20-extensions]
+   41 |         BlockReduce<T, kBlockDimX, kBlockDimY>(m_val, dead_data217);
+      |         ^
+main.cpp:53:14: error: use of undeclared identifier 'm_val'
+   53 |     sum[c] = m_val;
+      |              ^
+main.cpp:54:16: error: use of undeclared identifier 'dead_data217'
+   54 |     sumsq[c] = dead_data217;
+      |                ^",030
+030,use of undeclared identifier 'dead_data217',"   41 |         BlockReduce<T, kBlockDimX, kBlockDimY>(m_val, dead_data217);
+      |         ^
+main.cpp:53:14: error: use of undeclared identifier 'm_val'
+   53 |     sum[c] = m_val;
+      |              ^
+main.cpp:54:16: error: use of undeclared identifier 'dead_data217'
+   54 |     sumsq[c] = dead_data217;
+      |                ^
+main.cpp:102:5: error: no matching function for call to 'ChannelSumNCHW'
+  102 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",030
+063,use of undeclared identifier 'blockIdx',"OMP STATUS: 2
+    -> FAIL
+  [Variant 063] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:32:42: error: use of undeclared identifier 'blockIdx'
+   32 |       const int unused_val436 = (n * C + blockIdx.x) * HxW + hw;
+      |                                          ^
+main.cpp:33:26: error: use of undeclared identifier 'blockIdx'
+   33 |       atomicAdd((T*)&sum[blockIdx.x], __ldg(X + unused_val436));
+      |                          ^",063
+097,use of undeclared identifier 'i',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:43:7: warning: use of function template name with no prior declaration in function call with explicit template arguments is a C++20 extension [-Wc++20-extensions]
+   43 |       BlockReduce<T, kBlockDimX, kBlockDimY>(m_val, v_val);
+      |       ^
+main.cpp:45:9: error: use of undeclared identifier 'i'
+   45 |     if (i == 0) {
+      |         ^
+main.cpp:96:5: error: no matching function for call to 'ChannelSumNCHW'
+   96 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",097 127 140 150
+177,statement after '#pragma omp parallel for' must be a for loop,"   46 |     if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |         ^
+main.cpp:46:29: error: use of undeclared identifier 'threadIdx'
+   46 |     if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |                             ^
+main.cpp:46:5: error: statement after '#pragma omp parallel for' must be a for loop
+   46 |     if (threadIdx.x == 0 && threadIdx.y == 0) {
+      |     ^
+main.cpp:97:5: error: no matching function for call to 'ChannelSumNCHW'
+   97 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",177

@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 104 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^",000 001 003 011 012 013 014 015 016 019 020 022 023 025 026 028 030 036 038 039 040 042 043 046 049 050 056 057 059 060 063 064 068 069 071 076 077 080 081 083 086 088 091 093 094 097 099 101 103 107 108 109 111 113 114 115 116 118 119 120 121 122 128 129 130 131 133 134 135 136 138 145 146 148 149 150 151 154 155 156 157 158 162 163 166 167 172 174 175 176 177 182 187 188 191 192 193 194 197 202 205 209 210 211
+000,use of undeclared identifier 'AIDW_Kernel_Tiled',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^
+main.cpp:274:7: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  274 |       AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |       ^",000 001 003 011 012 013 014 015 016 019 020 022 023 025 026 028 030 036 038 039 040 042 043 046 049 050 056 057 059 060 063 064 068 069 071 076 077 080 081 083 086 088 091 093 094 097 099 101 103 107 108 109 111 113 114 115 116 118 119 120 121 122 128 129 130 131 133 134 135 136 138 145 146 148 149 150 151 154 155 156 157 158 162 163 166 167 172 174 175 176 177 182 187 188 191 192 193 194 197 202 205 209 210 211

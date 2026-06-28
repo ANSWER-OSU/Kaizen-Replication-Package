@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+041,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 041] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:113:1: error: extraneous closing brace ('}')
+  113 | }
+      | ^
+main.cpp:217:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  217 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",041 091 092 171 173 197 287 293 315 322 327 396 418 420 436 494 516 527 528 537 539 563 591 640 685 728 774 782
+041,use of undeclared identifier 'lif'; did you mean 'omp_program::lif'?,"    -> PASS
+  [Variant 041] Building (mode=omp)
+BUILDING OMP VARIANT: /scratch/projects/anklesan/LLM-Code-Porting-Testing/kaizen-output/lif-seed90221-20260409-010835/translated-outputs-hpccoder/main-041.cpp
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -DLIBOMP -c main.cpp -o main.o
+main.cpp:180:5: error: use of undeclared identifier 'lif'; did you mean 'omp_program::lif'?
+  180 |     lif(numTeams,
+      |     ^~~
+      |     omp_program::lif
+main.cpp:61:6: note: 'omp_program::lif' declared here
+   61 | void lif (",041 091 092 171 173 197 287 293 315 322 327 396 418 420 436 494 516 527 528 537 539 563 591 640 685 728 774 782
+041,use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?,"      |     ^~~
+      |     omp_program::lif
+main.cpp:61:6: note: 'omp_program::lif' declared here
+   61 | void lif (
+      |      ^
+main.cpp:201:5: error: use of undeclared identifier 'reference'; did you mean 'omp_program::reference'?
+  201 |     reference(num_neurons, 
+      |     ^~~~~~~~~
+      |     omp_program::reference
+main.cpp:12:6: note: 'omp_program::reference' declared here
+   12 | void reference (",041 091 092 171 173 197 287 293 315 322 327 396 418 420 436 494 516 527 528 537 539 563 591 640 685 728 774 782
+185,use of undeclared identifier 'tauYoung',"OMP STATUS: 0
+    -> PASS
+  [Variant 185] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:108:18: error: use of undeclared identifier 'tauYoung'
+  108 |       ref_time = tauYoung + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^
+main.cpp:228:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  228 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",185
+187,use of undeclared identifier 'tau_you'; did you mean 'tauYou'?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 187] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:99:18: error: use of undeclared identifier 'tau_you'; did you mean 'tauYou'?
+   99 |       ref_time = tau_you + dt * (1.f - (voltage - 1.f) / dV);
+      |                  ^~~~~~~
+      |                  tauYou
+main.cpp:67:25: note: 'tauYou' declared here
+   67 |     float tau_rc, float tauYou,",187 320
+271,no matching function for call to 'lif',"OMP STATUS: 0
+    -> PASS
+  [Variant 271] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:177:5: error: no matching function for call to 'lif'
+  177 |     lif(numTeams,
+      |     ^~~
+main.cpp:61:6: note: candidate function not viable: requires 14 arguments, but 13 were provided
+   61 | void lif (
+      |      ^",271 562 745
+480,use of undeclared identifier 'dummyYoung',"OMP STATUS: 0
+    -> PASS
+  [Variant 480] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:105:24: error: use of undeclared identifier 'dummyYoung'
+  105 |     reftime_array[i] = dummyYoung;
+      |                        ^
+main.cpp:213:24: warning: more '%' conversions than data arguments [-Wformat-insufficient-args]
+  213 |       printf(""@%d: %f %f\n"", i, spikes[i]);
+      |                       ~^",480

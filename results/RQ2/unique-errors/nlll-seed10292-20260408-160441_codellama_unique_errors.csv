@@ -1,0 +1,166 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"Found 216 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:51:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   51 |     #pragma omp barrier
+      |     ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",000 001 002 004 005 006 007 018 020 023 024 028 029 030 031 037 039 042 043 045 046 050 051 052 055 058 060 063 064 065 067 068 071 075 081 084 090 094 097 112 118 120 121 127 128 140 141 145 146 149 150 152 153 155 159 161 163 167 169 174 179 190 191 193 199 206 207 212 215 216 218 220 226 227 229 230 232 236 240 241 243 252 253 254 260 263 273 277 278 280 284 285 287 289 292 296 297 299 300 303 307 309 316 322 324 327 330 332 349 350 355 358 362 363 369 370 371 374 378 379 391 394 397 400 402 406 408 412 413 415 417 418 423 432 436 440 443 444 446 450 451 452 456 464 466 471
+020,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:55:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   55 |     #pragma omp master
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",020 097 191 273 446 452
+050,use of undeclared identifier 'tid',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:52:9: error: use of undeclared identifier 'tid'
+   52 |     if (tid == 0) {
+      |         ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",050 071 112 140 167 216 254 378 394 423 464
+127,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:56:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   56 |     #pragma omp single
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",127 159 163 322 369 374
+361,invalid operands to binary expression ('float[64]' and 'float'),"OMP STATUS: 2
+    -> FAIL
+  [Variant 361] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:20: error: invalid operands to binary expression ('float[64]' and 'float')
+   49 |         acc_weight += acc_weight[j];
+      |         ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:93:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   93 |       nll_loss_forward_reduce2d_kernel
+      |       ^",361
+361,invalid operands to binary expression ('float[128]' and 'float'),"  174 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:202:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  202 |   driver<float, int>(argv);
+      |   ^
+main.cpp:49:20: error: invalid operands to binary expression ('float[128]' and 'float')
+   49 |         acc_weight += acc_weight[j];
+      |         ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:93:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 128>' requested here
+   93 |       nll_loss_forward_reduce2d_kernel
+      |       ^",361
+361,invalid operands to binary expression ('float[256]' and 'float'),"  174 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:202:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  202 |   driver<float, int>(argv);
+      |   ^
+main.cpp:49:20: error: invalid operands to binary expression ('float[256]' and 'float')
+   49 |         acc_weight += acc_weight[j];
+      |         ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:93:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 256>' requested here
+   93 |       nll_loss_forward_reduce2d_kernel
+      |       ^",361
+361,invalid operands to binary expression ('float[512]' and 'float'),"  174 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:202:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  202 |   driver<float, int>(argv);
+      |   ^
+main.cpp:49:20: error: invalid operands to binary expression ('float[512]' and 'float')
+   49 |         acc_weight += acc_weight[j];
+      |         ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:93:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 512>' requested here
+   93 |       nll_loss_forward_reduce2d_kernel
+      |       ^",361
+361,invalid operands to binary expression ('float[1024]' and 'float'),"  174 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:202:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  202 |   driver<float, int>(argv);
+      |   ^
+main.cpp:49:20: error: invalid operands to binary expression ('float[1024]' and 'float')
+   49 |         acc_weight += acc_weight[j];
+      |         ~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:93:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 1024>' requested here
+   93 |       nll_loss_forward_reduce2d_kernel
+      |       ^",361
+388,unknown type name '__shared__',"OMP STATUS: 2
+    -> FAIL
+  [Variant 388] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:7: error: unknown type name '__shared__'
+   37 |       __shared__ accscalar_t sm_inputs[NLL_LOSS_BLOCK_SIZE],
+      |       ^
+main.cpp:37:29: error: expected ';' at end of declaration
+   37 |       __shared__ accscalar_t sm_inputs[NLL_LOSS_BLOCK_SIZE],
+      |                             ^",388
+388,expected ';' at end of declaration,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:7: error: unknown type name '__shared__'
+   37 |       __shared__ accscalar_t sm_inputs[NLL_LOSS_BLOCK_SIZE],
+      |       ^
+main.cpp:37:29: error: expected ';' at end of declaration
+   37 |       __shared__ accscalar_t sm_inputs[NLL_LOSS_BLOCK_SIZE],
+      |                             ^
+      |                             ;
+main.cpp:39:7: error: use of undeclared identifier 'sm_inputs'
+   39 |       sm_inputs[tid] = static_cast<accscalar_t>(0);",388
+388,use of undeclared identifier 'sm_inputs',"      |       ^
+main.cpp:37:29: error: expected ';' at end of declaration
+   37 |       __shared__ accscalar_t sm_inputs[NLL_LOSS_BLOCK_SIZE],
+      |                             ^
+      |                             ;
+main.cpp:39:7: error: use of undeclared identifier 'sm_inputs'
+   39 |       sm_inputs[tid] = static_cast<accscalar_t>(0);
+      |       ^
+main.cpp:39:36: error: unknown type name 'accscalar_t'; did you mean 'scalar_t'?
+   39 |       sm_inputs[tid] = static_cast<accscalar_t>(0);
+      |                                    ^~~~~~~~~~~",388
+388,unknown type name 'accscalar_t'; did you mean 'scalar_t'?,"      |                             ^
+      |                             ;
+main.cpp:39:7: error: use of undeclared identifier 'sm_inputs'
+   39 |       sm_inputs[tid] = static_cast<accscalar_t>(0);
+      |       ^
+main.cpp:39:36: error: unknown type name 'accscalar_t'; did you mean 'scalar_t'?
+   39 |       sm_inputs[tid] = static_cast<accscalar_t>(0);
+      |                                    ^~~~~~~~~~~
+      |                                    scalar_t
+main.cpp:14:20: note: 'scalar_t' declared here
+   14 | template <typename scalar_t, typename accscalar_t, ",388
+388,use of undeclared identifier 'acc_weight',"      |                                    ^~~~~~~~~~~
+      |                                    scalar_t
+main.cpp:14:20: note: 'scalar_t' declared here
+   14 | template <typename scalar_t, typename accscalar_t, 
+      |                    ^
+main.cpp:40:7: error: use of undeclared identifier 'acc_weight'
+   40 |       acc_weight[tid] = static_cast<accscalar_t>(0);
+      |       ^
+main.cpp:40:37: error: unknown type name 'accscalar_t'; did you mean 'scalar_t'?
+   40 |       acc_weight[tid] = static_cast<accscalar_t>(0);
+      |                                     ^~~~~~~~~~~",388
+449,reduction variable must be shared,"OMP STATUS: 2
+    -> FAIL
+  [Variant 449] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:36:36: error: reduction variable must be shared
+   36 |       #pragma omp for reduction(-: s_input) reduction(+: s_weight)
+      |                                    ^
+main.cpp:93:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   93 |       nll_loss_forward_reduce2d_kernel
+      |       ^",449

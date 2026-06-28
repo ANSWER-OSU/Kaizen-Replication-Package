@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+657,extraneous closing brace ('}'),"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:60:1: error: extraneous closing brace ('}')
+   60 | }
+      | ^
+1 warning and 1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",657

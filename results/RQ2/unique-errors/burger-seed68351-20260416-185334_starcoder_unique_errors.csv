@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 205 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:34:1: error: expected unqualified-id
+   34 | ### Context:
+      | ^
+main.cpp:182:5: error: use of undeclared identifier 'bound_h'; did you mean 'bound_v'?
+  182 |     bound_h(numTeams2, numThreads, u_new, v_new, x_points, y_points);
+      |     ^~~~~~~",000 001 003 005 007 016 018 020 022 023 026 027 033 034 037 039 040 041 045 047 049 050 052 054 065 066 067 068 070 074 079 080 081 082 084 085 086 090 093 094 096 100 103 106 107 108 113 114 116 117 120 121 124 125 128 133 135 138 140 141 146 151 155 156 159 162 166 168 169 172 173 174 176 177 179 181 183 184 185 186 188 190 193 194 195 198 203 204 207 208 209 211 212 213 216 219 220 223 225 230 232 234 237 238 239 243 249 253 257 270 272 275 282 283 286 293 295 298 300 301 302 305 306 313 314 317 320 321 323 324 325 334 335 336 337 340 341 344 349 351 354 357 359 360 361 362 368 369 371 376 377 384 385 386 388 390 392 394 400 401 403 406 407 408 413 415 416 418 421 424 430 431 434 444 446 448 452 453 456 458 459 461 463 465 468 469 473 475 478 479 480 481 483 484 485 490 492 494 498 506 508 510 512 516 520
+000,use of undeclared identifier 'bound_h'; did you mean 'bound_v'?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:34:1: error: expected unqualified-id
+   34 | ### Context:
+      | ^
+main.cpp:182:5: error: use of undeclared identifier 'bound_h'; did you mean 'bound_v'?
+  182 |     bound_h(numTeams2, numThreads, u_new, v_new, x_points, y_points);
+      |     ^~~~~~~
+      |     bound_v
+main.cpp:59:6: note: 'bound_v' declared here
+   59 | void bound_v (",000 001 003 005 007 016 018 020 022 023 026 027 033 034 037 039 040 041 045 047 049 050 052 054 065 066 067 068 070 074 079 080 081 082 084 085 086 090 093 094 096 100 103 106 107 108 113 114 116 117 120 121 124 125 128 133 135 138 140 141 146 151 155 156 159 162 166 168 169 172 173 174 176 177 179 181 183 184 185 186 188 190 193 194 195 198 203 204 207 208 209 211 212 213 216 219 220 223 225 230 232 234 237 238 239 243 249 253 257 270 272 275 282 283 286 293 295 298 300 301 302 305 306 313 314 317 320 321 323 324 325 334 335 336 337 340 341 344 349 351 354 357 359 360 361 362 368 369 371 376 377 384 385 386 388 390 392 394 400 401 403 406 407 408 413 415 416 418 421 424 430 431 434 444 446 448 452 453 456 458 459 461 463 465 468 469 473 475 478 479 480 481 483 484 485 490 492 494 498 506 508 510 512 516 520
+093,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","OMP STATUS: 2
+    -> FAIL
+  [Variant 093] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:27:5: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   27 |     char tmp_obj612 = 'x';
+      |     ^
+main.cpp:25:61: note: as specified in 'collapse' clause
+   25 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",093 193 209 388
+388,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 388] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:27:42: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   27 |     #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                          ^
+main.cpp:28:44: error: expected 2 for loops after '#pragma omp parallel for', but found only 1
+   28 |     for (int j = 0; j < x_points - 1; j++) {
+      |                                            ^",388
+388,"expected 2 for loops after '#pragma omp parallel for', but found only 1","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:27:42: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   27 |     #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                          ^
+main.cpp:28:44: error: expected 2 for loops after '#pragma omp parallel for', but found only 1
+   28 |     for (int j = 0; j < x_points - 1; j++) {
+      |                                            ^
+main.cpp:27:39: note: as specified in 'collapse' clause
+   27 |     #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                       ^",388

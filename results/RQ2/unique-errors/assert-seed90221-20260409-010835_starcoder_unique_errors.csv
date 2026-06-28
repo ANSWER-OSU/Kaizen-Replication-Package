@@ -1,0 +1,133 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 184 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 017 025 027 031 036 045 048 049 050 051 053 091 092 096 097 100 125 133 144 145 147 150 170 181 194 200 205 212 214 232 242 246 251 254 257 259 265 267 269 271 272 280 283 293 302 304 309 311 319 324 327 332 334 335 341 350 351 352 371 373 392 398 412 418 419 423 432 433 438 440 449 450 452 453 465 469 471 483 491 493 505 507 508 510 511 516 524 538 543 552 554 556 557 574 583 587 612 621 622 631 640 646 653 655 659 666 673 679 680 683 686 689 711 719 723 725 726 728 730 733 741 747 748 749 768 777 779 781 782 784 785 791 801 802 808 814 829 837 838 840 845 854 864 866 871 883 886 894 896 906 910 911
+000,no matching function for call to 'perfKernel',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:45:1: error: expected unqualified-id
+   45 | ### Context:
+      | ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 001 025 027 031 045 049 050 051 053 067 070 089 092 096 133 144 147 150 170 194 199 200 220 232 240 257 259 267 280 283 304 327 334 335 351 352 366 371 373 402 412 418 423 432 440 449 465 469 486 491 496 510 516 524 538 554 574 587 599 612 621 627 640 646 666 680 689 693 711 712 719 723 728 730 741 748 774 777 779 784 785 791 795 801 821 830 834 838 840 854 864 866 871 873 883 886 894 896 904 906 910 911
+000,use of undeclared identifier 'perfKernel2',"  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 3 arguments, but 2 were provided
+   35 | void perfKernel(const int numTeams, const int numThreads, const int OMP_NUM_THREADS) {
+      |      ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:122:3: error: use of undeclared identifier 'perfKernel2'
+  122 |   perfKernel2(Nblocks, Nthreads);
+      |   ^
+3 errors generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",000 025 027 031 045 049 050 051 053 092 096 133 144 147 150 170 194 200 232 257 259 267 280 283 304 327 334 335 351 352 371 373 412 418 423 432 440 449 465 469 491 510 516 524 538 554 574 587 612 621 640 646 666 680 689 711 719 723 728 730 741 748 777 779 784 785 791 801 838 840 854 864 866 871 883 886 894 896 906 910 911
+001,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:40:47: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   40 |     #pragma omp parallel for reduction(+ : s) num_teams(numTeams) num_threads(numThreads)
+      |                                               ^
+main.cpp:116:3: error: no matching function for call to 'perfKernel'
+  116 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",001 027 031 036 053 067 070 089 091 092 100 133 144 147 181 199 220 240 251 259 271 283 302 311 327 341 342 352 357 366 371 399 402 418 440 450 453 486 491 496 508 599 640 689 693 712 719 723 741 748 768 779 784 795 814 821 830 834 866 871 873 904
+017,use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?,"   52 | ### Response status:
+      | ^
+main.cpp:88:1: error: expected unqualified-id
+   88 | ### Context:
+      | ^
+main.cpp:165:3: error: use of undeclared identifier 'perfKernel2'; did you mean 'perfKernel'?
+  165 |   perfKernel2(Nblocks, Nthreads);
+      |   ^~~~~~~~~~~
+      |   perfKernel
+main.cpp:35:6: note: 'perfKernel' declared here
+   35 | void perfKernel(const int numTeams, const int numThreads) {",017 036 048 091 097 100 125 145 181 205 212 214 242 246 251 254 265 269 271 272 293 302 309 311 319 324 332 341 350 392 398 419 433 438 450 452 453 471 483 493 505 507 508 511 543 552 556 557 583 622 631 653 655 659 673 679 683 686 725 726 733 747 749 768 781 782 802 808 814 829 837 845
+432,use of undeclared identifier 's',"OMP STATUS: 2
+    -> FAIL
+  [Variant 432] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:41:5: error: use of undeclared identifier 's'
+   41 |     s++;
+      |     ^
+main.cpp:42:12: error: use of undeclared identifier 's'
+   42 |     assert(s <= gid);
+      |            ^",432 469 788
+766,unknown type name 'int3'; did you mean 'int'?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 766] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:35:65: error: unknown type name 'int3'; did you mean 'int'?
+   35 | void perfKernel(const int numTeams, const int numThreads, const int3 volsize,  const int numatoms, const float gridspacing, float *energygrid, const float4 *atominfo) {
+      |                                                                 ^~~~
+      |                                                                 int
+main.cpp:35:150: error: unknown type name 'float4'; did you mean 'float'?
+   35 | void perfKernel(const int numTeams, const int numThreads, const int3 volsize,  const int numatoms, const float gridspacing, float *energygrid, const float4 *atominfo) {",766
+766,unknown type name 'float4'; did you mean 'float'?,"afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:35:65: error: unknown type name 'int3'; did you mean 'int'?
+   35 | void perfKernel(const int numTeams, const int numThreads, const int3 volsize,  const int numatoms, const float gridspacing, float *energygrid, const float4 *atominfo) {
+      |                                                                 ^~~~
+      |                                                                 int
+main.cpp:35:150: error: unknown type name 'float4'; did you mean 'float'?
+   35 | void perfKernel(const int numTeams, const int numThreads, const int3 volsize,  const int numatoms, const float gridspacing, float *energygrid, const float4 *atominfo) {
+      |                                                                                                                                                      ^~~~~~
+      |                                                                                                                                                      float
+main.cpp:37:49: error: member reference base type 'const int' is not a structure or union
+   37 |   for (unsigned int yindex = 0; yindex < volsize.y; yindex++) {",766
+766,member reference base type 'const int' is not a structure or union,"      |                                                                 int
+main.cpp:35:150: error: unknown type name 'float4'; did you mean 'float'?
+   35 | void perfKernel(const int numTeams, const int numThreads, const int3 volsize,  const int numatoms, const float gridspacing, float *energygrid, const float4 *atominfo) {
+      |                                                                                                                                                      ^~~~~~
+      |                                                                                                                                                      float
+main.cpp:37:49: error: member reference base type 'const int' is not a structure or union
+   37 |   for (unsigned int yindex = 0; yindex < volsize.y; yindex++) {
+      |                                          ~~~~~~~^~
+main.cpp:38:51: error: member reference base type 'const int' is not a structure or union
+   38 |     for (unsigned int xindex = 0; xindex < volsize.x / UNROLLX; xindex++) {
+      |                                            ~~~~~~~^~",766
+766,use of undeclared identifier 'UNROLLX',"   37 |   for (unsigned int yindex = 0; yindex < volsize.y; yindex++) {
+      |                                          ~~~~~~~^~
+main.cpp:38:51: error: member reference base type 'const int' is not a structure or union
+   38 |     for (unsigned int xindex = 0; xindex < volsize.x / UNROLLX; xindex++) {
+      |                                            ~~~~~~~^~
+main.cpp:38:56: error: use of undeclared identifier 'UNROLLX'
+   38 |     for (unsigned int xindex = 0; xindex < volsize.x / UNROLLX; xindex++) {
+      |                                                        ^
+main.cpp:39:44: error: member reference base type 'const int' is not a structure or union
+   39 |     unsigned int outaddr = yindex * volsize.x + xindex;
+      |                                     ~~~~~~~^~",766
+766,use of undeclared identifier 'BLOCKSIZEX',"   38 |     for (unsigned int xindex = 0; xindex < volsize.x / UNROLLX; xindex++) {
+      |                                                        ^
+main.cpp:39:44: error: member reference base type 'const int' is not a structure or union
+   39 |     unsigned int outaddr = yindex * volsize.x + xindex;
+      |                                     ~~~~~~~^~
+main.cpp:50:41: error: use of undeclared identifier 'BLOCKSIZEX'
+   50 |     float gridspacing_u = gridspacing * BLOCKSIZEX;
+      |                                         ^
+main.cpp:53:42: error: member reference base type 'const float' is not a structure or union
+   53 |       float dy = coory - atominfo[atomid].y;
+      |                          ~~~~~~~~~~~~~~~~^~",766
+766,member reference base type 'const float' is not a structure or union,"   39 |     unsigned int outaddr = yindex * volsize.x + xindex;
+      |                                     ~~~~~~~^~
+main.cpp:50:41: error: use of undeclared identifier 'BLOCKSIZEX'
+   50 |     float gridspacing_u = gridspacing * BLOCKSIZEX;
+      |                                         ^
+main.cpp:53:42: error: member reference base type 'const float' is not a structure or union
+   53 |       float dy = coory - atominfo[atomid].y;
+      |                          ~~~~~~~~~~~~~~~~^~
+main.cpp:54:48: error: member reference base type 'const float' is not a structure or union
+   54 |       float dyz2 = (dy * dy) + atominfo[atomid].z;
+      |                                ~~~~~~~~~~~~~~~~^~",766

@@ -1,0 +1,309 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,expected unqualified-id,"Found 201 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^
+main.cpp:95:3: error: use of undeclared identifier 'property'
+   95 |   property(""shape"", shape);
+      |   ^",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 115 116 119 120 121 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 167 172 174 176 182 187 188 191 193 194 197 202 205 209 211 213 219 220 221 222 224 229 230 231 244 245 248 249 250 251 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373 377 386 389 391 392 395 397 400 401 403 405 407 413 414 419 422 425 433 436 438 440 443 444 445 447 449 450 451 453 454 456
+000,use of undeclared identifier 'property',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:1: error: expected unqualified-id
+   50 | ### Context:
+      | ^
+main.cpp:95:3: error: use of undeclared identifier 'property'
+   95 |   property(""shape"", shape);
+      |   ^
+main.cpp:96:3: error: use of undeclared identifier 'property'
+   96 |   property(""flip_dims"", flip);
+      |   ^",000 001 003 011 012 013 014 015 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 106 107 108 109 113 114 115 116 119 120 121 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 167 172 174 176 182 187 188 191 193 194 197 202 205 209 211 213 219 220 221 222 224 229 230 231 244 245 248 249 250 251 255 256 260 261 262 265 266 268 269 270 274 275 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 355 358 360 363 365 369 373 377 386 389 391 392 395 397 400 401 403 405 407 413 414 419 422 425 433 436 438 440 443 444 445 447 449 450 451 453 454 456
+001,no matching function for call to 'flip_kernel',"   83 |   property(""flip_dims"", flip);
+      |   ^
+main.cpp:84:3: error: use of undeclared identifier 'property'
+   84 |   property(""stride"", stride);
+      |   ^
+main.cpp:117:5: error: no matching function for call to 'flip_kernel'
+  117 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:187:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  187 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",001 003 011 012 013 014 016 019 022 023 025 026 028 029 030 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 080 081 083 086 091 093 094 097 101 103 107 108 109 113 116 119 120 121 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 167 172 176 182 187 188 191 194 197 202 205 209 211 213 219 220 221 222 224 229 230 231 244 245 248 249 250 251 253 255 256 260 261 262 265 266 268 269 270 274 284 286 287 288 289 290 291 292 294 295 297 298 300 301 302 303 305 307 308 310 312 315 317 319 320 321 323 327 328 329 332 335 336 339 340 346 350 351 354 358 360 363 365 369 373 377 386 389 391 392 395 397 400 401 403 407 413 414 419 422 425 433 436 438 440 443 444 445 447 449 450 451 453 454
+115,unknown type name 'scalar_t',"OMP STATUS: 2
+    -> FAIL
+  [Variant 115] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:17:91: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t stream_id, const scalar_t* in_tensor, scalar_t* out_tensor, const int64_t n, const int64_t* flip_dims, const int64_t flip_dims_size, const int64_t* strides, const int64_t* strides_contiguous, const int64_t* shape, const int64_t total_dims) {
+      |                                                                                           ^
+main.cpp:17:112: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t stream_id, const scalar_t* in_tensor, scalar_t* out_tensor, const int64_t n, const int64_t* flip_dims, const int64_t flip_dims_size, const int64_t* strides, const int64_t* strides_contiguous, const int64_t* shape, const int64_t total_dims) {
+      |                                                                                                                ^",115 128 193 456
+115,'scalar_t' does not refer to a value,"  103 |   property(""flip_dims"", flip);
+      |   ^
+main.cpp:104:3: error: use of undeclared identifier 'property'
+  104 |   property(""stride"", stride);
+      |   ^
+main.cpp:137:17: error: 'scalar_t' does not refer to a value
+  137 |     flip_kernel<scalar_t>(
+      |                 ^
+main.cpp:73:20: note: declared here
+   73 | template <typename scalar_t>
+      |                    ^",115 128 193 456
+128,use of undeclared identifier 'total_dims',"   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t numElements, const scalar_t* in_tensor, scalar_t* out_tensor) {
+      |                                                                                             ^
+main.cpp:17:114: error: unknown type name 'scalar_t'
+   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t numElements, const scalar_t* in_tensor, scalar_t* out_tensor) {
+      |                                                                                                                  ^
+main.cpp:33:29: error: use of undeclared identifier 'total_dims'
+   33 |     for (int64_t i = 0; i < total_dims; i++) {
+      |                             ^
+main.cpp:39:35: error: use of undeclared identifier 'strides_contiguous'
+   39 |       cur_indices = cur_indices / strides_contiguous[i];
+      |                                   ^",128 193
+128,use of undeclared identifier 'strides_contiguous',"   17 | void flip_kernel(const int numTeams, const int numThreads, const int64_t numElements, const scalar_t* in_tensor, scalar_t* out_tensor) {
+      |                                                                                                                  ^
+main.cpp:33:29: error: use of undeclared identifier 'total_dims'
+   33 |     for (int64_t i = 0; i < total_dims; i++) {
+      |                             ^
+main.cpp:39:35: error: use of undeclared identifier 'strides_contiguous'
+   39 |       cur_indices = cur_indices / strides_contiguous[i];
+      |                                   ^
+main.cpp:40:34: error: use of undeclared identifier 'strides_contiguous'
+   40 |       rem = temp - cur_indices * strides_contiguous[i];
+      |                                  ^",128 193
+128,use of undeclared identifier 'flip_dims_size',"   39 |       cur_indices = cur_indices / strides_contiguous[i];
+      |                                   ^
+main.cpp:40:34: error: use of undeclared identifier 'strides_contiguous'
+   40 |       rem = temp - cur_indices * strides_contiguous[i];
+      |                                  ^
+main.cpp:44:31: error: use of undeclared identifier 'flip_dims_size'
+   44 |       for (int64_t j = 0; j < flip_dims_size; j++) {
+      |                               ^
+main.cpp:46:18: error: use of undeclared identifier 'flip_dims'
+   46 |         if (i == flip_dims[j]) {
+      |                  ^",128 193
+128,use of undeclared identifier 'flip_dims',"   40 |       rem = temp - cur_indices * strides_contiguous[i];
+      |                                  ^
+main.cpp:44:31: error: use of undeclared identifier 'flip_dims_size'
+   44 |       for (int64_t j = 0; j < flip_dims_size; j++) {
+      |                               ^
+main.cpp:46:18: error: use of undeclared identifier 'flip_dims'
+   46 |         if (i == flip_dims[j]) {
+      |                  ^
+main.cpp:47:25: error: use of undeclared identifier 'shape'
+   47 |           cur_indices = shape[i] - 1 - cur_indices;
+      |                         ^",128 193
+128,use of undeclared identifier 'shape',"   44 |       for (int64_t j = 0; j < flip_dims_size; j++) {
+      |                               ^
+main.cpp:46:18: error: use of undeclared identifier 'flip_dims'
+   46 |         if (i == flip_dims[j]) {
+      |                  ^
+main.cpp:47:25: error: use of undeclared identifier 'shape'
+   47 |           cur_indices = shape[i] - 1 - cur_indices;
+      |                         ^
+main.cpp:50:35: error: use of undeclared identifier 'strides'
+   50 |       dst_offset += cur_indices * strides[i];
+      |                                   ^",128 193
+128,use of undeclared identifier 'strides',"   46 |         if (i == flip_dims[j]) {
+      |                  ^
+main.cpp:47:25: error: use of undeclared identifier 'shape'
+   47 |           cur_indices = shape[i] - 1 - cur_indices;
+      |                         ^
+main.cpp:50:35: error: use of undeclared identifier 'strides'
+   50 |       dst_offset += cur_indices * strides[i];
+      |                                   ^
+main.cpp:60:1: error: expected unqualified-id
+   60 | ### Context:
+      | ^",128 193
+145,use of undeclared identifier 'i',"OMP STATUS: 2
+    -> FAIL
+  [Variant 145] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:26:49: error: use of undeclared identifier 'i'
+   26 |     scalar_t weight = input_weights[row * hid + i];
+      |                                                 ^
+main.cpp:28:61: error: use of undeclared identifier 'i'
+   28 |       hidden_partial_sum[col] += weight * input[col * hid + i];
+      |                                                             ^",145 354
+236,redefinition of 'flip_kernel',"OMP STATUS: 2
+    -> FAIL
+  [Variant 236] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:66:6: error: redefinition of 'flip_kernel'
+   66 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:42:6: note: previous definition is here
+   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^",236 247 253 381 384 432
+236,use of undeclared identifier 'input_weights',"   66 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:42:6: note: previous definition is here
+   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:210:9: error: use of undeclared identifier 'input_weights'
+  210 |         input_weights[index] = input[col * hid + row];
+      |         ^
+main.cpp:218:36: error: use of undeclared identifier 'input_weights'; did you mean 'tmp_weight'?
+  218 |         hidden_partial_sum[row] += input_weights[index] * hidden_partial_sum[col];
+      |                                    ^~~~~~~~~~~~~",236
+236,use of undeclared identifier 'input_weights'; did you mean 'tmp_weight'?,"   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:210:9: error: use of undeclared identifier 'input_weights'
+  210 |         input_weights[index] = input[col * hid + row];
+      |         ^
+main.cpp:218:36: error: use of undeclared identifier 'input_weights'; did you mean 'tmp_weight'?
+  218 |         hidden_partial_sum[row] += input_weights[index] * hidden_partial_sum[col];
+      |                                    ^~~~~~~~~~~~~
+      |                                    tmp_weight
+main.cpp:164:214: note: 'tmp_weight' declared here
+  164 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const int hid, const int batch, const int step, const int forward, scalar_t*__restrict__ tmp_in, scalar_t*__restrict__ tmp_weight, scalar_t*__restrict__ hidden_partial_sum) {",236
+236,use of undeclared identifier 'hidden_partial_'; did you mean 'hidden_partial_sum'?,"      |                                    ^~~~~~~~~~~~~
+      |                                    tmp_weight
+main.cpp:225:234: note: 'tmp_weight' declared here
+  225 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const int hid, const int batch, const int step, const int forward, const int backward, scalar_t*__restrict__ tmp_in, scalar_t*__restrict__ tmp_weight, scalar_t*__restrict__ hidden_partial_sum) {
+      |                                                                                                                                                                                                                                          ^
+main.cpp:356:9: error: use of undeclared identifier 'hidden_partial_'; did you mean 'hidden_partial_sum'?
+  356 |         hidden_partial_
+      |         ^~~~~~~~~~~~~~~
+      |         hidden_partial_sum
+main.cpp:323:233: note: 'hidden_partial_sum' declared here
+  323 | void flip_kernel(const int numTeams, const int numThreads, const int hid, const int batch, const int step, const int forward, const int backward, scalar_t*__restrict__ tmp_in, scalar_t*__restrict__ tmp_weight, scalar_t*__restrict__ hidden_partial_sum) {",236
+236,expected ';' after expression,"      |         ^~~~~~~~~~~~~~~
+      |         hidden_partial_sum
+main.cpp:323:233: note: 'hidden_partial_sum' declared here
+  323 | void flip_kernel(const int numTeams, const int numThreads, const int hid, const int batch, const int step, const int forward, const int backward, scalar_t*__restrict__ tmp_in, scalar_t*__restrict__ tmp_weight, scalar_t*__restrict__ hidden_partial_sum) {
+      |                                                                                                                                                                                                                                         ^
+main.cpp:356:24: error: expected ';' after expression
+  356 |         hidden_partial_
+      |                        ^
+      |                        ;
+main.cpp:361:1: error: function definition is not allowed here
+  361 | {",236
+236,function definition is not allowed here,"      |                                                                                                                                                                                                                                         ^
+main.cpp:356:24: error: expected ';' after expression
+  356 |         hidden_partial_
+      |                        ^
+      |                        ;
+main.cpp:361:1: error: function definition is not allowed here
+  361 | {
+      | ^
+main.cpp:369:1: error: expected expression
+  369 | template <typename scalar_t>
+      | ^",236
+236,expected expression,"      |                        ^
+      |                        ;
+main.cpp:361:1: error: function definition is not allowed here
+  361 | {
+      | ^
+main.cpp:369:1: error: expected expression
+  369 | template <typename scalar_t>
+      | ^
+main.cpp:514:17: error: expected '}'
+  514 | #endif // LIBOMP
+      |                 ^",236
+236,expected '}',"  361 | {
+      | ^
+main.cpp:369:1: error: expected expression
+  369 | template <typename scalar_t>
+      | ^
+main.cpp:514:17: error: expected '}'
+  514 | #endif // LIBOMP
+      |                 ^
+main.cpp:354:43: note: to match this '{'
+  354 |       for (int col = 0; col < hid; col++) {
+      |                                           ^",236
+247,use of undeclared identifier 'hidden_partial_sum',"   44 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:31:6: note: previous definition is here
+   31 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:65:5: error: use of undeclared identifier 'hidden_partial_sum'
+   65 |     hidden_partial_sum[row] = sum;
+      |     ^
+main.cpp:78:5: error: use of undeclared identifier 'hidden_partial_sum'
+   78 |     hidden_partial_sum[row] = sum;
+      |     ^",247 381
+253,variable has incomplete type 'void',"   66 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:42:6: note: previous definition is here
+   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:354:6: error: variable has incomplete type 'void'
+  354 | void kernel_
+      |      ^
+main.cpp:354:13: error: expected ';' at end of declaration
+  354 | void kernel_
+      |             ^",253
+253,expected ';' at end of declaration,"   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:354:6: error: variable has incomplete type 'void'
+  354 | void kernel_
+      |      ^
+main.cpp:354:13: error: expected ';' at end of declaration
+  354 | void kernel_
+      |             ^
+      |             ;
+main.cpp:431:5: error: no matching function for call to 'flip_kernel'
+  431 |     flip_kernel<scalar_t>(",253 432
+354,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"OMP STATUS: 2
+    -> FAIL
+  [Variant 354] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:23:69: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   23 |   #pragma omp parallel for reduction (+ : hidden_partial_sum[:hid]) num_teams(numTeams) num_threads(numThreads)
+      |                                                                     ^
+main.cpp:25:49: error: use of undeclared identifier 'i'
+   25 |     scalar_t weight = input_weights[row * hid + i];
+      |                                                 ^",354
+384,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","   66 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:42:6: note: previous definition is here
+   42 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:97:65: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   97 |   for (int gate_index = 0; gate_index < numGates; gate_index++) {
+      |                                                                 ^
+main.cpp:96:105: note: as specified in 'collapse' clause
+   96 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(2)
+      |                                                                                                         ^",384
+384,redefinition of parameter 'numGates',"   97 |   for (int gate_index = 0; gate_index < numGates; gate_index++) {
+      |                                                                 ^
+main.cpp:96:105: note: as specified in 'collapse' clause
+   96 |   #pragma omp target teams distribute parallel for num_teams(numTeams) num_threads(numThreads) collapse(2)
+      |                                                                                                         ^
+main.cpp:114:234: error: redefinition of parameter 'numGates'
+  114 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const int hid, const int batch, const int numGates, scalar_t*__restrict__ linearGates, scalar_t*__restrict__ hidden_partial_sum, const int numGates) {
+      |                                                                                                                                                                                                                                          ^
+main.cpp:114:137: note: previous declaration is here
+  114 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const int hid, const int batch, const int numGates, scalar_t*__restrict__ linearGates, scalar_t*__restrict__ hidden_partial_sum, const int numGates) {
+      |                                                                                                                                         ^",384
+432,invalid parameter name: 'void' is a keyword,"   44 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ weight, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:31:6: note: previous definition is here
+   31 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:327:1: error: invalid parameter name: 'void' is a keyword
+  327 | void property (const char* name, std::vector<int64_t> p)
+      | ^
+main.cpp:327:6: error: expected ')'
+  327 | void property (const char* name, std::vector<int64_t> p)
+      |      ^",432
+432,expected ')',"   31 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const scalar_t*__restrict__ input_weights, scalar_t*__restrict__ hidden_partial_sum, const int hid) {
+      |      ^
+main.cpp:327:1: error: invalid parameter name: 'void' is a keyword
+  327 | void property (const char* name, std::vector<int64_t> p)
+      | ^
+main.cpp:327:6: error: expected ')'
+  327 | void property (const char* name, std::vector<int64_t> p)
+      |      ^
+main.cpp:323:17: note: to match this '('
+  323 | void flip_kernel(const int numTeams, const int numThreads, const scalar_t*__restrict__ input, const int hid, const int batch, const int step, const int forward_window, const int backward_window, const int offset, const int scale, const int relu, const int is_lstm, const int has_bias, const int forget_bias, const int is_reverse, const int is_inference, const int inference_step, const int hid_size, const int num_layers, scalar_t*__restrict__ hidden_partial_sum, scalar_t*
+      |                 ^",432

@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+023,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 023] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:125:1: error: extraneous closing brace ('}')
+  125 | }
+      | ^
+1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",023 030 042 049 083

@@ -1,0 +1,34 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+003,no matching function for call to 'flip_kernel',"OMP STATUS: 0
+    -> PASS
+  [Variant 003] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:128:5: error: no matching function for call to 'flip_kernel'
+  128 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:198:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  198 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",003 005 007 016 018 019 020 022 023 024 026 027 029 033 034 037 040 041 045 047 049 050 051 052 054 065 066 067 068 070 074 078 079 080 081 082 084 085 086 090 093 094 095 098 100 101 103 107 108 111 113 114 117 120 122 124 128 132 135 138 140 141 146 151 153 155 156 159 161 162 166 168 169 172 173 174 176 177 180 181 184 185 186 188 190 192 193 195 198 203 204 206 207 208 209 211 212 213 214 215 216 219 220 221 222 223 225 232 234 237 238 239 249 253 257 258 270 272 274 275 283 284 286 290 292 293 295 301 302 305 306 308 311 313 314 317 320 321 323 324 325 326 334 335 336 337 340 341 344 348 349 351 354 357 359 362 368 369 371 376 377 384 386 388 390 392 394 400 401 403 406 407 408 412 413 415 416 418 424 430 431 434 437 446 448 452 453 456 458 459
+084,cannot return from OpenMP region,"OMP STATUS: 2
+    -> FAIL
+  [Variant 084] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:28: error: cannot return from OpenMP region
+   31 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:130:5: error: no matching function for call to 'flip_kernel'
+  130 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~",084 124 153 169 172 180 186 204 213 232 238 283 290 314 325 334 336 354 369 407 415 416
+169,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:28: error: cannot return from OpenMP region
+   31 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:35:5: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   35 |     int helper_item105 = 'x';
+      |     ^~~
+main.cpp:35:5: note: expected an expression statement
+   35 |     int helper_item105 = 'x';
+      |     ^~~",169 180 354

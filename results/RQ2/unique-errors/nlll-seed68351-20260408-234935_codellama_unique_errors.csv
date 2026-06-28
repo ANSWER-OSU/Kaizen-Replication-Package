@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"Found 211 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",000 003 005 007 019 023 024 027 037 041 049 052 054 067 079 080 082 084 085 095 101 111 113 114 117 122 124 132 135 138 141 161 169 172 180 184 206 208 211 212 213 214 220 232 238 258 275 284 290 302 311 317 325 334 344 351 354 368 377 392 406 407 413 416 437 453 461 468
+049,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:52:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   52 |     #pragma omp single
+      |     ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",049 135 141 193 232 238 392 406 407 416
+052,use of undeclared identifier 'tid',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:52:9: error: use of undeclared identifier 'tid'
+   52 |     if (tid == 0) {
+      |         ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",052 067 079 101 114 124 184 284 325
+188,expected expression,"OMP STATUS: 0
+    -> PASS
+  [Variant 188] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:76:1: error: expected expression
+   76 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:223:17: error: expected '}'
+  223 | #endif // LIBOMP
+      |                 ^",188 237 279 320 371
+188,expected '}',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:76:1: error: expected expression
+   76 | template <typename scalar_t, typename index_t, int GPU_THREADS>
+      | ^
+main.cpp:223:17: error: expected '}'
+  223 | #endif // LIBOMP
+      |                 ^
+main.cpp:27:1: note: to match this '{'
+   27 | {
+      | ^",188 237 279 320 371
+459,redefinition of 'tid',"OMP STATUS: 0
+    -> PASS
+  [Variant 459] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:39:5: error: redefinition of 'tid'
+   39 | int tid = omp_get_thread_num();
+      |     ^
+main.cpp:35:11: note: previous definition is here
+   35 |       int tid = omp_get_thread_num();
+      |           ^",459

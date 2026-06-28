@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,use of undeclared identifier 'omp_get_thread_id'; did you mean 'omp_get_thread_num'?,"Found 91 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:23: error: use of undeclared identifier 'omp_get_thread_id'; did you mean 'omp_get_thread_num'?
+   37 |         for (int hw = omp_get_thread_id(); hw < HxW; hw += omp_get_num_threads()) {
+      |                       ^~~~~~~~~~~~~~~~~
+      |                       omp_get_thread_num
+/usr/lib/llvm-18/lib/clang/18/include/omp.h:69:42: note: 'omp_get_thread_num' declared here
+   69 |     extern int    __KAI_KMPC_CONVENTION  omp_get_thread_num   (void);",000 011 015 020 046 050 109 157 174 177
+000,no matching function for call to 'ChannelSumNCHW',"      |                       ^~~~~~~~~~~~~~~~~
+      |                       omp_get_thread_num
+/usr/lib/llvm-18/lib/clang/18/include/omp.h:69:42: note: 'omp_get_thread_num' declared here
+   69 |     extern int    __KAI_KMPC_CONVENTION  omp_get_thread_num   (void);
+      |                                          ^
+main.cpp:95:5: error: no matching function for call to 'ChannelSumNCHW'
+   95 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:19:6: note: candidate template ignored: couldn't infer template argument 'kBlockDimX'
+   19 | void ChannelSumNCHW(
+      |      ^",000 001 003 011 012 013 014 015 016 019 020 022 023 025 026 028 029 030 036 038 040 042 043 046 049 050 055 056 057 059 060 063 064 068 069 077 080 081 083 086 091 093 094 097 099 101 103 106 107 108 109 111 113 114 115 116 119 120 121 122 128 129 130 131 133 134 135 136 138 140 145 146 148 149 150 151 154 156 157 158 162 163 166 167 172 174 176 177 182 187 188
+001,use of undeclared identifier 'c',"OMP STATUS: 2
+    -> FAIL
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:9: error: use of undeclared identifier 'c'
+   47 |     sum[c] = m_val;
+      |         ^
+main.cpp:48:11: error: use of undeclared identifier 'c'
+   48 |     sumsq[c] = v_val;
+      |           ^",001 003 012 013 014 016 019 022 023 025 026 028 030 036 038 040 042 043 049 050 056 057 059 060 063 064 068 069 077 080 081 083 086 091 093 094 097 099 101 103 106 107 108 111 113 114 115 116 119 121 128 129 130 133 135 136 138 140 146 148 149 150 151 154 158 162 163 166 167 172 176 187
+156,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 156] Building on worker 13 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:51:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   51 |     #pragma omp master
+      |     ^
+main.cpp:53:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   53 |     #pragma omp master
+      |     ^",156
+172,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 172] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:55:11: error: use of undeclared identifier 'c'
+   55 |       sum[c] = m_val;
+      |           ^",172

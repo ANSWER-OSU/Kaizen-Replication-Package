@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+044,extraneous closing brace ('}'),"OMP STATUS: 0
+    -> PASS
+  [Variant 044] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:126:1: error: extraneous closing brace ('}')
+  126 | }
+      | ^
+1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",044 072 089
+131,declaration of 'T' shadows template parameter,"OMP STATUS: 0
+    -> PASS
+  [Variant 131] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:109:13: error: declaration of 'T' shadows template parameter
+  109 |     const T T x2_c1 = x2_row[1];
+      |             ^
+main.cpp:89:20: note: template parameter is declared here
+   89 | template <typename T>
+      |                    ^",131
+131,expected ';' at end of declaration,"  109 |     const T T x2_c1 = x2_row[1];
+      |             ^
+main.cpp:89:20: note: template parameter is declared here
+   89 | template <typename T>
+      |                    ^
+main.cpp:109:14: error: expected ';' at end of declaration
+  109 |     const T T x2_c1 = x2_row[1];
+      |              ^
+      |              ;
+main.cpp:110:11: error: unknown type name 'T'
+  110 |     const T x2_c2 = x2_row[2];",131
+131,unknown type name 'T',"      |                    ^
+main.cpp:109:14: error: expected ';' at end of declaration
+  109 |     const T T x2_c1 = x2_row[1];
+      |              ^
+      |              ;
+main.cpp:110:11: error: unknown type name 'T'
+  110 |     const T x2_c2 = x2_row[2];
+      |           ^
+main.cpp:112:11: error: unknown type name 'T'
+  112 |     const T val0 = x1_c1 * x2_c2 - x1_c2 * x2_c1 ;
+      |           ^",131
+131,use of undeclared identifier 'x2_c1',"  110 |     const T x2_c2 = x2_row[2];
+      |           ^
+main.cpp:112:11: error: unknown type name 'T'
+  112 |     const T val0 = x1_c1 * x2_c2 - x1_c2 * x2_c1 ;
+      |           ^
+main.cpp:112:44: error: use of undeclared identifier 'x2_c1'
+  112 |     const T val0 = x1_c1 * x2_c2 - x1_c2 * x2_c1 ;
+      |                                            ^
+main.cpp:114:11: error: unknown type name 'T'
+  114 |     const T val1 = x1_c2 * x2_c0 - x1_c0 * x2_c2 ;
+      |           ^",131
+131,default initialization of an object of const type 'const float',"  116 |     const T val2 = x1_c0 * x2_c1 - x1_c1 * x2_c0 ;
+      |           ^
+main.cpp:116:28: error: use of undeclared identifier 'x2_c1'
+  116 |     const T val2 = x1_c0 * x2_c1 - x1_c1 * x2_c0 ;
+      |                            ^
+main.cpp:109:13: error: default initialization of an object of const type 'const float'
+  109 |     const T T x2_c1 = x2_row[1];
+      |             ^
+      |               = 0.0
+main.cpp:176:7: note: in instantiation of function template specialization 'cross3_kernel<float>' requested here
+  176 |       cross3_kernel(numTeams, numThreads, nrows, o3, a, b);",131
+131,default initialization of an object of const type 'const double',"  176 |       cross3_kernel(numTeams, numThreads, nrows, o3, a, b);
+      |       ^
+main.cpp:214:3: note: in instantiation of function template specialization 'eval<float>' requested here
+  214 |   eval<float>(nrows, repeat);
+      |   ^
+main.cpp:109:13: error: default initialization of an object of const type 'const double'
+  109 |     const T T x2_c1 = x2_row[1];
+      |             ^
+      |               = 0.0
+main.cpp:176:7: note: in instantiation of function template specialization 'cross3_kernel<double>' requested here
+  176 |       cross3_kernel(numTeams, numThreads, nrows, o3, a, b);",131

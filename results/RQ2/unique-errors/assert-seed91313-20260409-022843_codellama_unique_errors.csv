@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Context,All Affected Variants
+000,use of undeclared identifier 'gridDim',"Found 171 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^",000 003 029 031 038 052 076 091 095 098 099 112 121 133 141 161 187 198 217 234 237 251 254 260 270 273 279 283 300 302 313 314 317 318 329 331 347 352 356 360 368 376 384 389 391 407 408 414 418 424 425 459 467 479 485 492 493 499 501 504 506 515 522 523 524 527 529 531 537 539 546 549 553 554 557 569 573 591 598 602 620 632 637 643 651 652 656 664 670 671 676 685 696 698 716 731 734 738 740 742 747 753 756 758 759 775 778 780 783 786 787 795 805 808 814 832 834 840 842 853 858 860 870 873 897 909 914 917 927 928 932 963 967
+000,use of undeclared identifier 'blockDim',"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^
+main.cpp:38:27: error: use of undeclared identifier 'blockDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^",000 003 029 031 038 052 076 091 095 098 099 112 121 133 141 161 187 198 217 234 237 251 254 260 270 273 279 283 300 302 313 314 317 318 329 331 347 352 356 360 368 376 384 389 391 407 408 414 418 424 425 459 467 479 485 492 493 499 501 504 506 515 522 523 524 527 529 531 537 539 546 549 553 554 557 569 573 591 598 602 620 632 637 643 651 652 656 664 670 671 676 685 696 698 716 731 734 738 740 742 747 753 756 758 759 775 778 780 783 786 787 795 805 808 814 832 834 840 842 853 858 860 870 873 897 909 914 917 927 928 932 963 967
+000,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'","   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^
+main.cpp:38:40: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 003 029 031 038 052 076 091 095 098 099 112 121 133 141 161 187 198 217 234 237 251 254 260 270 273 279 283 300 302 313 314 317 318 329 331 347 352 356 360 368 376 384 389 391 407 408 414 418 424 425 459 467 479 485 492 493 499 501 504 506 515 522 523 524 527 529 531 537 539 546 549 553 554 557 569 573 591 598 602 620 632 637 643 651 652 656 664 670 671 676 685 696 698 716 731 734 738 740 742 747 753 756 758 759 775 778 780 783 786 787 795 805 808 814 832 834 840 842 853 858 860 870 873 897 909 914 917 927 928 932 963 967
+000,no matching function for call to 'perfKernel',"   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 0 arguments, but 2 were provided
+   35 | void perfKernel()
+      |      ^",000 001 003 016 029 030 031 035 038 039 052 055 068 072 073 076 090 091 095 098 099 112 113 121 123 129 133 141 161 181 187 198 215 216 217 220 234 237 246 251 254 259 260 270 273 279 283 300 302 310 312 313 314 317 318 329 331 347 352 355 356 360 368 376 379 384 389 391 407 408 414 418 421 424 425 459 467 469 475 479 481 485 492 493 499 501 504 506 515 522 523 524 527 529 531 535 537 539 546 549 553 554 557 569 573 585 591 598 599 602 620 632 637 643 651 652 656 664 666 670 671 674 676 685 686 696 698 716 731 734 736 738 740 742 747 753 756 758 759 760 775 778 780 781 783 786 787 795 805 808 814 826 832 834 840 842 853 858 860 870 873 877 897 909 914 917 927 928 932 963 967
+760,use of undeclared identifier 'omp_get_global_thread_num'; did you mean 'omp_get_thread_num'?,"OMP STATUS: 2
+    -> FAIL
+  [Variant 760] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:39:15: error: use of undeclared identifier 'omp_get_global_thread_num'; did you mean 'omp_get_thread_num'?
+   39 |     int gid = omp_get_global_thread_num();
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |               omp_get_thread_num
+/usr/lib/llvm-18/lib/clang/18/include/omp.h:69:42: note: 'omp_get_thread_num' declared here
+   69 |     extern int    __KAI_KMPC_CONVENTION  omp_get_thread_num   (void);",760 877
