@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+306,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1","68351,90221","OMP STATUS: 0
+    -> PASS
+  [Variant 306] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:282:47: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+  282 |   for (unsigned iz = 0; iz < DATAZSIZE; iz++) {
+      |                                               ^
+main.cpp:281:61: note: as specified in 'collapse' clause
+  281 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",306 335 535
+465,no matching function for call to 'boundaryConditionsPhi',"90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 465] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:409:7: error: no matching function for call to 'boundaryConditionsPhi'
+  409 |       boundaryConditionsPhi(numTeams, numThreads, (nRarray*)d_phinew);
+      |       ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:190:6: note: candidate function not viable: requires 4 arguments, but 3 were provided
+  190 | void boundaryConditionsPhi(const int numTeams, const int numThreads, void* fake_item837, double phinew[][DATAYSIZE][DATAXSIZE])
+      |      ^                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",465
+402,use of undeclared identifier 'dummyYou6',90221,"OMP STATUS: 0
+    -> PASS
+  [Variant 402] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:285:28: error: use of undeclared identifier 'dummyYou6'
+  285 |         cold[ix][iy][iz] = dummyYou6;
+      |                            ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",402
+135,use of undeclared identifier 'ix',11687,"OMP STATUS: 0
+    -> PASS
+  [Variant 135] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:285:10: error: use of undeclared identifier 'ix'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |          ^
+main.cpp:285:30: error: use of undeclared identifier 'iz'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |                              ^",135
+135,use of undeclared identifier 'iy',11687,"  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |          ^
+main.cpp:285:30: error: use of undeclared identifier 'iz'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |                              ^
+main.cpp:285:50: error: use of undeclared identifier 'iy'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |                                                  ^
+main.cpp:286:25: error: use of undeclared identifier 'ix'
+  286 |       double tmp = cnew[ix][iy][iz];
+      |                         ^",135
+135,use of undeclared identifier 'iz',11687,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:285:10: error: use of undeclared identifier 'ix'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |          ^
+main.cpp:285:30: error: use of undeclared identifier 'iz'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |                              ^
+main.cpp:285:50: error: use of undeclared identifier 'iy'
+  285 |     if ((ix < DATAXSIZE) && (iz < DATAZSIZE) && (iy < DATAYSIZE)) {
+      |                                                  ^",135

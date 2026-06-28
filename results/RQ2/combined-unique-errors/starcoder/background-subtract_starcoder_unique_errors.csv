@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+136,cannot return from OpenMP region,90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 136] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:22:25: error: cannot return from OpenMP region
+   22 |       if (i >= imgSize) return;
+      |                         ^
+main.cpp:32:1: error: expected unqualified-id
+   32 | ### Context:
+      | ^",136 251 302 359 365
+0,expected unqualified-id,"10292,11687,68351,90221,91313","Found 155 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:1: error: expected unqualified-id
+   27 | ### Context:
+      | ^
+main.cpp:47:1: error: expected unqualified-id
+   47 | ### Context:
+      | ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 043 046 050 051 052 055 057 063 064 065 067 068 069 071 075 081 083 088 090 091 093 094 097 103 104 106 108 112 113 118 120 121 122 123 127 128 141 145 146 150 152 155 159 161 163 164 165 166 167 169 171 174 177 179 183 184 189 191 193 197 198 199 205 206 207 212 214 216 218 220 221 223 226 227 229 230 231 232 235 240 241 243 251 252 253 260 261 262 263 266 268 269 270 273 274 277 278 280 285 287 289 292 296 297 299 300 302 303 306 307 308 310 312 316 317 318 321 322 323 324 327 330 332 334 335 337 341 343 345 346 349 350 351
+268,extraneous closing brace ('}'),11687,"   53 | ### Context:
+      | ^
+main.cpp:71:1: error: expected unqualified-id
+   71 | ### Context:
+      | ^
+main.cpp:89:1: error: extraneous closing brace ('}')
+   89 | }
+      | ^
+main.cpp:91:1: error: expected unqualified-id
+   91 | ### Context:
+      | ^",268
+327,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 327] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:22:26: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   22 | #pragma omp parallel for num_teams(numTeams) num_threads(numThreads)
+      |                          ^
+main.cpp:36:1: error: expected unqualified-id
+   36 | ### Context:
+      | ^",327
+152,use of undeclared identifier 'blockDim',"10292,11687,68351,90221","OMP STATUS: 2
+    -> FAIL
+  [Variant 152] Building on worker 30 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:30: error: use of undeclared identifier 'blockDim'
+   20 |       size_t dummy_data998 = blockDim.x * block_id + thread_id;
+      |                              ^
+main.cpp:34:1: error: expected unqualified-id
+   34 | ### Context:
+      | ^",152 169 183 273 318 332

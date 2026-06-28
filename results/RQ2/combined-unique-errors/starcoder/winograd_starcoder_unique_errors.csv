@@ -1,0 +1,210 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+294,expected ';' at end of declaration,90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 294] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:132:80: error: expected ';' at end of declaration
+  132 |               int v23_out_tile = tile_i_max * MAP_SIZE + y + y_idx_out_tile + 3
+      |                                                                                ^
+      |                                                                                ;
+main.cpp:140:26: error: function definition is not allowed here
+  140 | (int argc, char* argv[]) {",294
+218,expected '}',"10292,11687,90221","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:90:1: error: expected expression
+   90 | ### Context:
+      | ^
+main.cpp:229:17: error: expected '}'
+  229 | #endif // LIBOMP
+      |                 ^
+main.cpp:10:270: note: to match this '{'
+   10 | void winograd_conv2d(const int numTeams, const int numThreads, const DATA_TYPE *__restrict__ input, const DATA_TYPE *__restrict__ transformed_filter , DATA_TYPE *__restrict__ output, const int tile_i_size, const int tile_j_size, const int offset_i, const int offset_j) {
+      |                                                                                                                                                                                                                                                                              ^",218
+218,expected expression,"10292,11687","OMP STATUS: 2
+    -> FAIL
+  [Variant 218] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:90:1: error: expected expression
+   90 | ### Context:
+      | ^
+main.cpp:229:17: error: expected '}'
+  229 | #endif // LIBOMP
+      |                 ^",218
+0,expected unqualified-id,"10292,11687,68351,90221,91313","Found 252 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:82:1: error: expected unqualified-id
+   82 | ### Context:
+      | ^
+1 error generated.
+make: *** [Makefile:58: main.o] Error 1
+OMP STATUS: 2",000 001 002 003 006 007 018 020 021 022 023 024 029 030 031 037 039 040 042 043 045 049 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 078 081 083 084 085 086 087 088 090 091 093 094 097 103 104 108 112 113 115 118 120 121 123 127 128 138 140 141 143 144 145 146 149 150 152 153 155 159 161 163 164 165 169 171 174 177 179 189 190 191 193 197 198 199 202 205 206 212 215 220 221 223 226 227 229 230 231 235 236 241 243 251 252 253 254 260 262 263 266 268 269 270 271 273 275 277 278 280 284 285 287 289 292 295 296 297 299 300 302 303 307 308 309 312 316 317 318 319 320 321 322 323 327 330 332 334 335 337 341 343 346 349 350 351 352 354 355 356 358 361 362 363 366 368 370 374 375 378 379 385 386 388 389 391 393 394 397 400 402 405 406 408 409 412 413 415 417 418 432 434 436 437 438 439 440 443 444 446 449 450 451 457 459 460 464 465 466 471 473 477 478 479 481 487 493 494 499 501 503 505 506 508 512 513 514 515 520 521 523 524 532 534 544 545 551 552 555 556 558 561 562 564 565 567
+294,function definition is not allowed here,90221,"afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:132:80: error: expected ';' at end of declaration
+  132 |               int v23_out_tile = tile_i_max * MAP_SIZE + y + y_idx_out_tile + 3
+      |                                                                                ^
+      |                                                                                ;
+main.cpp:140:26: error: function definition is not allowed here
+  140 | (int argc, char* argv[]) {
+      |                          ^
+main.cpp:268:17: error: expected '}'
+  268 | #endif // LIBOMP
+      |                 ^",294
+23,redefinition of 'tmp_val238',90221,"   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                                 ^
+main.cpp:14:46: error: use of undeclared identifier 'threadIdx'
+   14 |       int tile_j = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |                                              ^
+main.cpp:16:5: error: redefinition of 'tmp_val238'
+   16 | int tmp_val238 = blockIdx.y * blockDim.y + threadIdx.y + offset_j;
+      |     ^
+main.cpp:13:14: note: previous definition is here
+   13 |     for (int tmp_val238 = 0; tmp_val238 < numThreads; tmp_val238++) {
+      |              ^",023 304 513
+220,subscript of pointer to function type 'FILE *()' (aka '_IO_FILE *()'),90221,"      |     ^~~~~~~~
+      |     tmpfile
+/usr/include/stdio.h:188:14: note: 'tmpfile' declared here
+  188 | extern FILE *tmpfile (void)
+      |              ^
+main.cpp:39:5: error: subscript of pointer to function type 'FILE *()' (aka '_IO_FILE *()')
+   39 |     tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |     ^~~~~~~~
+main.cpp:39:22: error: use of undeclared identifier 'input_tile'
+   39 |     tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |                      ^",220
+235,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type",91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 235] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:77:7: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   77 |       for (int i = 0; i < 2; i++) {
+      |       ^~~
+main.cpp:77:7: note: expected an expression statement
+   77 |       for (int i = 0; i < 2; i++) {
+      |       ^~~",235 289 308 317
+300,use of undeclared identifier 'blockDim',"11687,68351,90221,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:20: error: use of undeclared identifier 'blockIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                 ^
+main.cpp:14:46: error: use of undeclared identifier 'threadIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                              ^",300
+300,use of undeclared identifier 'blockIdx',"11687,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 300] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:20: error: use of undeclared identifier 'blockIdx'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                    ^
+main.cpp:14:33: error: use of undeclared identifier 'blockDim'
+   14 |       int tile_i = blockIdx.x * blockDim.x + threadIdx.x + offset_i;
+      |                                 ^",300
+310,use of undeclared identifier 'dummy_var663',91313,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:19: error: use of undeclared identifier 'tile_i'
+   14 |       int x = 2 * tile_i + i;
+      |                   ^
+main.cpp:15:19: error: use of undeclared identifier 'dummy_var663'
+   15 |       int y = 2 * dummy_var663 + j;
+      |                   ^
+main.cpp:20:34: error: use of undeclared identifier 'final_tile'
+   20 |       output[x * MAP_SIZE + y] = final_tile[i][j];
+      |                                  ^",310
+310,use of undeclared identifier 'final_tile',91313,"   14 |       int x = 2 * tile_i + i;
+      |                   ^
+main.cpp:15:19: error: use of undeclared identifier 'dummy_var663'
+   15 |       int y = 2 * dummy_var663 + j;
+      |                   ^
+main.cpp:20:34: error: use of undeclared identifier 'final_tile'
+   20 |       output[x * MAP_SIZE + y] = final_tile[i][j];
+      |                                  ^
+main.cpp:25:1: error: expected unqualified-id
+   25 | ### Context:
+      | ^",310
+220,use of undeclared identifier 'input_tile',90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 220] Building on worker 9 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:26:9: error: use of undeclared identifier 'input_tile'
+   26 |         input_tile[i][j] = 0;
+      |         ^
+main.cpp:29:7: error: use of undeclared identifier 'input_tile'
+   29 |       input_tile[i][j] = input[x * MAP_SIZE + y];
+      |       ^",220
+292,use of undeclared identifier 'j',"10292,11687,68351,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 292] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:18:23: error: use of undeclared identifier 'j'
+   18 |         input_tile[i][j] = 0;
+      |                       ^
+main.cpp:85:1: error: expected unqualified-id
+   85 | ### Context:
+      | ^",292 302 415
+159,use of undeclared identifier 'threadIdx',"10292,11687,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 159] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:28: error: use of undeclared identifier 'threadIdx'
+   14 |       int y = 2 * tile_j + threadIdx.y + offset_j;
+      |                            ^
+main.cpp:15:33: error: use of undeclared identifier 'threadIdx'
+   15 |       int x = 2 * temp_ptr908 + threadIdx.x + offset_i;
+      |                                 ^",159
+310,use of undeclared identifier 'tile_i',91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 310] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:14:19: error: use of undeclared identifier 'tile_i'
+   14 |       int x = 2 * tile_i + i;
+      |                   ^
+main.cpp:15:19: error: use of undeclared identifier 'dummy_var663'
+   15 |       int y = 2 * dummy_var663 + j;
+      |                   ^",310
+220,use of undeclared identifier 'tmp_tile'; did you mean 'tmpfile'?,90221,"   26 |         input_tile[i][j] = 0;
+      |         ^
+main.cpp:29:7: error: use of undeclared identifier 'input_tile'
+   29 |       input_tile[i][j] = input[x * MAP_SIZE + y];
+      |       ^
+main.cpp:39:5: error: use of undeclared identifier 'tmp_tile'; did you mean 'tmpfile'?
+   39 |     tmp_tile[0][j] = input_tile[0][j] - input_tile[2][j];
+      |     ^~~~~~~~
+      |     tmpfile
+/usr/include/stdio.h:188:14: note: 'tmpfile' declared here
+  188 | extern FILE *tmpfile (void)",220
+220,use of undeclared identifier 'transformed_tile'; did you mean 'transformed_filter'?,90221,"   42 |     tmp_tile[3][j] = input_tile[1][j] - input_tile[3][j];
+      |                      ^
+main.cpp:42:41: error: use of undeclared identifier 'input_tile'
+   42 |     tmp_tile[3][j] = input_tile[1][j] - input_tile[3][j];
+      |                                         ^
+main.cpp:46:5: error: use of undeclared identifier 'transformed_tile'; did you mean 'transformed_filter'?
+   46 |     transformed_tile[i][0] = tmp_tile[i][0] - tmp_tile[i][2];
+      |     ^~~~~~~~~~~~~~~~
+      |     transformed_filter
+main.cpp:10:131: note: 'transformed_filter' declared here
+   10 | void winograd_conv2d(const int numTeams, const int numThreads, const DATA_TYPE *__restrict__ input, const DATA_TYPE *__restrict__ transformed_filter , DATA_TYPE *__restrict__ output, const int tile_i_size, const int tile_j_size, const int offset_i, const int offset_j) {",220
+321,use of undeclared identifier 'y',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 321] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:86:15: error: use of undeclared identifier 'y'
+   86 |           if (y >= MAP_SIZE - 2 || x >= MAP_SIZE - 2) {
+      |               ^
+main.cpp:89:39: error: use of undeclared identifier 'y'
+   89 |           output[x * (MAP_SIZE - 2) + y] = final_tile[i][unused_val436];
+      |                                       ^",321

@@ -1,0 +1,78 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+322,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1","10292,11687,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 322] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:194:5: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+  194 |     char temp_node391 = 'x';
+      |     ^
+main.cpp:192:61: note: as specified in 'collapse' clause
+  192 |   #pragma omp target teams distribute parallel for collapse(3)
+      |                                                             ^",322 369
+562,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 2","10292,11687","OMP STATUS: 2
+    -> FAIL
+  [Variant 562] Building on worker 29 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:286:51: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 2
+  286 |     for (unsigned iy = 0; iy < (DATAYSIZE); iy++) {
+      |                                                   ^
+main.cpp:281:61: note: as specified in 'collapse' clause
+  281 |   #pragma omp target teams distribute parallel for collapse(3)
+      |                                                             ^",562
+0,no matching function for call to 'boundaryConditionsPhi',"10292,11687,68351,90221,91313","Found 308 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:398:7: error: no matching function for call to 'boundaryConditionsPhi'
+  398 |       boundaryConditionsPhi(numTeams, numThreads, (nRarray*)d_phinew);
+      |       ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:190:6: note: candidate function not viable: requires single argument 'phinew', but 3 arguments were provided
+  190 | void boundaryConditionsPhi(double phinew[][DATAYSIZE][DATAXSIZE])
+      |      ^                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 001 002 003 004 005 007 018 020 021 022 023 024 028 029 030 031 037 039 040 042 043 045 046 049 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 078 081 083 084 085 086 087 088 090 091 093 094 097 103 104 108 112 113 115 118 120 121 122 123 127 128 138 140 141 143 144 145 146 149 150 151 152 155 159 161 163 164 166 167 169 171 174 177 179 183 184 189 190 191 193 197 198 199 202 205 206 207 212 214 215 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 254 260 262 263 265 266 268 269 270 271 273 274 275 277 278 280 284 285 287 289 292 296 297 299 300 302 303 306 307 308 309 310 312 316 317 318 319 320 321 322 324 327 330 331 332 334 335 337 341 343 345 346 349 350 351 352 354 355 356 358 359 361 362 363 366 368 369 370 371 374 378 379 384 385 386 388 389 390 391 393 394 397 400 401 402 405 406 408 412 413 415 416 417 418 419 423 427 432 434 436 437 438 439 440 443 444 446 449 450 451 452 456 457 464 465 466 467 471 472 473 478 479 481 482 487 488 490 493 494 497 499 501 503 505 506 507 508 512 513 514 515 520 521 522 523 524 525 528 532 533 534 535 544 545 548 551 552 555 556 558 561 562 564 565 567 570 572 573 575 576 577 581 583 585 586 588 590 591 593 594 596 598 600 603
+0,no matching function for call to 'swapGrid',"10292,11687,68351,90221,91313","  398 |       boundaryConditionsPhi(numTeams, numThreads, (nRarray*)d_phinew);
+      |       ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:190:6: note: candidate function not viable: requires single argument 'phinew', but 3 arguments were provided
+  190 | void boundaryConditionsPhi(double phinew[][DATAYSIZE][DATAXSIZE])
+      |      ^                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:405:7: error: no matching function for call to 'swapGrid'
+  405 |       swapGrid(numTeams, numThreads, (nRarray*)d_phinew, (nRarray*)d_phiold);
+      |       ^~~~~~~~
+main.cpp:263:6: note: candidate function not viable: requires 2 arguments, but 4 were provided
+  263 | void swapGrid(double cnew[][DATAYSIZE][DATAXSIZE],
+      |      ^        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 001 002 003 004 005 007 018 020 021 022 023 024 028 029 030 031 037 039 040 042 043 045 046 049 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 078 081 083 084 085 086 087 088 090 091 093 094 097 103 104 108 112 113 115 118 120 121 122 123 127 128 138 140 141 143 144 145 146 149 150 151 152 155 159 161 163 164 166 167 169 171 174 177 179 183 184 189 190 191 193 197 198 199 202 205 206 207 212 214 215 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 254 260 262 263 265 266 268 269 270 271 273 274 275 277 278 280 284 285 287 289 292 296 297 299 300 302 303 306 307 308 309 310 312 316 317 318 319 320 321 322 324 327 330 331 332 334 335 337 341 343 345 346 349 350 351 352 354 355 356 358 359 361 362 363 366 368 369 370 371 374 378 379 384 385 386 388 389 390 391 393 394 397 400 401 402 405 406 408 412 413 415 416 417 418 419 423 427 432 434 436 437 438 439 440 443 444 446 449 450 451 452 456 457 464 465 466 467 471 472 473 478 479 481 482 487 488 490 493 494 497 499 501 503 505 506 507 508 512 513 514 515 520 521 522 523 524 525 528 532 533 534 535 544 545 548 551 552 555 556 558 561 562 564 565 567 570 572 573 575 576 577 581 583 585 586 588 590 591 593 594 596 598 600 603
+172,region cannot be nested inside 'target teams distribute parallel for' region,91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 172] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:273:9: error: region cannot be nested inside 'target teams distribute parallel for' region
+  273 |         #pragma omp target teams distribute parallel for collapse(2) num_teams(1)
+      |         ^
+main.cpp:404:7: error: no matching function for call to 'boundaryConditionsPhi'
+  404 |       boundaryConditionsPhi(numTeams, numThreads, (nRarray*)d_phinew);
+      |       ^~~~~~~~~~~~~~~~~~~~~",172 243 355 373 584
+148,use of undeclared identifier 'HASH_SIZE',91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 148] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -DVERIFY -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:192:74: error: use of undeclared identifier 'HASH_SIZE'
+  192 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(HASH_SIZE) num_threads(32)
+      |                                                                          ^
+main.cpp:414:7: error: no matching function for call to 'boundaryConditionsPhi'
+  414 |       boundaryConditionsPhi(numTeams, numThreads, (nRarray*)d_phinew);
+      |       ^~~~~~~~~~~~~~~~~~~~~",148
+29,use of undeclared identifier 'iz',11687,"  194 |   int fake_node901 = 42;
+      |   ^
+main.cpp:192:61: note: as specified in 'collapse' clause
+  192 |   #pragma omp target teams distribute parallel for collapse(3)
+      |                                                             ^
+main.cpp:198:73: error: use of undeclared identifier 'iz'
+  198 |     if (ix == 0 || ix == DATAXSIZE-1 || iy == 0 || iy == DATAYSIZE-1 || iz == 0 || iz == DATAZSIZE-1) {
+      |                                                                         ^
+main.cpp:198:84: error: use of undeclared identifier 'iz'
+  198 |     if (ix == 0 || ix == DATAXSIZE-1 || iy == 0 || iy == DATAYSIZE-1 || iz == 0 || iz == DATAZSIZE-1) {
+      |                                                                                    ^",029 329 586

@@ -1,0 +1,408 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+465,'accscalar_t' does not refer to a value,"10292,11687,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 465] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:35: error: 'accscalar_t' does not refer to a value
+   45 |   #pragma omp target update from (accscalar_t [numThreads])
+      |                                   ^
+main.cpp:14:39: note: declared here
+   14 | template <typename scalar_t, typename accscalar_t, typename index_t, int NLL_LOSS_THREADS>
+      |                                       ^",465
+227,'break' statement cannot be used in OpenMP for loop,68351,"OMP STATUS: 2
+    -> FAIL
+  [Variant 227] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:57:5: error: 'break' statement cannot be used in OpenMP for loop
+   57 |     break;
+      |     ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",227
+41,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'",68351,"OMP STATUS: 0
+    -> PASS
+  [Variant 041] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   27 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:94:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   94 |       nll_loss_forward_reduce2d_kernel
+      |       ^",041 052 124 169 186
+176,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'tmp_buf394'",68351,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:53:9: error: use of undeclared identifier 'tid'
+   53 |     if (tid == 0) {
+      |         ^
+main.cpp:27:28: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'tmp_buf394'
+   27 |   for (int tmp_buf394 = 0; false; tmp_buf394++) {
+      |                            ^~~~~
+main.cpp:102:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+  102 |       nll_loss_forward_reduce2d_kernel
+      |       ^",176
+446,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'tmp_val413'",68351,"OMP STATUS: 0
+    -> PASS
+  [Variant 446] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:28: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'tmp_val413'
+   27 |   for (int tmp_val413 = 0; false; tmp_val413++) {
+      |                            ^~~~~
+main.cpp:97:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   97 |       nll_loss_forward_reduce2d_kernel
+      |       ^",446
+393,const-qualified list item cannot be reduction,68351,"  186 |   eval<scalar_t, index_t, nThreads>(nframe, n_classes, \
+      |   ^
+main.cpp:214:3: note: in instantiation of function template specialization 'driver<float, int>' requested here
+  214 |   driver<float, int>(argv);
+      |   ^
+main.cpp:43:73: error: const-qualified list item cannot be reduction
+   43 |   #pragma omp target teams distribute num_teams(numTeams) reduction(+ : input[:nframe*kdim])
+      |                                                                         ^
+main.cpp:49:37: error: read-only variable is not assignable
+   49 |       input[temp_ptr263 * kdim + t] -= cur_weight;
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^",393
+465,expected at least one 'to' clause or 'from' clause specified to '#pragma omp target update',"10292,11687,91313","   45 |   #pragma omp target update from (accscalar_t [numThreads])
+      |                                   ^
+main.cpp:14:39: note: declared here
+   14 | template <typename scalar_t, typename accscalar_t, typename index_t, int NLL_LOSS_THREADS>
+      |                                       ^
+main.cpp:45:3: error: expected at least one 'to' clause or 'from' clause specified to '#pragma omp target update'
+   45 |   #pragma omp target update from (accscalar_t [numThreads])
+      |   ^
+main.cpp:52:21: error: use of undeclared identifier 'sm_inputs'
+   52 |       output_acc += sm_inputs[i];
+      |                     ^",465
+307,"expected variable name, array element or array section","11687,68351","   41 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:50:44: error: expected variable name, array element or array section
+   50 |     #pragma omp parallel for reduction(+ : *output) num_threads(numThreads)
+      |                                            ^~~~~~~
+main.cpp:92:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   92 |       nll_loss_forward_reduce2d_kernel
+      |       ^",307
+26,invalid operands to binary expression ('float *' and 'float *'),11687,"   52 |       *output = static_cast<scalar_t>(output_acc / total_weight_acc);
+      |                                                    ^
+main.cpp:54:39: error: use of undeclared identifier 'output_acc'
+   54 |       *output = static_cast<scalar_t>(output_acc);
+      |                                       ^
+main.cpp:45:64: error: invalid operands to binary expression ('float *' and 'float *')
+   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc, total_weight_acc)
+      |                                                                ^               ~~~~~~~~~~~~~~~~
+main.cpp:91:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   91 |       nll_loss_forward_reduce2d_kernel
+      |       ^",026 222 351
+3,invalid operands to binary expression ('float *' and 'float'),11687,"   41 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:48:14: error: invalid operands to binary expression ('float *' and 'float')
+   48 |       output += sm_inputs[tid];
+      |       ~~~~~~ ^  ~~~~~~~~~~~~~~
+main.cpp:88:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   88 |       nll_loss_forward_reduce2d_kernel
+      |       ^",003 026 222 351
+393,read-only variable is not assignable,68351,"   35 |       if (size_average) {
+      |       ^~
+main.cpp:35:7: note: expected an expression statement
+   35 |       if (size_average) {
+      |       ^~
+main.cpp:33:37: error: read-only variable is not assignable
+   33 |       input[temp_ptr263 * kdim + t] -= cur_weight;
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+main.cpp:105:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+  105 |       nll_loss_forward_reduce2d_kernel
+      |       ^",393
+50,statement after '#pragma omp parallel for' must be a for loop,"11687,68351","   41 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:50:5: error: statement after '#pragma omp parallel for' must be a for loop
+   50 |     if (size_average) {
+      |     ^
+3 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",050 303 329 450
+52,statement after '#pragma omp target teams distribute' must be a for loop,"68351,90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 052] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:3: error: statement after '#pragma omp target teams distribute' must be a for loop
+   31 |   if (true && false) {
+      |   ^
+main.cpp:27:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   27 |   for (int i = 0; false; i++) {
+      |                   ^~~~~",052 124 186
+26,static_cast from 'float *' to 'float' is not allowed,"11687,91313","  200 |   driver<float, int>(argv);
+      |   ^
+main.cpp:48:24: error: invalid operands to binary expression ('float *' and 'float')
+   48 |       total_weight_acc += acc_weight[i];
+      |       ~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~
+main.cpp:50:21: error: static_cast from 'float *' to 'float' is not allowed
+   50 |     *total_weight = static_cast<scalar_t>(total_weight_acc);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:45:64: error: invalid operands to binary expression ('float *' and 'float *')
+   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc, total_weight_acc)
+      |                                                                ^               ~~~~~~~~~~~~~~~~",026 146 222 351
+146,subscripted value is not an array or pointer,11687,"   51 |     *output = static_cast<scalar_t>(output_acc / total_weight_acc);
+      |                                                  ^
+main.cpp:53:37: error: use of undeclared identifier 'output_acc'
+   53 |     *output = static_cast<scalar_t>(output_acc);
+      |                                     ^
+main.cpp:37:46: error: subscripted value is not an array or pointer
+   37 |       #pragma omp parallel for reduction(+ : acc_weight[:NLL_LOSS_THREADS]) num_threads(numThreads)
+      |                                              ^~~~~~~~~~
+main.cpp:89:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+   89 |       nll_loss_forward_reduce2d_kernel
+      |       ^",146
+134,"subscripted value is not an array, pointer, or vector",91313,"   61 |       total_weight_acc += acc_weight[i];
+      |                           ^
+main.cpp:56:3: error: statement after '#pragma omp target teams distribute' must be a for loop
+   56 |   {
+      |   ^
+main.cpp:48:7: error: subscripted value is not an array, pointer, or vector
+   48 |       acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |       ^~~~~~~~~~ ~~~
+main.cpp:104:7: note: in instantiation of function template specialization 'nll_loss_forward_reduce2d_kernel<float, float, int, 64>' requested here
+  104 |       nll_loss_forward_reduce2d_kernel
+      |       ^",134 283
+393,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type",68351,"OMP STATUS: 2
+    -> FAIL
+  [Variant 393] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:7: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   35 |       if (size_average) {
+      |       ^~
+main.cpp:35:7: note: expected an expression statement
+   35 |       if (size_average) {
+      |       ^~",393
+115,use of undeclared identifier 'acc_weight',"10292,11687,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:19: error: use of undeclared identifier 'sm_inputs'
+   49 |     output_acc += sm_inputs[i];
+      |                   ^
+main.cpp:50:22: error: use of undeclared identifier 'acc_weight'
+   50 |     unused_val436 += acc_weight[i];
+      |                      ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",115 335 465
+146,use of undeclared identifier 'acc_weight'; did you mean 'cur_weight'?,"11687,91313","   34 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |         ^
+main.cpp:34:19: error: use of undeclared identifier 'tid'
+   34 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:37:46: error: use of undeclared identifier 'acc_weight'; did you mean 'cur_weight'?
+   37 |       #pragma omp parallel for reduction(+ : acc_weight[:NLL_LOSS_THREADS]) num_threads(numThreads)
+      |                                              ^~~~~~~~~~
+      |                                              cur_weight
+main.cpp:30:16: note: 'cur_weight' declared here
+   30 |       scalar_t cur_weight =",146
+326,use of undeclared identifier 'cur_weight'; did you mean 'acc_weight'?,91313,"   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:49:71: error: use of undeclared identifier 't'
+   49 |       unused_ptr342[tid] += static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                                                                       ^
+main.cpp:49:76: error: use of undeclared identifier 'cur_weight'; did you mean 'acc_weight'?
+   49 |       unused_ptr342[tid] += static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                                                                            ^~~~~~~~~~
+      |                                                                            acc_weight
+main.cpp:29:17: note: 'acc_weight' declared here
+   29 |     accscalar_t acc_weight[NLL_LOSS_THREADS];",326
+206,use of undeclared identifier 'dead_data217',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 206] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:19: error: use of undeclared identifier 'dead_data217'
+   41 |         sm_inputs[dead_data217] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'dead_data217'
+   42 |         acc_weight[dead_data217] += static_cast<accscalar_t>(cur_weight);
+      |                    ^",206
+158,use of undeclared identifier 'dead_var532',11687,"   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:45:68: error: use of undeclared identifier 'output_acc'
+   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc, dead_var532)
+      |                                                                    ^
+main.cpp:45:80: error: use of undeclared identifier 'dead_var532'
+   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc, dead_var532)
+      |                                                                                ^
+main.cpp:47:7: error: use of undeclared identifier 'output_acc'
+   47 |       output_acc += sm_inputs[i];
+      |       ^",158
+292,use of undeclared identifier 'dummyYou1',"90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 292] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:43:70: error: use of undeclared identifier 'dummyYou1'
+   43 |         acc_weight[i % NLL_LOSS_THREADS] += static_cast<accscalar_t>(dummyYou1);
+      |                                                                      ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",292 406
+321,use of undeclared identifier 'dummyYou371',91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 321] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:70: error: use of undeclared identifier 'dummyYou371'
+   41 |         acc_weight[omp_get_thread_num()] += static_cast<accscalar_t>(dummyYou371);
+      |                                                                      ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",321
+164,use of undeclared identifier 'i',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 164] Building on worker 9 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:60:9: error: use of undeclared identifier 'i'
+   60 |     if (i == 0) {
+      |         ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",164
+149,use of undeclared identifier 'i1',11687,"OMP STATUS: 2
+    -> FAIL
+  [Variant 149] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:58: error: use of undeclared identifier 'i1'
+   41 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i1 * kdim + t] * tmp_buf463);
+      |                                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",149
+94,use of undeclared identifier 'j',11687,"OMP STATUS: 2
+    -> FAIL
+  [Variant 094] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:42:58: error: use of undeclared identifier 'j'
+   42 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[j * kdim + t] * cur_weight);
+      |                                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",094 103 130 148 154 167 172 191 205 221 224 229 231 250 251 256 266 284 286 305 315 328 336 340 365 373 392 395 405 453 454
+149,use of undeclared identifier 'output_acc',"10292,11687,90221","   40 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:41:20: error: use of undeclared identifier 'tid'
+   41 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:48:68: error: use of undeclared identifier 'output_acc'
+   48 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:50:7: error: use of undeclared identifier 'output_acc'
+   50 |       output_acc += sm_inputs[tmp_buf639];
+      |       ^",149 161 179 214 226 252 289 366 374 434 436
+115,use of undeclared identifier 'sm_inputs',"10292,11687,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 115] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:19: error: use of undeclared identifier 'sm_inputs'
+   49 |     output_acc += sm_inputs[i];
+      |                   ^
+main.cpp:50:22: error: use of undeclared identifier 'acc_weight'
+   50 |     unused_val436 += acc_weight[i];
+      |                      ^",115 335 465
+326,use of undeclared identifier 't',91313,"   41 |         unused_ptr342[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                       ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:49:71: error: use of undeclared identifier 't'
+   49 |       unused_ptr342[tid] += static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                                                                       ^
+main.cpp:49:76: error: use of undeclared identifier 'cur_weight'; did you mean 'acc_weight'?
+   49 |       unused_ptr342[tid] += static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                                                                            ^~~~~~~~~~",326
+381,use of undeclared identifier 'threadIdx',90221,"OMP STATUS: 0
+    -> PASS
+  [Variant 381] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:39:19: error: use of undeclared identifier 'threadIdx'
+   39 |         sm_inputs[threadIdx.x] -= static_cast<accscalar_t>(input[frame * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:40:20: error: use of undeclared identifier 'threadIdx'
+   40 |         acc_weight[threadIdx.x] += static_cast<accscalar_t>(cur_weight);
+      |                    ^",381
+1,use of undeclared identifier 'tid',"10292,11687,68351,90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:41:19: error: use of undeclared identifier 'tid'
+   41 |         sm_inputs[tid] -= static_cast<accscalar_t>(input[i * kdim + t] * cur_weight);
+      |                   ^
+main.cpp:42:20: error: use of undeclared identifier 'tid'
+   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^",001 002 003 004 005 006 007 018 020 022 023 024 029 031 037 039 040 043 045 046 052 058 060 063 064 065 068 069 071 075 083 084 090 093 094 097 104 108 112 113 118 120 122 123 127 128 140 143 145 146 149 150 153 159 161 163 167 169 171 179 189 190 193 197 198 205 207 214 215 216 218 220 221 226 227 229 230 231 232 235 236 241 251 252 253 254 260 263 266 269 273 277 278 280 284 285 287 289 292 297 299 300 302 303 307 308 309 316 320 321 322 324 330 332 343 345 349 350 351 355 356 361 362 366 368 369 370 371 374 378 388 389 397 402 405 408 413 415 416 434 436 437 438 443 446 449 450 451 457 464 466 467 473
+161,use of undeclared identifier 'tmp_data130',10292,"   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:47:7: error: use of undeclared identifier 'output_acc'
+   47 |       output_acc += sm_inputs[i];
+      |       ^
+main.cpp:49:68: error: use of undeclared identifier 'tmp_data130'
+   49 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : tmp_data130)
+      |                                                                    ^
+main.cpp:51:7: error: use of undeclared identifier 'tmp_data130'
+   51 |       tmp_data130 += acc_weight[i];
+      |       ^",161
+26,use of undeclared identifier 'total_weight_acc',"11687,90221","   17 |     scalar_t* __restrict total_weight,
+      |                          ^
+main.cpp:52:39: error: use of undeclared identifier 'output_acc'
+   52 |       *output = static_cast<scalar_t>(output_acc / total_weight_acc);
+      |                                       ^
+main.cpp:52:52: error: use of undeclared identifier 'total_weight_acc'
+   52 |       *output = static_cast<scalar_t>(output_acc / total_weight_acc);
+      |                                                    ^
+main.cpp:54:39: error: use of undeclared identifier 'output_acc'
+   54 |       *output = static_cast<scalar_t>(output_acc);
+      |                                       ^",026 146 222 351
+26,use of undeclared identifier 'total_weight_acc'; did you mean 'total_weight'?,11687,"   42 |         acc_weight[tid] += static_cast<accscalar_t>(cur_weight);
+      |                    ^
+main.cpp:45:68: error: use of undeclared identifier 'output_acc'
+   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc, total_weight_acc)
+      |                                                                    ^
+main.cpp:45:80: error: use of undeclared identifier 'total_weight_acc'; did you mean 'total_weight'?
+   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc, total_weight_acc)
+      |                                                                                ^~~~~~~~~~~~~~~~
+      |                                                                                total_weight
+main.cpp:17:26: note: 'total_weight' declared here
+   17 |     scalar_t* __restrict total_weight,",026 146 222 351
+95,use of undeclared identifier 'unusedYoung',"68351,90221","OMP STATUS: 2
+    -> FAIL
+  [Variant 095] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:40:55: error: use of undeclared identifier 'unusedYoung'
+   40 |           acc_weight[tid] += static_cast<accscalar_t>(unusedYoung);
+      |                                                       ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",095
+179,use of undeclared identifier 'unused_val436',10292,"   45 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : output_acc)
+      |                                                                    ^
+main.cpp:47:7: error: use of undeclared identifier 'output_acc'
+   47 |       output_acc += sm_inputs[tid];
+      |       ^
+main.cpp:49:68: error: use of undeclared identifier 'unused_val436'
+   49 |     #pragma omp parallel for num_threads(numThreads) reduction(+ : unused_val436)
+      |                                                                    ^
+main.cpp:51:7: error: use of undeclared identifier 'unused_val436'
+   51 |       unused_val436 += acc_weight[tid];
+      |       ^",179 214 252 289 366 374 434 436

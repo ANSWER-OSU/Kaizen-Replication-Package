@@ -1,0 +1,232 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+0,no matching function for call to 'ChannelSumNCHW',"10292,11687,68351,90221,91313","      |                       ^~~~~~~~~~~~~~~~~
+      |                       omp_get_thread_num
+/usr/lib/llvm-18/lib/clang/18/include/omp.h:69:42: note: 'omp_get_thread_num' declared here
+   69 |     extern int    __KAI_KMPC_CONVENTION  omp_get_thread_num   (void);
+      |                                          ^
+main.cpp:95:5: error: no matching function for call to 'ChannelSumNCHW'
+   95 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:19:6: note: candidate template ignored: couldn't infer template argument 'kBlockDimX'
+   19 | void ChannelSumNCHW(
+      |      ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 042 043 045 046 049 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 078 081 083 084 087 088 090 091 093 094 097 104 106 108 112 113 115 118 120 121 122 123 127 128 140 141 143 144 145 146 149 150 151 152 153 155 159 161 163 164 166 167 169 171 174 177 179 184 189
+1,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?,"10292,11687,90221","OMP STATUS: 2
+    -> FAIL
+  [Variant 001] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   49 |     #pragma omp barrier
+      |     ^
+main.cpp:52:11: error: use of undeclared identifier 'c'
+   52 |       sum[c] = m_val;
+      |           ^",001 021 024 028 043 045 049 058 060 064 067 075 078 084 087 112 113 143 151 164 169
+70,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp critical' directive into a parallel region?,"90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 070] Building on worker 9 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp critical' directive into a parallel region?
+   47 |     #pragma omp critical
+      |     ^
+main.cpp:99:5: error: no matching function for call to 'ChannelSumNCHW'
+   99 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",070 140 194
+172,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp for' directive into a parallel region?,68351,"OMP STATUS: 2
+    -> FAIL
+  [Variant 172] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:44:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp for' directive into a parallel region?
+   44 |     #pragma omp for reduction(+: m_val, v_val)
+      |     ^
+main.cpp:101:5: error: no matching function for call to 'ChannelSumNCHW'
+  101 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",172
+24,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?,"10292,11687,90221","   52 |       sum[c] = unused_val446;
+      |           ^
+main.cpp:53:13: error: use of undeclared identifier 'c'
+   53 |       sumsq[c] = v_val;
+      |             ^
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp master' directive into a parallel region?
+   50 |     #pragma omp master
+      |     ^
+main.cpp:102:5: error: no matching function for call to 'ChannelSumNCHW'
+  102 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",024 028 043 049 058 060 067
+1,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?,"10292,68351","   52 |       sum[c] = m_val;
+      |           ^
+main.cpp:53:13: error: use of undeclared identifier 'c'
+   53 |       sumsq[c] = v_val;
+      |             ^
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp single' directive into a parallel region?
+   50 |     #pragma omp single
+      |     ^
+main.cpp:102:5: error: no matching function for call to 'ChannelSumNCHW'
+  102 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",001 021 064 087 112 143 164 171
+63,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp task' directive into a parallel region?,"10292,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 063] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:56:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp task' directive into a parallel region?
+   56 |     #pragma omp task
+      |     ^
+main.cpp:65:13: error: use of undeclared identifier 'c'
+   65 |         sum[c] = unused_val446;
+      |             ^",063
+3,region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp taskgroup' directive into a parallel region?,"10292,68351,90221","   55 |       sum[c] = m_val;
+      |           ^
+main.cpp:56:13: error: use of undeclared identifier 'c'
+   56 |       sumsq[c] = v_val;
+      |             ^
+main.cpp:53:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp taskgroup' directive into a parallel region?
+   53 |     #pragma omp taskgroup
+      |     ^
+main.cpp:105:5: error: no matching function for call to 'ChannelSumNCHW'
+  105 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",003 004 005 006 040 088 120 153
+145,"the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","10292,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 145] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:54:14: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   54 |     sum[c] = m_val;
+      |              ^~~~~
+main.cpp:54:14: note: expected built-in binary operator
+   54 |     sum[c] = m_val;
+      |              ^~~~~",145
+28,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 028] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:31: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   45 |     sum[omp_get_team_num()] = m_val;
+      |                               ^~~~~
+main.cpp:45:31: note: expected built-in binary operator
+   45 |     sum[omp_get_team_num()] = m_val;
+      |                               ^~~~~",028
+111,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',"68351,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 111] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:44:53: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   44 | #pragma omp parallel for reduction (+:m_val, v_val) num_teams(numTeams) num_threads(numThreads)
+      |                                                     ^
+main.cpp:102:5: error: no matching function for call to 'ChannelSumNCHW'
+  102 |     ChannelSumNCHW<scalar_t> (C, NUM_THREADS, N, C, HxW, X, sum, sumsq);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~",111
+1,use of undeclared identifier 'c',"10292,11687,68351,90221,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   49 |     #pragma omp barrier
+      |     ^
+main.cpp:52:11: error: use of undeclared identifier 'c'
+   52 |       sum[c] = m_val;
+      |           ^
+main.cpp:53:13: error: use of undeclared identifier 'c'
+   53 |       sumsq[c] = v_val;
+      |             ^",001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 033 037 039 040 042 049 050 052 055 058 063 064 065 067 069 071 081 083 087 088 090 091 093 094 104 108 112 118 120 122 123 141 143 144 153 155 161 164 166 171 174 177 184
+108,use of undeclared identifier 'dead_ptr646',91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 108] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:9: error: use of undeclared identifier 'dead_ptr646'
+   47 |     sum[dead_ptr646] = m_val;
+      |         ^
+main.cpp:47:24: error: use of undeclared identifier 'm_val'; did you mean 'v_val'?
+   47 |     sum[dead_ptr646] = m_val;
+      |                        ^~~~~",108
+48,use of undeclared identifier 'dead_val826',91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 048] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:9: error: use of undeclared identifier 'dead_val826'
+   48 |     sum[dead_val826] += m_val;
+      |         ^
+main.cpp:50:11: error: use of undeclared identifier 'dead_val826'
+   50 |     sumsq[dead_val826] += v_val;
+      |           ^",048 052 144
+169,use of undeclared identifier 'dummy_data84',10292,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:50:5: error: region cannot be closely nested inside 'target teams' region; perhaps you forget to enclose 'omp barrier' directive into a parallel region?
+   50 |     #pragma omp barrier
+      |     ^
+main.cpp:55:11: error: use of undeclared identifier 'dummy_data84'
+   55 |       sum[dummy_data84] = m_val;
+      |           ^
+main.cpp:56:13: error: use of undeclared identifier 'dummy_data84'
+   56 |       sumsq[dummy_data84] = v_val;
+      |             ^",169
+108,use of undeclared identifier 'm_val'; did you mean 'v_val'?,91313,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:9: error: use of undeclared identifier 'dead_ptr646'
+   47 |     sum[dead_ptr646] = m_val;
+      |         ^
+main.cpp:47:24: error: use of undeclared identifier 'm_val'; did you mean 'v_val'?
+   47 |     sum[dead_ptr646] = m_val;
+      |                        ^~~~~
+      |                        v_val
+main.cpp:32:7: note: 'v_val' declared here
+   32 |     T v_val = 0;",108
+72,use of undeclared identifier 'n',91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 072] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:40:28: error: use of undeclared identifier 'n'
+   40 |         const int index = (n * C + omp_get_team_num()) * HxW + hw;
+      |                            ^
+main.cpp:49:31: error: the statement for 'atomic update' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   49 |     sum[omp_get_team_num()] = m_val;
+      |                               ^~~~~",072
+0,use of undeclared identifier 'omp_get_thread_id'; did you mean 'omp_get_thread_num'?,"10292,11687,68351,90221,91313","Found 91 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:23: error: use of undeclared identifier 'omp_get_thread_id'; did you mean 'omp_get_thread_num'?
+   37 |         for (int hw = omp_get_thread_id(); hw < HxW; hw += omp_get_num_threads()) {
+      |                       ^~~~~~~~~~~~~~~~~
+      |                       omp_get_thread_num
+/usr/lib/llvm-18/lib/clang/18/include/omp.h:69:42: note: 'omp_get_thread_num' declared here
+   69 |     extern int    __KAI_KMPC_CONVENTION  omp_get_thread_num   (void);",000
+140,use of undeclared identifier 'threadIdx',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 140] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:9: error: use of undeclared identifier 'threadIdx'
+   48 |     if (threadIdx.y == 0 && threadIdx.x == 0) {
+      |         ^
+main.cpp:48:29: error: use of undeclared identifier 'threadIdx'
+   48 |     if (threadIdx.y == 0 && threadIdx.x == 0) {
+      |                             ^",140
+180,use of undeclared identifier 'tmp_var538',68351,"OMP STATUS: 2
+    -> FAIL
+  [Variant 180] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:9: error: use of undeclared identifier 'tmp_var538'
+   48 |     sum[tmp_var538] = m_val;
+      |         ^
+main.cpp:49:11: error: use of undeclared identifier 'tmp_var538'
+   49 |     sumsq[tmp_var538] = v_val;
+      |           ^",180
+140,use of undeclared identifier 'v_val'; did you mean 'm_val'?,68351,"OMP STATUS: 2
+    -> FAIL
+  [Variant 140] Building on worker 6 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:51:33: error: use of undeclared identifier 'v_val'; did you mean 'm_val'?
+   51 |     sumsq[omp_get_team_num()] = v_val;
+      |                                 ^~~~~
+      |                                 m_val
+main.cpp:32:7: note: 'm_val' declared here
+   32 |     T m_val = 0;",140

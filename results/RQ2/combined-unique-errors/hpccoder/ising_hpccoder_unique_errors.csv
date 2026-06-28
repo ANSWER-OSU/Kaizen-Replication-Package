@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+30,cannot return from OpenMP region,"10292,11687,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 030] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:55:29: error: cannot return from OpenMP region
+   55 |     if (i >= nx || j >= ny) return;
+      |                             ^
+main.cpp:52:49: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   52 |   for (long long tid = 0; tid < nx * ny; tid++) {
+      |                                                 ^",030 065 091 118 140 167 197 206 232 240 299 306 324 371 389 417
+0,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1","10292,11687,68351,90221,91313","Found 192 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:52:49: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   52 |   for (long long tid = 0; tid < nx * ny; tid++) {
+      |                                                 ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(nx) num_threads(ny)
+      |                                                             ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 037 039 040 043 045 046 050 052 055 058 060 063 064 065 067 068 071 075 081 083 084 088 090 091 093 094 097 103 104 108 112 113 118 120 121 122 127 128 140 144 145 146 149 150 152 153 159 161 164 165 166 167 169 171 174 177 179 189 191 193 197 198 199 205 206 207 214 216 218 220 221 223 226 227 229 230 232 235 236 240 241 243 251 252 253 260 263 268 269 270 273 277 278 280 285 287 289 292 296 297 300 303 306 307 308 309 312 316 317 318 319 320 321 322 324 327 330 331 332 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 386 388 389 391 393 394 397 402 405 406 408 409 415 416 417
+0,no matching function for call to 'update_lattice',"10292,11687,68351,90221,91313","   52 |   for (long long tid = 0; tid < nx * ny; tid++) {
+      |                                                 ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(nx) num_threads(ny)
+      |                                                             ^
+main.cpp:92:3: error: no matching function for call to 'update_lattice'
+   92 |   update_lattice<true>(blocks, THREADS, lattice_b, lattice_w, randvals, inv_temp, nx, ny / 2);
+      |   ^~~~~~~~~~~~~~~~~~~~
+main.cpp:50:6: note: candidate function template not viable: requires 6 arguments, but 8 were provided
+   50 | void update_lattice(signed char* lattice, const signed char* __restrict op_lattice, const float* __restrict randvals, const float inv_temp, const long long nx, const long long ny) {
+      |      ^              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 037 039 040 043 045 046 050 051 052 055 058 060 063 064 065 067 068 069 071 075 081 083 084 088 090 091 093 094 097 103 104 108 112 113 115 118 120 121 122 123 127 128 140 141 144 145 146 149 150 152 153 155 159 161 163 164 165 166 167 169 171 174 177 179 184 189 191 193 197 198 199 205 206 207 212 214 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 260 263 266 268 269 270 273 277 278 280 285 287 289 292 296 297 299 300 302 303 306 307 308 309 312 316 317 318 319 320 321 322 324 327 330 331 332 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 384 386 388 389 391 393 394 397 402 405 406 408 409 412 415 416 417
+302,use of undeclared identifier 'i',"10292,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 302] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:58:18: error: use of undeclared identifier 'i'
+   58 |       int ipp = (i + 1 < nx) ? i + 1 : 0;
+      |                  ^
+main.cpp:58:32: error: use of undeclared identifier 'i'
+   58 |       int ipp = (i + 1 < nx) ? i + 1 : 0;
+      |                                ^",302
+63,use of undeclared identifier 'j',11687,"OMP STATUS: 2
+    -> FAIL
+  [Variant 063] Building on worker 30 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:54:20: error: use of undeclared identifier 'j'
+   54 |     if (i >= nx || j >= ny) return;
+      |                    ^
+main.cpp:54:29: error: cannot return from OpenMP region
+   54 |     if (i >= nx || j >= ny) return;
+      |                             ^",063

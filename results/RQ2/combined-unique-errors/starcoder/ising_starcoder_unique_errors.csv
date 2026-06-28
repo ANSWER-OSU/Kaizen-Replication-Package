@@ -1,0 +1,89 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+98,cannot return from OpenMP region,91313,"   55 | #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                      ^
+main.cpp:58:18: error: use of undeclared identifier 'i'
+   58 |   if (j >= ny || i >= nx) return;
+      |                  ^
+main.cpp:58:27: error: cannot return from OpenMP region
+   58 |   if (j >= ny || i >= nx) return;
+      |                           ^
+main.cpp:61:14: error: use of undeclared identifier 'i'
+   61 |   int ipp = (i + 1 < nx) ? i + 1 : 0;
+      |              ^",098
+98,"expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1",91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 098] Building on worker 17 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:53:3: error: expected 2 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   53 |   printf(""Dead code executed\n"");
+      |   ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",098
+0,expected unqualified-id,"10292,11687,68351,90221,91313","Found 192 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:81:1: error: expected unqualified-id
+   81 | ### Context:
+      | ^
+main.cpp:218:5: error: use of undeclared identifier 'update'
+  218 |     update(lattice_b, lattice_w, randvals, inv_temp, nx, ny);
+      |     ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 037 039 040 043 045 046 050 051 052 055 058 060 063 064 065 067 068 069 071 075 081 083 084 088 090 091 093 094 097 103 104 108 112 113 115 118 120 121 122 123 127 128 140 141 144 145 146 149 150 152 153 155 159 161 163 164 165 166 167 169 171 174 177 179 184 189 191 193 197 198 199 205 206 207 212 214 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 260 263 266 268 269 270 273 277 278 280 285 287 289 292 296 297 299 300 302 303 306 307 308 309 312 316 317 318 319 320 321 322 324 327 330 331 332 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 384 386 388 389 391 393 394 397 402 405 406 408 409 412 415 416 417
+148,redefinition of 'j',11687,"OMP STATUS: 2
+    -> FAIL
+  [Variant 148] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:58:11: error: redefinition of 'j'
+   58 |       int j = 1;
+      |           ^
+main.cpp:52:14: note: previous definition is here
+   52 |     for (int j = 0; j < ny; j++) {
+      |              ^",148 220
+98,unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for',91313,"   53 |   printf(""Dead code executed\n"");
+      |   ^
+main.cpp:51:61: note: as specified in 'collapse' clause
+   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^
+main.cpp:55:38: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   55 | #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                      ^
+main.cpp:58:18: error: use of undeclared identifier 'i'
+   58 |   if (j >= ny || i >= nx) return;
+      |                  ^",098
+98,use of undeclared identifier 'i',91313,"   51 |   #pragma omp target teams distribute parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^
+main.cpp:55:38: error: unexpected OpenMP clause 'num_teams' in directive '#pragma omp parallel for'
+   55 | #pragma omp parallel for collapse(2) num_teams(numTeams) num_threads(numThreads)
+      |                                      ^
+main.cpp:58:18: error: use of undeclared identifier 'i'
+   58 |   if (j >= ny || i >= nx) return;
+      |                  ^
+main.cpp:58:27: error: cannot return from OpenMP region
+   58 |   if (j >= ny || i >= nx) return;
+      |                           ^",098
+23,use of undeclared identifier 'is_black',"10292,11687,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 023] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:61:11: error: use of undeclared identifier 'is_black'
+   61 |       if (is_black) {
+      |           ^
+main.cpp:80:1: error: expected unqualified-id
+   80 | ### Context:
+      | ^",023 043 050 052 058 065 067 093 103 127 128 144 149 152 161 169 174 199 218 223 227 240 241 253 268 280 285 308 320 335 370 374 384 388 389 402 406 408 409
+0,use of undeclared identifier 'update',"10292,11687,68351,90221,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:81:1: error: expected unqualified-id
+   81 | ### Context:
+      | ^
+main.cpp:218:5: error: use of undeclared identifier 'update'
+  218 |     update(lattice_b, lattice_w, randvals, inv_temp, nx, ny);
+      |     ^
+main.cpp:224:5: error: use of undeclared identifier 'update'
+  224 |     update( lattice_b, lattice_w, randvals, inv_temp, nx, ny);
+      |     ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 037 039 040 043 045 046 050 051 052 055 058 060 063 064 065 067 068 069 071 075 081 083 084 088 090 091 093 094 097 103 104 108 112 113 115 118 120 121 122 123 127 128 140 141 144 145 146 149 150 152 153 155 159 161 163 164 165 166 167 169 171 174 177 179 184 189 191 193 197 198 199 205 206 207 212 214 216 218 220 221 223 226 227 229 230 231 232 235 236 240 241 243 251 252 253 260 263 266 268 269 270 273 277 278 280 285 287 289 292 296 297 299 300 302 303 306 307 308 309 312 316 317 318 319 320 321 322 324 327 330 331 332 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 384 386 388 389 391 393 394 397 402 405 406 408 409 412 415 416 417

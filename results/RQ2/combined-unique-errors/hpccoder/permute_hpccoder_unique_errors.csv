@@ -1,0 +1,56 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+29,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'",68351,"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:35:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   35 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+1 warning and 1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",029 066 078 107 192 475 604
+341,extraneous closing brace ('}'),"10292,90221","   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:58:1: error: extraneous closing brace ('}')
+   58 | }
+      | ^
+1 warning and 1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",341
+520,use of undeclared identifier 'd_',10292,"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:36:79: error: use of undeclared identifier 'd_'
+   36 |     int unused_val436 = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + d_;
+      |                                                                               ^
+1 warning and 1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",520 561
+66,use of undeclared identifier 'i',68351,"   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:31:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   31 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:34:5: error: use of undeclared identifier 'i'
+   34 | if (i < B * C * T) {
+      |     ^
+main.cpp:35:13: error: use of undeclared identifier 'i'
+   35 |     int b = i / (C * T);
+      |             ^",066 475
+161,use of undeclared identifier 'n',68351,"   11 |         arr[i] = ((float)rand() / RAND_MAX) * 2.0 - 1.0; // range -1..1
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:87:18: note: expanded from macro 'RAND_MAX'
+   87 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+main.cpp:37:38: error: use of undeclared identifier 'n'
+   37 |     int inp_idx = (b * T * 3 * C) + (n * 3 * C) + (0 * C) + (nh_ * d) + d_;
+      |                                      ^
+1 warning and 1 error generated.
+make: *** [Makefile:56: main.o] Error 1
+OMP STATUS: 2",161

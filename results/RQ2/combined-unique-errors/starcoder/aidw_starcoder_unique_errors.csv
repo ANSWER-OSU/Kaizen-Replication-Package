@@ -1,0 +1,89 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+0,expected unqualified-id,"10292,11687,68351,90221,91313","Found 92 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 042 043 045 046 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 081 085 086 087 088 090 091 093 094 097 103 104 106 108 112 113 115 118 120 121 122 123 127 128 138 141 143 145 146 149 151 152 153 155 159 161 163 165 168 169 171 174 177 179 183 189 191 193 197 198 199
+187,reference to overloaded function could not be resolved; did you mean to call it?,91313,"      |        ^~~
+      |        pow
+/usr/lib/llvm-18/bin/../include/c++/v1/math.h:486:20: note: 'pow' declared here
+  486 | using std::__math::pow;
+      |                    ^
+main.cpp:75:8: error: reference to overloaded function could not be resolved; did you mean to call it?
+   75 |     iz[row] = z / sum;
+      |        ^~~
+/usr/lib/llvm-18/bin/../include/c++/v1/__math/exponential_functions.h:161:65: note: possible target for call
+  161 | inline _LIBCPP_HIDE_FROM_ABI typename __promote<_A1, _A2>::type pow(_A1 __x, _A2 __y) _NOEXCEPT {
+      |                                                                 ^",187
+0,use of undeclared identifier 'AIDW_Kernel_Tiled',"10292,11687,68351,90221,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:83:1: error: expected unqualified-id
+   83 | ### Context:
+      | ^
+main.cpp:254:5: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  254 |     AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |     ^
+main.cpp:274:7: error: use of undeclared identifier 'AIDW_Kernel_Tiled'
+  274 |       AIDW_Kernel_Tiled(numTeams, numThreads, d_dx, d_dy, d_dz, dnum, d_ix, d_iy, d_iz, inum, area, d_avg_dist);
+      |       ^",000 001 002 003 004 005 006 007 018 020 021 022 023 024 028 029 030 031 033 037 039 040 042 043 045 046 050 051 052 055 057 058 060 063 064 065 067 068 069 071 075 081 085 086 087 088 090 091 093 094 097 103 104 106 108 112 113 115 118 120 121 122 123 127 128 138 141 143 145 146 149 151 152 153 155 159 161 163 165 168 169 171 174 177 179 183 189 191 193 197 198 199
+107,use of undeclared identifier 'alpha'; did you mean 'std::ctype_base::alpha'?,90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 107] Building on worker 27 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:28: error: use of undeclared identifier 'alpha'; did you mean 'std::ctype_base::alpha'?
+   47 |       t = 1.f / powf(dist, alpha);
+      |                            ^~~~~
+      |                            std::ctype_base::alpha
+/usr/lib/llvm-18/bin/../include/c++/v1/__locale:342:21: note: 'std::ctype_base::alpha' declared here
+  342 |   static const mask alpha  = _ISalpha;",107 148
+150,use of undeclared identifier 'r_exp',90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 150] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:48:32: error: use of undeclared identifier 'r_exp'
+   48 |       t = alpha * expf(-dist / r_exp);
+      |                                ^
+main.cpp:56:1: error: expected unqualified-id
+   56 | ### Context:
+      | ^",150
+187,use of undeclared identifier 'row'; did you mean 'pow'?,91313,"OMP STATUS: 2
+    -> FAIL
+  [Variant 187] Building on worker 30 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:75:8: error: use of undeclared identifier 'row'; did you mean 'pow'?
+   75 |     iz[row] = z / sum;
+      |        ^~~
+      |        pow
+/usr/lib/llvm-18/bin/../include/c++/v1/math.h:486:20: note: 'pow' declared here
+  486 | using std::__math::pow;",187
+127,use of undeclared identifier 'sum',"10292,90221,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:80:15: error: use of undeclared identifier 'z'
+   80 |     iz[tid] = z / sum;
+      |               ^
+main.cpp:80:19: error: use of undeclared identifier 'sum'
+   80 |     iz[tid] = z / sum;
+      |                   ^
+main.cpp:84:1: error: expected unqualified-id
+   84 | ### Context:
+      | ^",127
+127,use of undeclared identifier 'z',"10292,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 127] Building on worker 31 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:80:15: error: use of undeclared identifier 'z'
+   80 |     iz[tid] = z / sum;
+      |               ^
+main.cpp:80:19: error: use of undeclared identifier 'sum'
+   80 |     iz[tid] = z / sum;
+      |                   ^",127

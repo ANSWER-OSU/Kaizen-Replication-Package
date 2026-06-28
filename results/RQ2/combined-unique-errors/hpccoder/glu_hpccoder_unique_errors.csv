@@ -1,0 +1,155 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+64,cannot return from OpenMP region,"10292,11687,68351,90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 064] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:24:42: error: cannot return from OpenMP region
+   24 |     if (index >= M * split_dim_size * N) return;
+      |                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",064 083 091 122 378
+161,expected 3 for loops after '#pragma omp target teams distribute parallel for',68351,"OMP STATUS: 0
+    -> PASS
+  [Variant 161] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: expected 3 for loops after '#pragma omp target teams distribute parallel for'
+   20 |   const int xOffset = 2 * split_dim_size * N;
+      |   ^
+main.cpp:19:61: note: as specified in 'collapse' clause
+   19 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",161 279 326
+202,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1","11687,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 202] Building on worker 23 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:52: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   27 |   for (int i = 0; i < M * split_dim_size * N; i++) {
+      |                                                    ^
+main.cpp:26:61: note: as specified in 'collapse' clause
+   26 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",202
+78,"invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')","68351,91313","   30 |     const int i = index / split_dim_size / N;
+      |               ^
+main.cpp:27:12: note: previous definition is here
+   27 |   for (int i = 0; i < M * split_dim_size * N; i++) {
+      |            ^
+main.cpp:30:25: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   30 |     const int i = index / split_dim_size / N;
+      |                   ~~~~~ ^ ~~~~~~~~~~~~~~
+main.cpp:31:25: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   31 |     const int j = index / N % split_dim_size;
+      |                   ~~~~~ ^ ~",078
+23,redefinition of 'i' with a different type: 'const int' vs 'int',"68351,90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 023] Building on worker 10 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:15: error: redefinition of 'i' with a different type: 'const int' vs 'int'
+   30 |     const int i = i / split_dim_size / N;
+      |               ^
+main.cpp:27:12: note: previous definition is here
+   27 |   for (int i = 0; i < M * split_dim_size * N; i++) {
+      |            ^",023 078 085 117 193 213 314 325 336
+41,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"68351,90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 041] Building on worker 19 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int xOffset = 2 * split_dim_size * N;
+      |   ^
+main.cpp:34:32: error: use of undeclared identifier 'xOffset'; did you mean 'yOffset'?
+   34 |     const float x1 = Xdata[i * xOffset + j * N + k];
+      |                                ^~~~~~~",041 082 120 122 211 215 223 230 258 311 359
+311,use of undeclared identifier 'dead_data549',68351,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int dead_data549 = 2 * split_dim_size * N;
+      |   ^
+main.cpp:31:32: error: use of undeclared identifier 'dead_data549'
+   31 |     const float x1 = Xdata[i * dead_data549 + j * N + k];
+      |                                ^
+main.cpp:32:32: error: use of undeclared identifier 'dead_data549'
+   32 |     const float x2 = Xdata[i * dead_data549 + (j + split_dim_size) * N + k];
+      |                                ^",311
+219,use of undeclared identifier 'dummyYoung',90221,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:42: error: cannot return from OpenMP region
+   30 |     if (index >= M * split_dim_size * N) return;
+      |                                          ^
+main.cpp:40:63: error: use of undeclared identifier 'dummyYoung'
+   40 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-dummyYoung)));
+      |                                                               ^
+2 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",219
+215,use of undeclared identifier 'dummy_var986',68351,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int dummy_var986 = 2 * split_dim_size * N;
+      |   ^
+main.cpp:37:32: error: use of undeclared identifier 'dummy_var986'
+   37 |     const float x1 = Xdata[i * dummy_var986 + j * N + k];
+      |                                ^
+main.cpp:38:32: error: use of undeclared identifier 'dummy_var986'
+   38 |     const float x2 = Xdata[i * dummy_var986 + (j + split_dim_size) * N + k];
+      |                                ^",215
+315,use of undeclared identifier 'temp_buf863',90221,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int temp_buf863 = 2 * split_dim_size * N;
+      |   ^
+main.cpp:30:32: error: use of undeclared identifier 'temp_buf863'
+   30 |     const float x1 = Xdata[i * temp_buf863 + unused_buf368 * N + k];
+      |                                ^
+main.cpp:31:32: error: use of undeclared identifier 'temp_buf863'
+   31 |     const float x2 = Xdata[i * temp_buf863 + (unused_buf368 + split_dim_size) * N + k];
+      |                                ^",315 366
+120,use of undeclared identifier 'temp_ptr198',68351,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int temp_ptr198 = 2 * split_dim_size * N;
+      |   ^
+main.cpp:32:32: error: use of undeclared identifier 'temp_ptr198'
+   32 |     const float x1 = Xdata[i * temp_ptr198 + j * N + k];
+      |                                ^
+main.cpp:33:32: error: use of undeclared identifier 'temp_ptr198'
+   33 |     const float x2 = Xdata[i * temp_ptr198 + (j + split_dim_size) * N + k];
+      |                                ^",120 223 230 326 359
+50,use of undeclared identifier 'unusedYoung',"10292,11687","OMP STATUS: 0
+    -> PASS
+  [Variant 050] Building on worker 25 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:63: error: use of undeclared identifier 'unusedYoung'
+   35 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-unusedYoung)));
+      |                                                               ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",050 051 060 078 232 243 346
+122,use of undeclared identifier 'xOffset',"68351,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int xOffset = 2 * split_dim_size * N;
+      |   ^
+main.cpp:24:53: error: use of undeclared identifier 'xOffset'
+   24 |     const float x1 = Xdata[i / split_dim_size / N * xOffset + j * N + k];
+      |                                                     ^
+main.cpp:25:53: error: use of undeclared identifier 'xOffset'
+   25 |     const float x2 = Xdata[i / split_dim_size / N * xOffset + (j + split_dim_size) * N + k];
+      |                                                     ^",122 258
+41,use of undeclared identifier 'xOffset'; did you mean 'yOffset'?,"68351,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:20:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   20 |   const int xOffset = 2 * split_dim_size * N;
+      |   ^
+main.cpp:34:32: error: use of undeclared identifier 'xOffset'; did you mean 'yOffset'?
+   34 |     const float x1 = Xdata[i * xOffset + j * N + k];
+      |                                ^~~~~~~
+      |                                yOffset
+main.cpp:24:13: note: 'yOffset' declared here
+   24 |   const int yOffset = split_dim_size * N;",041 082 161 211

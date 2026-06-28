@@ -1,0 +1,221 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+24,cannot return from OpenMP region,"10292,11687,68351,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 024] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:32:29: error: cannot return from OpenMP region
+   32 |     if (unused_val446 >= n) return;
+      |                             ^
+main.cpp:137:5: error: no matching function for call to 'flip_kernel'
+  137 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~",024 028 051 067 094 104 120 128 150 161 166 167 169 191 193 212 229 243 251 278 292 296 308 321 322 327 330 332 350 351 358 363 369 388 391 394 397 402 406 408 440 471
+235,expected ';' after expression,90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 235] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:40:21: error: expected ';' after expression
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                     ^
+      |                     ;
+main.cpp:40:13: error: use of undeclared identifier 'dummyYou'
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.",235
+235,expected ';' at end of declaration,90221,"   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |             ^
+main.cpp:40:22: error: unknown type name 'must'
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                      ^
+main.cpp:40:33: error: expected ';' at end of declaration
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                                 ^
+      |                                 ;
+4 errors generated.
+make: *** [<builtin>: main.o] Error 1",235
+221,expected ']',10292,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:28: error: use of undeclared identifier 'unusedYou'
+   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                            ^
+main.cpp:45:38: error: expected ']'
+   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                                      ^
+main.cpp:45:27: note: to match this '['
+   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                           ^",221
+221,expected '}',10292,"   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                                      ^
+main.cpp:45:27: note: to match this '['
+   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                           ^
+main.cpp:255:17: error: expected '}'
+  255 | #endif // LIBOMP
+      |                 ^
+main.cpp:43:88: note: to match this '{'
+   43 |       for (int64_t unused_val436 = 0; unused_val436 < flip_dims_size; unused_val436++) {
+      |                                                                                        ^",221 322 438
+322,expected expression,10292,"   31 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:68:1: error: function definition is not allowed here
+   68 | {
+      | ^
+main.cpp:76:1: error: expected expression
+   76 | template <typename scalar_t>
+      | ^
+main.cpp:221:17: error: expected '}'
+  221 | #endif // LIBOMP
+      |                 ^",322 438
+323,extraneous closing brace ('}'),"90221,91313","   40 |     int64_t cur_indices = linear_index;
+      |                           ^
+main.cpp:63:16: error: use of undeclared identifier 'linear_index'
+   63 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^
+main.cpp:65:1: error: extraneous closing brace ('}')
+   65 | }
+      | ^
+4 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",323
+322,function definition is not allowed here,10292,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:28: error: cannot return from OpenMP region
+   31 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:68:1: error: function definition is not allowed here
+   68 | {
+      | ^
+main.cpp:76:1: error: expected expression
+   76 | template <typename scalar_t>
+      | ^",322 438
+3,no matching function for call to 'flip_kernel',"10292,11687,68351,90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 003] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:128:5: error: no matching function for call to 'flip_kernel'
+  128 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~
+main.cpp:198:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  198 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",003 004 005 006 007 018 020 023 024 028 029 030 031 039 040 042 043 046 050 051 052 055 058 060 063 064 065 067 068 069 071 075 078 081 083 084 088 090 091 093 094 097 104 108 112 113 115 118 120 121 122 123 127 128 140 141 143 144 145 146 149 150 151 152 155 159 161 163 164 166 167 169 171 174 177 179 184 189 190 191 193 197 198 199 202 205 206 207 212 214 215 216 218 220 223 226 227 229 230 231 232 235 240 241 243 251 252 253 254 260 263 266 268 269 270 271 273 277 278 280 284 285 287 289 292 295 296 297 299 300 302 303 307 308 309 312 316 317 318 320 321 324 327 330 332 334 335 337 341 343 345 346 349 350 351 354 355 356 358 361 362 363 366 368 369 370 371 374 378 379 388 389 391 393 394 397 400 402 405 406 408 412 415 416 417 418 423 432 434 436 437 439 440 443 444 446 451 452 456 457 464 465 466 467 471 473 478
+169,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type","68351,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:31:28: error: cannot return from OpenMP region
+   31 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:35:5: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   35 |     int helper_item105 = 'x';
+      |     ^~~
+main.cpp:35:5: note: expected an expression statement
+   35 |     int helper_item105 = 'x';
+      |     ^~~",169 180 354
+235,unknown type name 'must',90221,"      |                     ^
+      |                     ;
+main.cpp:40:13: error: use of undeclared identifier 'dummyYou'
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |             ^
+main.cpp:40:22: error: unknown type name 'must'
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                      ^
+main.cpp:40:33: error: expected ';' at end of declaration
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                                 ^",235
+235,use of undeclared identifier 'dummyYou',90221,"afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:40:21: error: expected ';' after expression
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                     ^
+      |                     ;
+main.cpp:40:13: error: use of undeclared identifier 'dummyYou'
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |             ^
+main.cpp:40:22: error: unknown type name 'must'
+   40 |       rem = dummyYou must output the OpenMP code for the given CUDA code.
+      |                      ^",235
+490,use of undeclared identifier 'dummyYou163',90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 490] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:39:13: error: use of undeclared identifier 'dummyYou163'
+   39 |       rem = dummyYou163 - cur_indices * strides_contiguous[i];
+      |             ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",490
+45,use of undeclared identifier 'dummyYou817',90221,"OMP STATUS: 2
+    -> FAIL
+  [Variant 045] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:39:13: error: use of undeclared identifier 'dummyYou817'
+   39 |       rem = dummyYou817 - cur_indices * strides_contiguous[i];
+      |             ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",045 326
+323,use of undeclared identifier 'flip_kernel',"90221,91313","  166 |       flip_kernel<scalar_t>(
+      |       ^
+main.cpp:223:1: error: extraneous closing brace ('}')
+  223 | }
+      | ^
+main.cpp:143:5: error: use of undeclared identifier 'flip_kernel'
+  143 |     flip_kernel<scalar_t>(
+      |     ^
+main.cpp:213:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  213 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",323
+323,use of undeclared identifier 'linear_index',90221,"OMP STATUS: 0
+    -> PASS
+  [Variant 323] Building on worker 2 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:7: error: use of undeclared identifier 'linear_index'
+   37 |   if (linear_index >= n) return;
+      |       ^
+main.cpp:40:27: error: use of undeclared identifier 'linear_index'
+   40 |     int64_t cur_indices = linear_index;
+      |                           ^",323
+221,use of undeclared identifier 'unusedYou',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 221] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:28: error: use of undeclared identifier 'unusedYou'
+   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                            ^
+main.cpp:45:38: error: expected ']'
+   45 |         if (i == flip_dims[unusedYou are a powerful LLM model for translating CUDA codes to OpenMP codes.
+      |                                      ^",221
+402,use of undeclared identifier 'unusedYou436'; did you mean 'unused_val436'?,10292,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:28: error: cannot return from OpenMP region
+   33 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:48:28: error: use of undeclared identifier 'unusedYou436'; did you mean 'unused_val436'?
+   48 |         if (i == flip_dims[unusedYou436]) {
+      |                            ^~~~~~~~~~~~
+      |                            unused_val436
+main.cpp:46:20: note: 'unused_val436' declared here
+   46 |       for (int64_t unused_val436 = 0; unused_val436 < flip_dims_size; unused_val436++) {",402
+159,use of undeclared identifier 'unusedYou6',10292,"OMP STATUS: 2
+    -> FAIL
+  [Variant 159] Building on worker 8 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:28: error: use of undeclared identifier 'unusedYou6'
+   45 |         if (i == flip_dims[unusedYou6]) {
+      |                            ^
+main.cpp:138:5: error: no matching function for call to 'flip_kernel'
+  138 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~",159 184 202
+243,use of undeclared identifier 'unusedYou64',10292,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:28: error: cannot return from OpenMP region
+   33 |     if (linear_index >= n) return;
+      |                            ^
+main.cpp:50:28: error: use of undeclared identifier 'unusedYou64'
+   50 |         if (i == flip_dims[unusedYou64]) {
+      |                            ^
+main.cpp:140:5: error: no matching function for call to 'flip_kernel'
+  140 |     flip_kernel<scalar_t>(
+      |     ^~~~~~~~~~~~~~~~~~~~~",243

@@ -1,0 +1,100 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+414,cannot return from OpenMP region,"90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 414] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:35:24: error: cannot return from OpenMP region
+   35 | if (linear_index >= n) return;
+      |                        ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",414
+317,expected '}',"10292,68351,90221","   69 | {
+      | ^
+main.cpp:77:1: error: expected expression
+   77 | template <typename scalar_t>
+      | ^
+main.cpp:222:17: error: expected '}'
+  222 | #endif // LIBOMP
+      |                 ^
+main.cpp:30:1: note: to match this '{'
+   30 | {
+      | ^",317 322
+317,expected expression,"10292,68351,90221","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:69:1: error: function definition is not allowed here
+   69 | {
+      | ^
+main.cpp:77:1: error: expected expression
+   77 | template <typename scalar_t>
+      | ^
+main.cpp:222:17: error: expected '}'
+  222 | #endif // LIBOMP
+      |                 ^",317 322
+450,extraneous closing brace ('}'),91313,"   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^
+main.cpp:52:42: error: use of undeclared identifier 'dst_offset'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^
+main.cpp:54:1: error: extraneous closing brace ('}')
+   54 | }
+      | ^
+4 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",450
+317,function definition is not allowed here,"10292,68351,90221","OMP STATUS: 0
+    -> PASS
+  [Variant 317] Building on worker 18 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:69:1: error: function definition is not allowed here
+   69 | {
+      | ^
+main.cpp:77:1: error: expected expression
+   77 | template <typename scalar_t>
+      | ^",317 322
+262,use of undeclared identifier 'dst_offset',"90221,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 262] Building on worker 1 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:65:42: error: use of undeclared identifier 'dst_offset'
+   65 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",262
+450,use of undeclared identifier 'flip_kernel',91313,"  155 |       flip_kernel<scalar_t>(
+      |       ^
+main.cpp:212:1: error: extraneous closing brace ('}')
+  212 | }
+      | ^
+main.cpp:132:5: error: use of undeclared identifier 'flip_kernel'
+  132 |     flip_kernel<scalar_t>(
+      |     ^
+main.cpp:202:3: note: in instantiation of function template specialization 'flip<float>' requested here
+  202 |   flip<float>(num_dims, num_flip_dims, dim_size, repeat);
+      |   ^",450
+376,use of undeclared identifier 'i',"68351,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 376] Building on worker 12 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:54: error: use of undeclared identifier 'i'
+   38 |       cur_indices = cur_indices / strides_contiguous[i];
+      |                                                      ^
+main.cpp:39:53: error: use of undeclared identifier 'i'
+   39 |       rem = temp - cur_indices * strides_contiguous[i];
+      |                                                     ^",376
+450,use of undeclared identifier 'linear_index',91313,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:49:37: error: use of undeclared identifier 'i'
+   49 | dst_offset += cur_indices * strides[i];
+      |                                     ^
+main.cpp:52:16: error: use of undeclared identifier 'linear_index'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                ^
+main.cpp:52:42: error: use of undeclared identifier 'dst_offset'
+   52 |     out_tensor[linear_index] = in_tensor[dst_offset];
+      |                                          ^",450

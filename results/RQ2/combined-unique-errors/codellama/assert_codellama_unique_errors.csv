@@ -1,0 +1,67 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+0,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'","10292,11687,68351,90221,91313","   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^
+main.cpp:38:40: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 128 144 146 163 171 184 189 191 197 199 202 206 207 216 218 221 226 227 231 260 285 302 307 309 322 324 334 335 337 351 352 363 369 402 415 417 449 450 465 473 494 499 513 514 523 534 535 552 573 576 585 586 588 600 603 612 615 619 622 631 640 659 667 677 679 691 704 707 711 712 726 739 741 745 751 755 759 777 778 786 790 791 799 800 803 804 811 812 813 817 822 839 858 863 870 872 883 886 887 895 899 906 908 920 927 936 939 940 941
+766,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'",68351,"   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^
+main.cpp:38:40: error: use of undeclared identifier 'gridDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:42:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   42 |     for (int i = 0; false; i++) {
+      |                     ^~~~~
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~",766 888
+0,no matching function for call to 'perfKernel',"10292,11687,68351,90221,91313","   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                                        ^
+main.cpp:38:21: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'gid'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:113:3: error: no matching function for call to 'perfKernel'
+  113 |   perfKernel(Nblocks, Nthreads);
+      |   ^~~~~~~~~~
+main.cpp:35:6: note: candidate function not viable: requires 0 arguments, but 2 were provided
+   35 | void perfKernel()
+      |      ^",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 128 144 146 161 163 171 184 189 191 197 199 202 206 207 212 216 218 221 226 227 229 230 231 232 253 260 268 269 273 285 296 299 302 307 309 312 316 322 324 334 335 337 349 351 352 363 369 379 402 406 415 417 432 437 440 449 450 451 465 466 473 494 499 501 513 514 515 523 524 534 535 544 552 555 558 561 562 572 573 576 585 586 588 594 600 603 612 615 619 622 631 640 659 667 677 679 682 691 704 707 711 712 726 739 741 745 751 755 759 777 778 786 790 791 799 800 803 804 811 812 813 817 822 828 839 855 858 863 870 872 873 875 883 884 886 887 895 896 899 906 908 915 920 922 927 936 939 940 941 942
+0,use of undeclared identifier 'blockDim',"10292,11687,68351,90221,91313","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^
+main.cpp:38:27: error: use of undeclared identifier 'blockDim'
+   38 |   for (int gid = 0; gid < blockDim.x * gridDim.x; gid++) {
+      |                           ^",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 128 144 146 163 171 184 189 191 197 199 202 206 207 216 218 221 226 227 231 260 285 302 307 309 322 324 334 335 337 351 352 363 369 402 415 417 449 450 465 473 494 499 513 514 523 534 535 552 573 576 585 586 588 600 603 612 615 619 622 631 640 659 667 677 679 691 704 707 711 712 726 739 741 745 751 755 759 777 778 786 790 791 799 800 803 804 811 812 813 817 822 839 858 863 870 872 883 886 887 895 899 906 908 920 927 936 939 940 941
+0,use of undeclared identifier 'gridDim',"10292,11687,68351,90221,91313","Found 167 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:37:62: error: use of undeclared identifier 'gridDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                              ^
+main.cpp:37:85: error: use of undeclared identifier 'blockDim'
+   37 |   #pragma omp target teams distribute parallel for num_teams(gridDim.x) num_threads(blockDim.x)
+      |                                                                                     ^",000 001 007 020 029 037 042 045 046 051 065 067 088 108 112 115 120 128 144 146 163 171 184 189 191 197 199 202 206 207 216 218 221 226 227 231 260 285 302 307 309 322 324 334 335 337 351 352 363 369 402 415 417 449 450 465 473 494 499 513 514 523 534 535 552 573 576 585 586 588 600 603 612 615 619 622 631 640 659 667 677 679 691 704 707 711 712 726 739 741 745 751 755 759 777 778 786 790 791 799 800 803 804 811 812 813 817 822 839 858 863 870 872 883 886 887 895 899 906 908 920 927 936 939 940 941
+487,use of undeclared identifier 'omp_get_global_thread_num'; did you mean 'omp_get_thread_num'?,"11687,90221,91313","OMP STATUS: 2
+    -> FAIL
+  [Variant 487] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp -c main.cpp -o main.o
+main.cpp:39:15: error: use of undeclared identifier 'omp_get_global_thread_num'; did you mean 'omp_get_thread_num'?
+   39 |     int gid = omp_get_global_thread_num();
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |               omp_get_thread_num
+/usr/lib/llvm-18/lib/clang/18/include/omp.h:69:42: note: 'omp_get_thread_num' declared here
+   69 |     extern int    __KAI_KMPC_CONVENTION  omp_get_thread_num   (void);",487

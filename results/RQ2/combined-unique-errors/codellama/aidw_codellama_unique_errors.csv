@@ -1,0 +1,12 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+93,expected unqualified-id,"10292,68351,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 093] Building on worker 16 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -ffast-math -fopenmp -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:67:11: error: expected unqualified-id
+   67 |     float a1 = 0.f, a2 = 0.f, a3 = 0.f, a4 = 0.f, a5 = 0.f;
+      |           ^
+./reference.h:1:12: note: expanded from macro 'a1'
+    1 | #define a1 1.5f
+      |            ^",93

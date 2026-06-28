@@ -1,0 +1,45 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+83,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'",,"OMP STATUS: 2
+    -> FAIL
+  [Variant 083] Building on worker 3 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   47 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:50:5: error: use of undeclared identifier 'unused_val436'
+   50 | if (unused_val436 < n)
+      |     ^",83
+123,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'j'",,"OMP STATUS: 2
+    -> FAIL
+  [Variant 123] Building on worker 20 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:66:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'j'
+   66 |   for (int j = 0; false; j++) {
+      |                   ^~~~~
+main.cpp:71:12: error: use of undeclared identifier 'j'
+   71 |     output[j] += score[i] * value[i * d + j];
+      |            ^",123
+123,use of undeclared identifier 'j',,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:66:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'j'
+   66 |   for (int j = 0; false; j++) {
+      |                   ^~~~~
+main.cpp:71:12: error: use of undeclared identifier 'j'
+   71 |     output[j] += score[i] * value[i * d + j];
+      |            ^
+main.cpp:71:43: error: use of undeclared identifier 'j'
+   71 |     output[j] += score[i] * value[i * d + j];
+      |                                           ^",123
+83,use of undeclared identifier 'unused_val436',,"INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:47:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   47 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+main.cpp:50:5: error: use of undeclared identifier 'unused_val436'
+   50 | if (unused_val436 < n)
+      |     ^
+main.cpp:51:11: error: use of undeclared identifier 'unused_val436'
+   51 |     score[unused_val436] = __expf(dot_product[unused_val436]) / exp_sum[0];
+      |           ^",83

@@ -1,0 +1,23 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+0,expected unqualified-id,"10292,11687,68351,90221,91313","Found 63 variants, building with 32 workers...
+--- Variant Build Logs ---
+  [Variant 000] Building on worker 0 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:27:1: error: expected unqualified-id
+   27 | ### Context:
+      | ^
+main.cpp:41:1: error: expected unqualified-id
+   41 | ### Context:
+      | ^",000 001 002 003 004 006 007 018 020 022 023 024 028 029 030 031 037 039 040 043 046 049 050 051 052 055 063 064 065 068 069 071 075 078 081 083 087 088 090 091 093 094 097 104 108 112 113 115 118 120 121 122 123 127 128 140 141 145 146 149 150 152 155
+0,use of undeclared identifier 'attention_device',"10292,11687,68351,90221,91313","   41 | ### Context:
+      | ^
+main.cpp:59:1: error: expected unqualified-id
+   59 | ### Context:
+      | ^
+main.cpp:141:17: error: use of undeclared identifier 'attention_device'
+  141 |   float* dout = attention_device(key, value, query, n, d, k, r);
+      |                 ^
+4 errors generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",000 001 002 003 004 006 007 018 020 022 023 024 028 029 030 031 037 039 040 043 046 049 050 051 052 055 063 064 065 068 069 071 075 078 081 083 087 088 090 091 093 094 097 104 108 112 113 115 118 120 121 122 123 127 128 140 141 145 146 149 150 152 155

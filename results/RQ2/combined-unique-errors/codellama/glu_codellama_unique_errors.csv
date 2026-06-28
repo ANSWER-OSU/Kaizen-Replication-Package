@@ -1,0 +1,144 @@
+First Occurrence Variant,Error Text,Seed,Context,All Affected Variants
+412,cannot return from OpenMP region,90221,"OMP STATUS: 0
+    -> PASS
+  [Variant 412] Building on worker 21 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:42: error: cannot return from OpenMP region
+   33 |     if (index >= M * split_dim_size * N) return;
+      |                                          ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",412
+360,"comparison between pointer and integer ('char *(*)(const char *, int) noexcept(true)' and 'int')",11687,"OMP STATUS: 0
+    -> PASS
+  [Variant 360] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:33:11: error: comparison between pointer and integer ('char *(*)(const char *, int) noexcept(true)' and 'int')
+   33 | if (index >= M * split_dim_size * N) return;
+      |     ~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:35:23: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   35 |   const int i = index / split_dim_size / N;
+      |                 ~~~~~ ^ ~~~~~~~~~~~~~~",360
+69,"condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'","10292,68351","OMP STATUS: 0
+    -> PASS
+  [Variant 069] Building on worker 4 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:19: error: condition of OpenMP for loop must be a relational comparison ('<', '<=', '>', '>=', or '!=') of loop variable 'i'
+   29 |   for (int i = 0; false; i++) {
+      |                   ^~~~~
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",069 266
+298,expected '}',"11687,90221","INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:55:1: error: function definition is not allowed here
+   55 | {
+      | ^
+main.cpp:146:17: error: expected '}'
+  146 | #endif // LIBOMP
+      |                 ^
+main.cpp:25:1: note: to match this '{'
+   25 | {
+      | ^",298
+241,"expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1",91313,"OMP STATUS: 0
+    -> PASS
+  [Variant 241] Building on worker 11 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:3: error: expected 3 for loops after '#pragma omp target teams distribute parallel for', but found only 1
+   30 |   bool dummy_data664 = true;
+      |   ^
+main.cpp:28:61: note: as specified in 'collapse' clause
+   28 |   #pragma omp target teams distribute parallel for collapse(3) num_teams(numTeams) num_threads(numThreads)
+      |                                                             ^",241 373 391 436 454
+298,function definition is not allowed here,"11687,90221","OMP STATUS: 0
+    -> PASS
+  [Variant 298] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:55:1: error: function definition is not allowed here
+   55 | {
+      | ^
+main.cpp:146:17: error: expected '}'
+  146 | #endif // LIBOMP
+      |                 ^",298
+322,"invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')","10292,11687,68351","OMP STATUS: 0
+    -> PASS
+  [Variant 322] Building on worker 24 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:37:21: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   37 | const int i = index / split_dim_size / N;
+      |               ~~~~~ ^ ~~~~~~~~~~~~~~
+main.cpp:41:21: error: invalid operands to binary expression ('char *(const char *, int) noexcept(true)' and 'const int')
+   41 | const int j = index / N % split_dim_size;
+      |               ~~~~~ ^ ~",322 369
+331,redefinition of 'i' with a different type: 'const int' vs 'int',91313,"OMP STATUS: 0
+    -> PASS
+  [Variant 331] Building on worker 26 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:15: error: redefinition of 'i' with a different type: 'const int' vs 'int'
+   30 |     const int i = tmp_ptr551 / split_dim_size / N;
+      |               ^
+main.cpp:29:12: note: previous definition is here
+   29 |   for (int i = 0; i < M * split_dim_size * N; ++i) {
+      |            ^",331 421
+93,statement after '#pragma omp target teams distribute parallel for' must be a for loop,"10292,11687,68351,91313","OMP STATUS: 0
+    -> PASS
+  [Variant 093] Building on worker 14 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:29:3: error: statement after '#pragma omp target teams distribute parallel for' must be a for loop
+   29 |   while (10 <= 5) {
+      |   ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",093 145 215
+317,"the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type",91313,"OMP STATUS: 0
+    -> PASS
+  [Variant 317] Building on worker 15 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:45:41: error: the statement for 'atomic' must be an expression statement of form '++x;', '--x;', 'x++;', 'x--;', 'x binop= expr;', 'x = x binop expr' or 'x = expr binop x', where x is an lvalue expression with scalar type
+   45 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |                                      ~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.cpp:45:5: note: expected in right hand side of expression
+   45 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",317 376
+331,use of undeclared identifier 'tmp_ptr551',91313,"   30 |     const int i = tmp_ptr551 / split_dim_size / N;
+      |               ^
+main.cpp:29:12: note: previous definition is here
+   29 |   for (int i = 0; i < M * split_dim_size * N; ++i) {
+      |            ^
+main.cpp:30:19: error: use of undeclared identifier 'tmp_ptr551'
+   30 |     const int i = tmp_ptr551 / split_dim_size / N;
+      |                   ^
+main.cpp:31:19: error: use of undeclared identifier 'tmp_ptr551'
+   31 |     const int j = tmp_ptr551 / N % split_dim_size;
+      |                   ^",331
+352,use of undeclared identifier 'unused_node458',91313,"OMP STATUS: 0
+    -> PASS
+  [Variant 352] Building on worker 5 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:30:3: error: use of undeclared identifier 'unused_node458'
+   30 |   unused_node458 = 0;
+      |   ^
+1 error generated.
+make: *** [<builtin>: main.o] Error 1
+OMP STATUS: 2",352
+45,use of undeclared identifier 'yOffset'; did you mean 'xOffset'?,"10292,11687,90221","OMP STATUS: 0
+    -> PASS
+  [Variant 045] Building on worker 22 (mode=omp)
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+afl-clang-lto++  -stdlib=libc++ -std=c++14 -O3 -fopenmp=libomp   -c -o main.o main.cpp
+main.cpp:38:15: error: use of undeclared identifier 'yOffset'; did you mean 'xOffset'?
+   38 |     Ydata[i * yOffset + j * N + k] = x1 * (1.f / (1.f + expf(-x2)));
+      |               ^~~~~~~
+      |               xOffset
+main.cpp:26:13: note: 'xOffset' declared here
+   26 |   const int xOffset = 2 * split_dim_size * N;",045 075 113 151 184 231 307 320
