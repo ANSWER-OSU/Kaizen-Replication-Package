@@ -1,0 +1,22 @@
+nohup: ignoring input
+=== Run Configuration ===
+Examples: winograd permute
+Seeds: 10292 11687 68351 90221 91313
+Times: 3600
+Mode: Parallel
+Total combinations: 10
+
+Logs will be saved to: logs/run-many-20260409-122637
+
+Starting parallel execution...
+Launched 10 parallel jobs, waiting for completion...
+[4/10] Running: example=winograd, seed=90221, time=3600s
+[1/10] Running: example=winograd, seed=10292, time=3600s
+[7/10] Running: example=permute, seed=11687, time=3600s
+[8/10] Running: example=permute, seed=68351, time=3600s
+[2/10] Running: example=winograd, seed=11687, time=3600s
+[3/10] Running: example=winograd, seed=68351, time=3600s
+[6/10] Running: example=permute, seed=10292, time=3600s
+[9/10] Running: example=permute, seed=90221, time=3600s
+[5/10] Running: example=winograd, seed=91313, time=3600s
+[10/10] Running: example=permute, seed=91313, time=3600s
