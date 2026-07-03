@@ -31,9 +31,13 @@ from pathlib import Path
 APPS = [
     "ace", "burger", "ising", "aidw", "assert",
     "background-subtract", "p4", "winograd", "attention", "channelSum",
-    "dense-embedding", "flip", "glu", "permute", "chi2",
+    "dense-embedding", "flip", "glu",
+    # "permute", "chi2",  # commented out — excluded from table
     "cross", "nlll", "lif",
 ]
+APP_SEED_OVERRIDES = {
+    ("attention", "codellama"): "seed11687",
+}
 
 LLMS = ["codellama", "starcoder", "hpccoder"]
 
@@ -92,41 +96,44 @@ def avg_or_none(values):
 def fmt_count(val):
     return "--" if val is None else str(round(val))
 
-def fmt_frac(val):
-    return "--" if val is None else "%.2f" % val
+def fmt_frac(num, denom):
+    """Format as $num/denom=fraction$"""
+    if num is None or denom is None or denom == 0:
+        return "--"
+    return "$%d/%d=%.2f$" % (num, denom, num / denom)
 
-def get_seed10292_out_file(offload_dir, app, llm):
-    candidates = list(offload_dir.glob("%s-seed10292-*-%s-unique.out" % (app, llm)))
+def get_seed_out_file(offload_dir, app, llm):
+    seed = APP_SEED_OVERRIDES.get((app, llm), "seed10292")
+    candidates = list(offload_dir.glob("%s-%s-*-%s-unique.out" % (app, seed, llm)))
     return candidates[0] if candidates else None
 
 def parse_unique_out(out_file):
+    """
+    Parse unique.out file.
+    Returns list of (representative_variant, hash, main_line_count) tuples.
+    count = number of main-XXX.cpp lines in the group (unique + duplicates).
+    """
     groups = []
-    current_group = False
+    hash_val = None
+    representative = None
     count = 0
     with open(str(out_file)) as f:
         for line in f:
             line = line.strip()
             if line.startswith("Hash:"):
-                if len(groups) > 0 and count >0:
-                    groups[-1] = (groups[-1][0], groups[-1][1], count)
-
-                count = 0
-                current_group = True
+                if representative is not None:
+                    groups.append((representative, hash_val, count))
                 hash_val = line.split(":", 1)[1].strip()
-                continue    
-            elif "main-" in line and current_group == True:
-                m = re.search(r'main-(\d+)\.cpp', line)
-                if m:
-                    groups.append((m.group(1), hash_val))
-                    current_group = False
-            count = count + 1    
-
-    groups[-1] = (groups[-1][0], groups[-1][1], count)
-
-    #print("Computed Groups" , groups)
-                          
-    # if current_group:
-    #     groups.append((current_group, hash_val))
+                representative = None
+                count = 0
+                continue
+            m = re.search(r'main-(\d+)\.cpp', line)
+            if m:
+                count += 1
+                if representative is None:
+                    representative = m.group(1)
+    if representative is not None:
+        groups.append((representative, hash_val, count))
     return groups
 
 def load_test_results(csv_path):
@@ -143,89 +150,61 @@ def load_test_results(csv_path):
     return results
 
 def compute_correctness(app, llm, offload_dir, test_results_path):
-    print("APPLLM",app,llm)
-    """
-    Extrapolate correctness for app+llm using unique.out mapping + HPC results.
-    Numerator:   total variants (incl. duplicates) whose representative was 'correct'
-    Denominator: total variants across all groups (incl. 'not_run')
-    Returns fraction or None if data not available.
-    """
-    # if app != "aidw":
-    #     return None
-
-    # if llm != "codellama":
-    #     return None
-
-    out_file = get_seed10292_out_file(offload_dir, app, llm)
+    out_file = get_seed_out_file(offload_dir, app, llm)
     if out_file is None:
-        return None
+        return None, None
 
-    #print(out_file)
-    groups = parse_unique_out(out_file)
-    if not groups:
-        return None
+    # Parse all members of each group, not just the representative
+    groups_full = []
+    hash_val = None
+    members = []
+    with open(str(out_file)) as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("Hash:"):
+                if members:
+                    groups_full.append((hash_val, members, len(members)))
+                hash_val = line.split(":", 1)[1].strip()
+                members = []
+                continue
+            m = re.search(r'main-(\d+)\.cpp', line)
+            if m:
+                members.append(m.group(1))
+    if members:
+        groups_full.append((hash_val, members, len(members)))
 
-    print(len(groups))
-    total = 0
+    if not groups_full:
+        return None, None
+
+    total = sum(g[2] for g in groups_full)
+
+    # Build lookup: variant_num -> (hash, group_size)
+    variant_to_group = {}
+    for hash_val, members, size in groups_full:
+        for v in members:
+            variant_to_group[v] = (hash_val, size)
+
+    # Load correctness status for this app+llm
     correct = 0
-
-
-
-
-    #with open(str()) as f:
-
- 
-    variant_hash = dict() #dict to store variant, hash for variants in correctness csv file 
-
-
+    seen_hashes = set()
     with open(str(test_results_path)) as f:
         for row in csv.DictReader(f):
-            status = row["status"]
+            if row["app"] != app or row["llm"] != llm:
+                continue
             variant_num = row["variant_num"]
-            app_csv = row["app"]
-            llm_csv = row["llm"]
-    
-            for group in groups:
-                #print("GROUp",group)
-                unique_var = group[0]
-                unique_var_hash = group[1]
-                tota_var_count = group[2]
-                #print(">>>",unique_var,">>>",variant_num)
-                if unique_var == variant_num and app_csv == app and llm_csv == llm:
-                    print("FOUND MATCH",app,llm,variant_num,status)
-                    variant_hash[(app, llm, variant_num)] = (unique_var_hash, tota_var_count, status)
-                    print("length group " ,tota_var_count)
+            status = row["status"]
+            if variant_num not in variant_to_group:
+                continue
+            h, size = variant_to_group[variant_num]
+            if h in seen_hashes:
+                continue  # already counted this group
+            seen_hashes.add(h)
+            print("FOUND MATCH", app, llm, variant_num, status, "group_size=%d" % size)
+            if status == "correct":
+                correct += size
 
-    #print(variant_hash)
-
-    for key in variant_hash:
-        if variant_hash[key][2] == "correct":
-            correct += variant_hash[key][1]
-        total +=  variant_hash[key][1]
-    print("NUM, DENOM :",correct, total)
-    correctness = (correct / total) if total > 0 else None
-        
-
-    # for group in groups:
-    #     unique_var = group[0]
-    #     print(app, llm, unique_var)
-    #     status = test_results.get((app, llm, unique_var), "not found")
-    #     if status == "not found":
-    #         print("  [WARN] No test result for %s, %s, variant %s" % (app, llm, unique_var), file=sys.stderr)
-    #         continue
-    #     total += len(group)
-    #     print(">>>",len(group))
-    #     for i,_ in enumerate(group):
-    #         print("hello",len(group),i,status)
-    #         if status == "correct":
-    #             correct += 1
-    #     print(correct,total)        
-
-
-
-    # print("NUM, DENOM :",correct, total)
-    
-    # return (correct / total) if total > 0 else None
+    print("NUM, DENOM (%s, %s): %s / %s" % (app, llm, correct, total), file=sys.stderr)
+    return correct, total
 
 # ── Argument parsing ───────────────────────────────────────────────────────────
 
@@ -296,76 +275,82 @@ def main():
         if not seed_dirs:
             print("  [WARN] No seed dirs for '%s'" % app, file=sys.stderr)
             for llm in LLMS:
-                results[(app, llm)] = dict(cuda=None, omp=None, comp=None, correct=None)
+                results[(app, llm)] = dict(cuda=None, omp=None,
+                                           comp_pass=None, comp_total=None,
+                                           correct=None, correct_total=None)
             continue
 
         print("  %-25s  %d seeds" % (app, len(seed_dirs)), file=sys.stderr)
         avg_cuda = avg_or_none([count_cuda_variants(sd) for sd in seed_dirs])
-        
-        for llm in LLMS:
 
+        for llm in LLMS:
             avg_omp = avg_or_none([count_omp_translated(sd, llm) for sd in seed_dirs])
 
-            comp_fracs = []
+            comp_passes = []
+            comp_totals = []
             for sd in seed_dirs:
                 p, t = find_compilability_csv(base, sd, llm)
                 if p is not None and t and t > 0:
-                    comp_fracs.append(p / t)
-            avg_comp = avg_or_none(comp_fracs)
+                    comp_passes.append(p)
+                    comp_totals.append(t)
+            avg_comp_pass  = round(avg_or_none(comp_passes)) if comp_passes else None
+            avg_comp_total = round(avg_or_none(comp_totals)) if comp_totals else None
 
             app_offload_dir = chi2_dir if (app == "chi2" and chi2_dir is not None) else offload_dir
-            print("CALLING compute_correctness for app=%s, llm=%s, offload_dir=%s, results_csv=%s" % (
-                app, llm, app_offload_dir, results_csv), file=sys.stderr)
+            print("CALLING compute_correctness for app=%s, llm=%s" % (app, llm), file=sys.stderr)
 
-            correctness = compute_correctness(app, llm, app_offload_dir, results_csv)
-            #break
+            correct_num, correct_total = compute_correctness(app, llm, app_offload_dir, results_csv)
+
             results[(app, llm)] = dict(
                 cuda=avg_cuda,
                 omp=avg_omp,
-                comp=avg_comp,
-                correct=correctness,
+                comp_pass=avg_comp_pass,
+                comp_total=avg_comp_total,
+                correct=correct_num,
+                correct_total=correct_total,
             )
-        #break
 
     # ── Emit LaTeX table ───────────────────────────────────────────────────────
     lines = []
-    lines.append(r"\begin{table*}[t]")
-    lines.append(r"\centering")
-    lines.append(r"\caption{Relationship Between Syntactic and Semantic Success in LLM-based Automated Kernel Translation of HPC scientific applications. \textbf{application (\#CUDA variants)}: application name with avg number of CUDA variants generated by \toolname across 5 runs; \textbf{\#OpenMP translated}: avg number of OpenMP programs translated by LLM; \textbf{Compilability}: avg fraction of OpenMP programs that compile successfully; \textbf{Correctness}: avg fraction of OpenMP programs that match the outputs on all the tests when compared against the CUDA variants.}")
+    lines.append(r"\begin{table}[t]")
+    lines.append(r"\scriptsize")
+    lines.append(r"\caption{Relationship Between Syntactic and Semantic Success in LLM-based Automated Kernel Translation of HPC scientific applications. \textbf{application}: application name; \textbf{Compilability}: avg fraction of OpenMP programs that compile successfully; \textbf{Correctness}: fraction of OpenMP programs that match the outputs on all the tests when compared against the CUDA variants for a single seed(10292).}")
     lines.append(r"\label{tab:rq1_syntactic_semantic}")
     lines.append(r"% \resizebox{\cwidth}{!}{")
-    lines.append(r"\begin{tabular}{llccc}")
+    lines.append(r"\begin{tabular}{llrr}")
     lines.append(r"\toprule")
-    lines.append(r"\textbf{application (\#CUDA variants)} & \textbf{LLM} & \textbf{\#OpenMP translated} & \textbf{Compilability} & \textbf{Correctness} \\")
+    lines.append(r"\textbf{application} & \textbf{LLM} & \textbf{Compilability} & \textbf{Correctness} \\")
     lines.append(r"\toprule")
 
     for i, app in enumerate(APPS):
-        cuda_val  = results[(app, LLMS[0])]['cuda']
-        app_label = "%s (%s)" % (app, fmt_count(cuda_val))
-
         for j, llm in enumerate(LLMS):
-            d         = results[(app, llm)]
-            omp_str   = fmt_count(d['omp'])
-            comp_str  = fmt_frac(d['comp'])
-            corr_str  = fmt_frac(d['correct'])
-            if d['comp'] is not None and d['comp'] == 0.0:
+            d = results[(app, llm)]
+
+            comp_str = fmt_frac(d['comp_pass'], d['comp_total'])
+
+            comp_is_zero = (d['comp_pass'] is not None and d['comp_pass'] == 0)
+            if comp_is_zero:
                 corr_str = "N/A"
+            else:
+                corr_str = fmt_frac(d['correct'], d['correct_total'])
+
             llm_label = LLM_LATEX[llm]
 
             if j == 0:
-                lines.append(r"\multirow{3}{*}{%s} &  %s & %s & %s & %s  \\" % (
-                    app_label, llm_label, omp_str, comp_str, corr_str))
+                lines.append(r"\multirow{3}{*}{%s} &  %s & %s & %s  \\" % (
+                    app, llm_label, comp_str, corr_str))
             else:
-                lines.append(r"&  %s & %s & %s & %s \\" % (
-                    llm_label, omp_str, comp_str, corr_str))
+                lines.append(r"&  %s & %s & %s \\" % (
+                    llm_label, comp_str, corr_str))
 
         if i < len(APPS) - 1:
             lines.append(r"\hline ")
 
     lines.append(r"\hline")
+    lines.append(r"\multicolumn{4}{l}{*: \toolname-generated tests inputs found bugs in developer-written CUDA program.}")
     lines.append(r"\end{tabular}")
     lines.append(r"% }")
-    lines.append(r"\end{table*}")
+    lines.append(r"\end{table}")
 
     print("\n".join(lines))
 
