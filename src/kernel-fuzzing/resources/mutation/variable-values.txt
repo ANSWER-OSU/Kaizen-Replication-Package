@@ -1,0 +1,19 @@
+# Variable values by type
+# Format: type:value1,value2,value3
+
+int:-1000,-500,-1,0,1,42,100,500,1000
+float:-100.0f,-10.5f,-1.0f,0.0f,1.0f,3.14f,10.5f,100.0f
+double:-100.0,-10.5,-1.0,0.0,1.0,2.71828,10.5,100.0
+char:'a','b','c','x','y','z','0','1','9'
+bool:true,false
+unsigned int:0,1,42,100,500,1000
+long:-1000,-1,0,1,42,1000
+short:-100,-1,0,1,42,100
+size_t:0,1,8,16,32,64,128
+uint32_t:0,1,42,100,999,0xFFFFFFFF
+int32_t:-1000,-1,0,1,42,1000
+void*:nullptr,NULL
+const int:0,1,42,100,-1
+const float:0.0f,1.0f,3.14f,42.0f
+const double:0.0,1.0,3.14159,42.0
+volatile int:0,1,42,100,-1
