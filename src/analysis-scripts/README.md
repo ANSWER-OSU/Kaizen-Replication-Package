@@ -7,7 +7,7 @@ its own folder with its data, scripts, expected outputs, and README.
 
 Kaizen's implementation (mutation engine, AFL++ custom mutators, differential-testing driver),
 the variants, translations, generated inputs, and logs are in the main replication repository,
-https://github.com/ANSWER-OSU/Kaizen-Replication-Package/src.
+https://github.com/ANSWER-OSU/Kaizen-Replication-Package/tree/main/src.
 
 ## Quick start
 
