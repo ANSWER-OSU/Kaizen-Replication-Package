@@ -1,0 +1,57 @@
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+Number of rows in the embedding table: 100
+Batch size: 5
+
+Embedding dimension: 768
+block size: 128
+Average execution time of dense embedding kernel (k1): 83109.039062 (us)
+Average execution time of dense embedding kernel (k2): 1012.971069 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 1103.822021 (us)
+Average execution time of dense embedding kernel (k2): 1042.621094 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 992.572021 (us)
+Average execution time of dense embedding kernel (k2): 1107.346069 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 1333.871094 (us)
+Average execution time of dense embedding kernel (k2): 993.609070 (us)
+FAIL
+
+Embedding dimension: 2048
+block size: 128
+Average execution time of dense embedding kernel (k1): 956.694031 (us)
+Average execution time of dense embedding kernel (k2): 1909.641113 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 1088.743042 (us)
+Average execution time of dense embedding kernel (k2): 2012.582153 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 1076.571045 (us)
+Average execution time of dense embedding kernel (k2): 1947.249146 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 952.621033 (us)
+Average execution time of dense embedding kernel (k2): 1836.606079 (us)
+FAIL
+
+Embedding dimension: 12288
+block size: 128
+Average execution time of dense embedding kernel (k1): 2405.540039 (us)
+Average execution time of dense embedding kernel (k2): 9302.555664 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 6692.619141 (us)
+Average execution time of dense embedding kernel (k2): 9131.365234 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 7874.322266 (us)
+Average execution time of dense embedding kernel (k2): 8549.064453 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 6953.288574 (us)
+Average execution time of dense embedding kernel (k2): 11946.599609 (us)
+FAIL

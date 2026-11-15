@@ -1,0 +1,60 @@
+Input args: 2 5 1
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+=========== Data type is FP32 ==========
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 4304.179199 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 30.547001 (us)
+PASS
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 37.460003 (us)
+PASS
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 50.035004 (us)
+PASS
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 30.949001 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['PASS', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+=========== Data type is FP32 ==========
+Initialization of input data may take a while..
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 2676.052246 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 127.640007 (us)
+0.041009 0.082018 1.711845 0.855922
+FAIL
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 140.855011 (us)
+0.027339 0.082018 2.567767 0.855922
+FAIL
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 129.414001 (us)
+0.020504 0.082018 3.423689 0.855922
+FAIL
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 133.381012 (us)
+0.020504 0.082018 3.423689 0.855922
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['PASS', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

@@ -1,0 +1,61 @@
+Input args: 1 115 50
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+=========== Data type is FP32 ==========
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 89.410950 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 3.220740 (us)
+PASS
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 3.838720 (us)
+PASS
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 6.131341 (us)
+PASS
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 6.972780 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+=========== Data type is FP32 ==========
+Initialization of input data may take a while..
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 85.471825 (us)
+-0.933217 -nan -2973024848871621014847488.000000 0.000000
+FAIL
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 10.880420 (us)
+-0.933217 -nan -2973024848871621014847488.000000 0.000000
+FAIL
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 11.129740 (us)
+-0.933217 -nan -2973024848871621014847488.000000 0.000000
+FAIL
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 12.040941 (us)
+-0.933217 -nan -2973024848871621014847488.000000 0.000000
+FAIL
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 13.513821 (us)
+-0.933217 -nan -2973024848871621014847488.000000 0.000000
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

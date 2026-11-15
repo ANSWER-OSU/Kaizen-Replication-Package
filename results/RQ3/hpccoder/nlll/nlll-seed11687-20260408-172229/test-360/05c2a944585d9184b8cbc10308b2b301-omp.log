@@ -1,0 +1,23 @@
+=========== Data type is FP32 ==========
+Initialization of input data may take a while..
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 967.495239 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 195.985199 (us)
+PASS
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 195.555817 (us)
+PASS
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 203.374420 (us)
+PASS
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 207.177414 (us)
+-0.008571 -0.008571 1519.971924 1519.871460
+FAIL

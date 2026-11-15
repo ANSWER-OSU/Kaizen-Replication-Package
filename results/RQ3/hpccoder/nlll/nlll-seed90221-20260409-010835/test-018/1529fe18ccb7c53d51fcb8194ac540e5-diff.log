@@ -1,0 +1,61 @@
+Input args: 32 100 50
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+=========== Data type is FP32 ==========
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 73.643089 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 3.397960 (us)
+PASS
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 4.282840 (us)
+PASS
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 6.566240 (us)
+PASS
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 7.486200 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+=========== Data type is FP32 ==========
+Initialization of input data may take a while..
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 321.924683 (us)
+0.042294 -1.169298 17872762102641032848998400.000000 1.458777
+FAIL
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 76.994003 (us)
+0.042294 -1.169298 17872762102641032848998400.000000 1.458777
+FAIL
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 78.095444 (us)
+0.042294 -1.169298 17872762102641032848998400.000000 1.458777
+FAIL
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 79.303902 (us)
+0.042294 -1.169298 17872762102641032848998400.000000 1.458777
+FAIL
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 81.102509 (us)
+0.042294 -1.169298 17872762102641032848998400.000000 1.458777
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

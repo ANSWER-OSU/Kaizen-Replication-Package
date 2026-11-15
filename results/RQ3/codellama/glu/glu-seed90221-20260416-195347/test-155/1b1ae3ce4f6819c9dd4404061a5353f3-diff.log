@@ -1,0 +1,79 @@
+Input args: 6 4 1
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+Shape of input tensor: ( 4 4 4 4 4 4 )
+Average execution time of GLU kernel (split dimension = 5): 3174.495117 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 10.957001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 9.429001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 9.428000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 3): 9.078000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 4): 9.061001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 5): 8.661000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 8.761001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 9.217000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 9.296000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 3): 9.036000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 4): 9.157001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 5): 8.621000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 9.149000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 8.823000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 8.830001 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+Shape of input tensor: ( 4 4 4 4 4 4 )
+Average execution time of GLU kernel (split dimension = 5): 6.101000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 0.086000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 0.078000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 0.066000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 0.069000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 4): 0.069000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 5): 0.067000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 0.067000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 0.059000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 0.068000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 0.058000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 4): 0.070000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 5): 0.068000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 0.068000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 0.067000 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 0.057000 (us)
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

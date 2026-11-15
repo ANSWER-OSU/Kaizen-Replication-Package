@@ -1,0 +1,57 @@
+Input args: 4 32 2
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+Shape of input tensor: ( 32 32 32 32 )
+Average execution time of GLU kernel (split dimension = 3): 1916.852051 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 10.955501 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 10.549500 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 10.580001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 3): 16.992001 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 10.364500 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 10.279501 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 10.585000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 3): 10.510000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 10.405001 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+OMP: Warning #96: Cannot form a team with 2048 threads, using 32 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Shape of input tensor: ( 32 32 32 32 )
+Average execution time of GLU kernel (split dimension = 3): 39233.929688 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 10060.650391 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 6675.464355 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 10847.974609 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 18319.089844 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 7688.482910 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 6298.936523 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 5971.836914 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 16741.099609 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 4473.571289 (us)
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

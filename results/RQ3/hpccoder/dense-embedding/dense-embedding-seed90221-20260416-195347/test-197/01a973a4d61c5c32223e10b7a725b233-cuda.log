@@ -1,0 +1,56 @@
+Number of rows in the embedding table: 8192
+Batch size: 16
+
+Embedding dimension: 768
+block size: 128
+Average execution time of dense embedding kernel (k1): 4082.347168 (us)
+Average execution time of dense embedding kernel (k2): 69.481003 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 31.110001 (us)
+Average execution time of dense embedding kernel (k2): 27.306002 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 22.935001 (us)
+Average execution time of dense embedding kernel (k2): 23.105001 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 17.142000 (us)
+Average execution time of dense embedding kernel (k2): 19.291000 (us)
+PASS
+
+Embedding dimension: 2048
+block size: 128
+Average execution time of dense embedding kernel (k1): 98.653008 (us)
+Average execution time of dense embedding kernel (k2): 93.555008 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 56.788002 (us)
+Average execution time of dense embedding kernel (k2): 55.642002 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 37.140003 (us)
+Average execution time of dense embedding kernel (k2): 35.596001 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 28.043001 (us)
+Average execution time of dense embedding kernel (k2): 26.813002 (us)
+PASS
+
+Embedding dimension: 12288
+block size: 128
+Average execution time of dense embedding kernel (k1): 534.247009 (us)
+Average execution time of dense embedding kernel (k2): 505.011017 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 303.952026 (us)
+Average execution time of dense embedding kernel (k2): 287.575012 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 179.524002 (us)
+Average execution time of dense embedding kernel (k2): 175.109009 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 116.095009 (us)
+Average execution time of dense embedding kernel (k2): 138.770004 (us)
+PASS

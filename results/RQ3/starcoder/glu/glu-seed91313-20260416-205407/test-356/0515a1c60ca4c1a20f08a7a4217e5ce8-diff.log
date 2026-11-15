@@ -1,0 +1,33 @@
+Input args: 2 512 10
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+Shape of input tensor: ( 512 512 )
+Average execution time of GLU kernel (split dimension = 1): 392.129700 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 12.167901 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 12.067700 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 12.047601 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+OMP: Warning #96: Cannot form a team with 512 threads, using 32 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Shape of input tensor: ( 512 512 )
+Average execution time of GLU kernel (split dimension = 1): 6189.183105 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 397.281433 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 485.674500 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 399.642822 (us)
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

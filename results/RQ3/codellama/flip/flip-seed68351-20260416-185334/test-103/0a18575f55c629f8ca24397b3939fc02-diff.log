@@ -1,0 +1,37 @@
+Input args: 3 27 10
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS']
+CUDA OUTPUT:
+=========== Data type is FP32 ==========
+shape: ( 27 27 27 )
+flip_dims: ( 0 1 2 )
+stride: ( 729 27 1 )
+PASS
+Average execution time of the flip kernel: 0.005069 (ms)
+=========== Data type is FP64 ==========
+shape: ( 27 27 27 )
+flip_dims: ( 0 1 2 )
+stride: ( 729 27 1 )
+PASS
+Average execution time of the flip kernel: 0.004592 (ms)
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL']
+OMP OUTPUT:
+=========== Data type is FP32 ==========
+shape: ( 27 27 27 )
+flip_dims: ( 0 1 2 )
+stride: ( 729 27 1 )
+FAIL
+Average execution time of the flip kernel: 12.424017 (ms)
+=========== Data type is FP64 ==========
+shape: ( 27 27 27 )
+flip_dims: ( 0 1 2 )
+stride: ( 729 27 1 )
+FAIL
+Average execution time of the flip kernel: 7.883026 (ms)
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS'], omp=['FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

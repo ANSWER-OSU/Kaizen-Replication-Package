@@ -1,0 +1,33 @@
+Input args: 10 1 4
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS']
+CUDA OUTPUT:
+Size = : 10 K 
+dnum = : 10240
+inum = : 10240
+Verification enabled
+PASS
+PASS
+Average execution time of AIDW_Kernel       0.000710 (s)
+Average execution time of AIDW_Kernel_Tiled 0.000330 (s)
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL']
+OMP OUTPUT:
+OMP: Warning #96: Cannot form a team with 8 threads, using 2 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Size = : 10 K 
+dnum = : 10240
+inum = : 10240
+Verification enabled
+0 727.633606 541.150696
+FAIL
+2 360.442444 489.560974
+FAIL
+Average execution time of AIDW_Kernel       0.658825 (s)
+Average execution time of AIDW_Kernel_Tiled 0.040614 (s)
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS'], omp=['FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

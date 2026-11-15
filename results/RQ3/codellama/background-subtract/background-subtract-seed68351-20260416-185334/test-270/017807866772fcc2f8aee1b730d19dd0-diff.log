@@ -1,0 +1,19 @@
+Input args: 64 355 0 20
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS']
+CUDA OUTPUT:
+Average kernel execution time: 209.253113 (us)
+Max error is 0
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL']
+OMP OUTPUT:
+Average kernel execution time: 10695.605469 (us)
+Max error is 1
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS'], omp=['FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

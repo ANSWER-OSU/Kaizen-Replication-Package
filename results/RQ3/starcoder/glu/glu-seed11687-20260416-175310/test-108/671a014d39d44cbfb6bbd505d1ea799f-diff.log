@@ -1,0 +1,68 @@
+Input args: 5 4 5
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+Shape of input tensor: ( 4 4 4 4 4 )
+Average execution time of GLU kernel (split dimension = 4): 626.484009 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 4.716400 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 4.573000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 4.398400 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 3): 5.208200 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 4): 4.154400 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 4.275400 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 4.383400 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 2): 4.308200 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 3): 4.146000 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 4): 4.149200 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 3.991200 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 4.251800 (us)
+PASS
+============================================================
+OMP EXIT CODE:  SIGSEGV - Segmentation fault (139)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+Shape of input tensor: ( 4 4 4 4 4 )
+Average execution time of GLU kernel (split dimension = 4): 3768.269043 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 152.538010 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 144.737610 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 141.287613 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 141.982010 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 4): 142.322006 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 148.621201 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 147.863007 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 144.935608 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 147.468216 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 4): 142.781006 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 148.227615 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 152.347015 (us)
+FAIL
+timeout: the monitored command dumped core
+============================================================
+DIVERGENCE DETECTED: exit codes differ (cuda=0, omp=139), PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: omp_crash (AFL-harness rule used by the replay)

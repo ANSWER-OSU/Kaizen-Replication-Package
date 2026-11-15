@@ -1,0 +1,61 @@
+Input args: 64 1000 50
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+=========== Data type is FP32 ==========
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 199.311447 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 3.330740 (us)
+PASS
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 3.780420 (us)
+PASS
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 6.178961 (us)
+PASS
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 7.177540 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+=========== Data type is FP32 ==========
+Initialization of input data may take a while..
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 311.111786 (us)
+0.989439 -0.352835 -9504895763615322255585840201728.000000 -0.752483
+FAIL
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 482.531525 (us)
+0.989437 -0.352835 -19009798780785562198946728640512.000000 -0.752483
+FAIL
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 979.730103 (us)
+0.989435 -0.352835 -38019604815126042085668505518080.000000 -0.752483
+FAIL
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 1959.560425 (us)
+0.989442 -0.352835 -76039219301658641088370408685568.000000 -0.752483
+FAIL
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 3915.381348 (us)
+0.989446 -0.352835 -152078448274723839093774215020544.000000 -0.752483
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

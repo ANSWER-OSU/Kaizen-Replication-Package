@@ -1,0 +1,24 @@
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+=========== Data type is FP32 ==========
+Initialization of input data may take a while..
+
+Thread block size: 64
+Average execution time of nll loss forward kernel: 41981.683594 (us)
+PASS
+
+Thread block size: 128
+Average execution time of nll loss forward kernel: 2129.497070 (us)
+PASS
+
+Thread block size: 256
+Average execution time of nll loss forward kernel: 1206.136108 (us)
+171053600.000000 -0.214682 -971353449316280832324796416.000000 87.593803
+FAIL
+
+Thread block size: 512
+Average execution time of nll loss forward kernel: 746.644531 (us)
+PASS
+
+Thread block size: 1024
+Average execution time of nll loss forward kernel: 672.374023 (us)
+PASS

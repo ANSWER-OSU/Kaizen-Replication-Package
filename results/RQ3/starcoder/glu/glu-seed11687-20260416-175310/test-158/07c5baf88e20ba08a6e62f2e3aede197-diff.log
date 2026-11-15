@@ -1,0 +1,31 @@
+Input args: 2 128 4
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+Shape of input tensor: ( 128 128 )
+Average execution time of GLU kernel (split dimension = 1): 894.108276 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 4.800250 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 1): 4.271500 (us)
+PASS
+Average execution time of GLU kernel (split dimension = 0): 4.434250 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+Shape of input tensor: ( 128 128 )
+Average execution time of GLU kernel (split dimension = 1): 1535.383301 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 209.149261 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 202.298264 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 200.677261 (us)
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

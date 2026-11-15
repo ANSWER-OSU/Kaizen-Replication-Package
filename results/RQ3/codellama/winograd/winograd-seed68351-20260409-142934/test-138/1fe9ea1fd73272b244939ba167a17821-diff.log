@@ -1,0 +1,23 @@
+Input args: 1024 16 16
+Seed crash: True
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS']
+CUDA OUTPUT:
+PASS
+Co-execution time: 0.791257 s
+Total time: 3.084268 s
+Ratio of co-execution time to total time: 25.65%
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL']
+OMP OUTPUT:
+OMP: Warning #96: Cannot form a team with 1024 threads, using 96 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+FAIL
+Co-execution time: 14.795322 s
+Total time: 17.926195 s
+Ratio of co-execution time to total time: 82.53%
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS'], omp=['FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

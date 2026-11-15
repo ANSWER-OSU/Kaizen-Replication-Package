@@ -1,0 +1,57 @@
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+Number of rows in the embedding table: 257
+Batch size: 16
+
+Embedding dimension: 768
+block size: 128
+Average execution time of dense embedding kernel (k1): 19.486021 (us)
+Average execution time of dense embedding kernel (k2): 16.593260 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 10.035541 (us)
+Average execution time of dense embedding kernel (k2): 9.312040 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 7.400400 (us)
+Average execution time of dense embedding kernel (k2): 6.923380 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 4.818100 (us)
+Average execution time of dense embedding kernel (k2): 4.598920 (us)
+PASS
+
+Embedding dimension: 2048
+block size: 128
+Average execution time of dense embedding kernel (k1): 45.109642 (us)
+Average execution time of dense embedding kernel (k2): 40.328861 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 23.512623 (us)
+Average execution time of dense embedding kernel (k2): 21.667662 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 13.019300 (us)
+Average execution time of dense embedding kernel (k2): 12.033381 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 7.865660 (us)
+Average execution time of dense embedding kernel (k2): 7.254340 (us)
+PASS
+
+Embedding dimension: 12288
+block size: 128
+Average execution time of dense embedding kernel (k1): 523.366028 (us)
+Average execution time of dense embedding kernel (k2): 499.071838 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 267.914795 (us)
+Average execution time of dense embedding kernel (k2): 255.999588 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 139.676987 (us)
+Average execution time of dense embedding kernel (k2): 133.781982 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 75.608826 (us)
+Average execution time of dense embedding kernel (k2): 72.707924 (us)
+PASS

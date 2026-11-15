@@ -1,0 +1,14 @@
+OMP: Warning #96: Cannot form a team with 1024 threads, using 96 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+=========== Data type is FP32 ==========
+shape: ( 64 64 64 )
+flip_dims: ( 0 1 2 )
+stride: ( 4096 64 1 )
+FAIL
+Average execution time of the flip kernel: 52.033707 (ms)
+=========== Data type is FP64 ==========
+shape: ( 64 64 64 )
+flip_dims: ( 0 1 2 )
+stride: ( 4096 64 1 )
+FAIL
+Average execution time of the flip kernel: 49.004917 (ms)

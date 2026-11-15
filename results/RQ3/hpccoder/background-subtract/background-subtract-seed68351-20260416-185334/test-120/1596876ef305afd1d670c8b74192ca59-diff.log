@@ -1,0 +1,21 @@
+Input args: 3840 480 0 20
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS']
+CUDA OUTPUT:
+Average kernel execution time: 331.011597 (us)
+Max error is 0
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL']
+OMP OUTPUT:
+OMP: Warning #96: Cannot form a team with 7200 threads, using 96 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Average kernel execution time: 107305.914062 (us)
+Max error is 19
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS'], omp=['FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

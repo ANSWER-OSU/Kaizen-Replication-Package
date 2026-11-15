@@ -1,0 +1,23 @@
+OMP: Warning #96: Cannot form a team with 2048 threads, using 32 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Shape of input tensor: ( 32 32 32 32 )
+Average execution time of GLU kernel (split dimension = 3): 31608.353516 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 7479.868652 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 7679.583984 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 8090.265625 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 22153.382812 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 7447.192383 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 1): 7456.614746 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 2): 8322.822266 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 3): 19057.740234 (us)
+FAIL
+Average execution time of GLU kernel (split dimension = 0): 7378.903809 (us)
+FAIL

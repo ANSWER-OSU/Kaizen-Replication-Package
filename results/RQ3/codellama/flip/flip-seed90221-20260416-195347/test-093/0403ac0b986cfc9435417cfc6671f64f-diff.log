@@ -1,0 +1,39 @@
+Input args: 3 64 3
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS']
+CUDA OUTPUT:
+=========== Data type is FP32 ==========
+shape: ( 64 64 64 )
+flip_dims: ( 0 1 2 )
+stride: ( 4096 64 1 )
+PASS
+Average execution time of the flip kernel: 0.014832 (ms)
+=========== Data type is FP64 ==========
+shape: ( 64 64 64 )
+flip_dims: ( 0 1 2 )
+stride: ( 4096 64 1 )
+PASS
+Average execution time of the flip kernel: 0.013821 (ms)
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL']
+OMP OUTPUT:
+OMP: Warning #96: Cannot form a team with 1024 threads, using 96 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+=========== Data type is FP32 ==========
+shape: ( 64 64 64 )
+flip_dims: ( 0 1 2 )
+stride: ( 4096 64 1 )
+FAIL
+Average execution time of the flip kernel: 58.570431 (ms)
+=========== Data type is FP64 ==========
+shape: ( 64 64 64 )
+flip_dims: ( 0 1 2 )
+stride: ( 4096 64 1 )
+FAIL
+Average execution time of the flip kernel: 67.471458 (ms)
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS'], omp=['FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

@@ -1,0 +1,125 @@
+Input args: 109 2 1
+Seed crash: False
+============================================================
+CUDA EXIT CODE: OK (0)
+CUDA PASS/FAIL: ['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS']
+CUDA OUTPUT:
+Number of rows in the embedding table: 109
+Batch size: 2
+
+Embedding dimension: 768
+block size: 128
+Average execution time of dense embedding kernel (k1): 3372.607178 (us)
+Average execution time of dense embedding kernel (k2): 33.363003 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 16.398001 (us)
+Average execution time of dense embedding kernel (k2): 15.274001 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 15.050001 (us)
+Average execution time of dense embedding kernel (k2): 12.626000 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 13.272000 (us)
+Average execution time of dense embedding kernel (k2): 20.639002 (us)
+PASS
+
+Embedding dimension: 2048
+block size: 128
+Average execution time of dense embedding kernel (k1): 18.573000 (us)
+Average execution time of dense embedding kernel (k2): 16.678001 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 16.898001 (us)
+Average execution time of dense embedding kernel (k2): 15.870001 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 15.777000 (us)
+Average execution time of dense embedding kernel (k2): 23.247002 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 14.198001 (us)
+Average execution time of dense embedding kernel (k2): 14.248001 (us)
+PASS
+
+Embedding dimension: 12288
+block size: 128
+Average execution time of dense embedding kernel (k1): 85.975006 (us)
+Average execution time of dense embedding kernel (k2): 48.303001 (us)
+PASS
+block size: 256
+Average execution time of dense embedding kernel (k1): 30.392002 (us)
+Average execution time of dense embedding kernel (k2): 28.391001 (us)
+PASS
+block size: 512
+Average execution time of dense embedding kernel (k1): 22.721001 (us)
+Average execution time of dense embedding kernel (k2): 19.335001 (us)
+PASS
+block size: 1024
+Average execution time of dense embedding kernel (k1): 15.421000 (us)
+Average execution time of dense embedding kernel (k2): 14.883000 (us)
+PASS
+============================================================
+OMP EXIT CODE:  OK (0)
+OMP PASS/FAIL:  ['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL']
+OMP OUTPUT:
+Number of rows in the embedding table: 109
+Batch size: 2
+
+Embedding dimension: 768
+block size: 128
+Average execution time of dense embedding kernel (k1): 40173.753906 (us)
+Average execution time of dense embedding kernel (k2): 288.812012 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 247.305008 (us)
+Average execution time of dense embedding kernel (k2): 295.862000 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 750.992065 (us)
+Average execution time of dense embedding kernel (k2): 332.458008 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 363.514008 (us)
+Average execution time of dense embedding kernel (k2): 271.917999 (us)
+FAIL
+
+Embedding dimension: 2048
+block size: 128
+Average execution time of dense embedding kernel (k1): 11933.774414 (us)
+Average execution time of dense embedding kernel (k2): 347.650024 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 193.065002 (us)
+Average execution time of dense embedding kernel (k2): 702.304016 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 215.638016 (us)
+Average execution time of dense embedding kernel (k2): 570.182007 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 240.246017 (us)
+Average execution time of dense embedding kernel (k2): 400.091034 (us)
+FAIL
+
+Embedding dimension: 12288
+block size: 128
+Average execution time of dense embedding kernel (k1): 6150.635254 (us)
+Average execution time of dense embedding kernel (k2): 1878.112061 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 601.921021 (us)
+Average execution time of dense embedding kernel (k2): 1618.304077 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 564.333008 (us)
+Average execution time of dense embedding kernel (k2): 1858.005127 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 520.177002 (us)
+Average execution time of dense embedding kernel (k2): 1636.881104 (us)
+FAIL
+============================================================
+DIVERGENCE DETECTED: PASS/FAIL differs (cuda=['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS'], omp=['FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL', 'FAIL'])
+Replay reason: passfail_mismatch (AFL-harness rule used by the replay)

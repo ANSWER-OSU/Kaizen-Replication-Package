@@ -1,0 +1,56 @@
+Number of rows in the embedding table: 20000
+Batch size: 1
+
+Embedding dimension: 768
+block size: 128
+Average execution time of dense embedding kernel (k1): 9228.601562 (us)
+Average execution time of dense embedding kernel (k2): 13.115001 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 7.929000 (us)
+Average execution time of dense embedding kernel (k2): 10.947001 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 6.874001 (us)
+Average execution time of dense embedding kernel (k2): 9.819000 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 6.642000 (us)
+Average execution time of dense embedding kernel (k2): 10.382001 (us)
+FAIL
+
+Embedding dimension: 2048
+block size: 128
+Average execution time of dense embedding kernel (k1): 232.992004 (us)
+Average execution time of dense embedding kernel (k2): 19.105001 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 7.747000 (us)
+Average execution time of dense embedding kernel (k2): 18.763000 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 6.681000 (us)
+Average execution time of dense embedding kernel (k2): 16.628000 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 6.588000 (us)
+Average execution time of dense embedding kernel (k2): 17.266001 (us)
+FAIL
+
+Embedding dimension: 12288
+block size: 128
+Average execution time of dense embedding kernel (k1): 267.546021 (us)
+Average execution time of dense embedding kernel (k2): 71.048004 (us)
+FAIL
+block size: 256
+Average execution time of dense embedding kernel (k1): 21.742001 (us)
+Average execution time of dense embedding kernel (k2): 82.565002 (us)
+FAIL
+block size: 512
+Average execution time of dense embedding kernel (k1): 9.791000 (us)
+Average execution time of dense embedding kernel (k2): 82.056007 (us)
+FAIL
+block size: 1024
+Average execution time of dense embedding kernel (k1): 10.092000 (us)
+Average execution time of dense embedding kernel (k2): 83.113007 (us)
+FAIL
