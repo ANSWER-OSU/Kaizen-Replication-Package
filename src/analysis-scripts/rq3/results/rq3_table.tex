@@ -1,0 +1,32 @@
+\begin{table*}[!t]
+\centering
+\scriptsize
+\caption{RQ3: Compile-time errors in CUDA-to-OpenMP kernel translations of \toolname-generated variants by FT-CodeLlama-13B (CL), FT-StarCoderBase-7B (SC), and FT-HPC-Coder-6.7B (HC), ordered by frequency. The count columns give the number of unique compilation errors across the five mutation runs and, in parentheses, their share of the translator's unique errors. Examples list affected applications with the translator in parentheses. $^\dagger$Categories that arise from the gap between CUDA's execution model and OpenMP's directive-based model.}
+\label{tab:error_taxonomy_kernel_translation}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{4.9cm}>{\raggedright\arraybackslash}p{3.1cm}rrrr@{}}
+\toprule
+\textbf{Error type} & \textbf{Description} & \textbf{Examples} & \textbf{Likely cause} & \textbf{CL} & \textbf{SC} & \textbf{HC} & \textbf{Total} \\
+\midrule
+Undeclared identifier & Variable, macro, constant, or function referenced without declaration. & \texttt{attention(CL)}, \texttt{glu(HC)}, \texttt{dense-embedding(SC)}: identifier inserted by a mutation operator used but not declared; \texttt{ace(CL)}, \texttt{burger(HC)}, \texttt{lif(SC)}: program variable or function not declared; \texttt{ising(CL)}, \texttt{winograd(HC)}: misspelled identifier. & Dropped declarations while keeping uses, including declarations inserted by \toolname's mutation operators, or altered identifiers during translation. & 166 (8\%) & 2{,}584 (40\%) & 833 (40\%) & 3{,}583 \\
+\midrule
+Syntax error & Generated code is not syntactically valid C++. & \texttt{nlll(CL)}, \texttt{cross(HC)}, \texttt{lif(SC)}: missing expression or extraneous brace; \texttt{aidw(SC)}, \texttt{assert(SC)}: expected unqualified identifier; \texttt{flip(HC)}: stray text parsed as a type. & Produced incomplete or malformed code that does not parse. & 85 (4\%) & 2{,}810 (44\%) & 227 (11\%) & 3{,}122 \\
+\midrule
+Function signature mismatch & Function calls do not match available definitions. & \texttt{channelSum(CL)}, \texttt{ace(HC)}, \texttt{flip(SC)}: no matching function for call to the translated kernel; \texttt{aidw(SC)}: unresolved reference to overloaded function. & Changed the kernel's parameter list or types, so the translated kernel no longer matches its call in the OpenMP host program. & 1{,}090 (54\%) & 725 (11\%) & 538 (26\%) & 2{,}353 \\
+\midrule
+Incorrect loop construct$^\dagger$ & Loop structure violates OpenMP loop requirements. & \texttt{ace(CL)}, \texttt{ising(CL)}: insufficient nested loops for \texttt{collapse(N)}; \texttt{glu(CL)}, \texttt{channelSum(HC)}: non-\texttt{for} loop after OpenMP directive; \texttt{assert(CL)}, \texttt{attention(CL)}: invalid loop condition. & Generated fewer nested loops than the directive requires, used loop forms OpenMP does not accept, or carried over CUDA loop logic incompatible with OpenMP. & 145 (7\%) & 79 (1\%) & 213 (10\%) & 437 \\
+\midrule
+Incorrect API/runtime name & CUDA-specific APIs, types, or runtime variables retained in OpenMP code. & \texttt{assert(CL)}, \texttt{channelSum(HC)}, \texttt{ace(SC)}: \texttt{gridDim}, \texttt{blockIdx}, or \texttt{threadIdx} retained; \texttt{ising(CL)}, \texttt{glu(SC)}: CUDA vector types \texttt{int3} and \texttt{float4} retained. & Copied CUDA built-ins and types instead of translating them into OpenMP or C++ equivalents. & 256 (13\%) & 32 ($<$1\%) & 119 (6\%) & 407 \\
+\midrule
+Unsupported construct usage$^\dagger$ & OpenMP constructs or clauses used in invalid contexts. & \texttt{ace(CL)}, \texttt{flip(SC)}: region nested inside \texttt{target teams distribute}; \texttt{channelSum(CL)}: \texttt{num\_teams} on \texttt{parallel for}; \texttt{dense-embedding(CL)}: \texttt{grainsize} on \texttt{parallel for}; \texttt{channelSum(CL)}, \texttt{nlll(CL)}: \texttt{barrier} or \texttt{single} nested inside \texttt{target teams}. & Applied directives or clauses in contexts where OpenMP does not permit them, often by mapping CUDA block-level synchronization to OpenMP team regions. & 215 (11\%) & 11 ($<$1\%) & 0 & 226 \\
+\midrule
+Invalid construct usage$^\dagger$ & Incorrect use of OpenMP clauses or synchronization constructs. & \texttt{glu(CL)}: non-expression statement under \texttt{atomic}; \texttt{nlll(CL)}, \texttt{glu(SC)}: invalid reduction variable; \texttt{channelSum(HC)}: non-positive \texttt{num\_threads} argument. & Violated OpenMP's requirements for reductions, atomics, data movement, or clause arguments. & 5 ($<$1\%) & 142 (2\%) & 26 (1\%) & 173 \\
+\midrule
+Type mismatch & Operations performed on incompatible types. & \texttt{glu(CL)}, \texttt{flip(SC)}: incompatible operands; \texttt{winograd(CL)}: subscript of a function pointer; \texttt{lif(CL)}: \texttt{float} assigned to \texttt{float *}; \texttt{ace(SC)}: non-integral expression where an integer is required. & Introduced incompatible types, incorrect casts, or naming conflicts that change expression semantics. & 42 (2\%) & 36 (1\%) & 35 (2\%) & 113 \\
+\midrule
+Invalid control flow & Control-flow statements violate OpenMP execution rules. & \texttt{background-subtract(CL)}, \texttt{glu(HC)}, \texttt{ising(SC)}: \texttt{return} inside an OpenMP region; \texttt{nlll(HC)}, \texttt{dense-embedding(SC)}: \texttt{break} inside an OpenMP loop. & Carried over early exits that are legal in a CUDA thread but prohibited in OpenMP structured blocks. & 21 (1\%) & 10 ($<$1\%) & 80 (4\%) & 111 \\
+\midrule
+\textbf{Total} & & & & 2{,}025 & 6{,}429 & 2{,}071 & 10{,}525 \\
+\bottomrule
+\end{tabular}
+\end{table*}

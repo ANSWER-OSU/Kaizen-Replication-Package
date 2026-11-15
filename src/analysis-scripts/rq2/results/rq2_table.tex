@@ -1,0 +1,19 @@
+\begin{figure*}[!t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lllr rr rr rr@{}}
+\toprule
+& & & & \multicolumn{2}{c}{\textbf{FT-CodeLlama-13B}} & \multicolumn{2}{c}{\textbf{FT-StarCoderBase-7B}} & \multicolumn{2}{c}{\textbf{FT-HPC-Coder-6.7B}} \\
+\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(l){9-10}
+\textbf{Configuration} & \textbf{Program Type} & \textbf{Test Input Type} & \textbf{Total Programs} & \textbf{Comp. (\%)} & \textbf{Corr. (\%)} & \textbf{Comp. (\%)} & \textbf{Corr. (\%)} & \textbf{Comp. (\%)} & \textbf{Corr. (\%)} \\
+\midrule
+\textbf{\toolname} & \textbf{Original + variants} & \textbf{Manual + generated} & \textbf{14{,}519} & \textbf{64.2} & \textbf{34.1} & \textbf{1.7} & \textbf{0.2} & \textbf{66.4} & \textbf{27.6} \\
+\toolname-I & Original + variants & Manual & 14{,}519 & 64.2 & 59.0 & 1.7 & 0.2 & 66.4 & 50.4 \\
+\toolname-II & Original & Manual + generated & 16 & 56.3 & 37.5 & 6.3 & 0.0 & 81.3 & 50.0 \\
+Baseline & Original & Manual & 16 & 56.3 & 50.0 & 6.3 & 0.0 & 81.3 & 62.5 \\
+\bottomrule
+\end{tabular}
+\caption{RQ2: Compilability and correctness of the translations under \toolname{} and three ablated configurations. \emph{Programs}: original programs, and program variants. \emph{Inputs}: manual test inputs, and generated inputs. \emph{Total}: programs translated by each translator (variants over the five mutation runs). \emph{Comp.} and \emph{Corr.}: percentage of translations that compile and that behave like the CUDA program on all inputs used.}
+\label{tab:rq2}
+\end{figure*}

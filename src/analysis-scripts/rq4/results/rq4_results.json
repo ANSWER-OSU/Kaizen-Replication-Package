@@ -1,0 +1,129 @@
+{
+  "total_occurrences": 1501,
+  "n_categories": 9,
+  "categories": [
+    {
+      "rank": 1,
+      "category": "Floating-Point Precision Loss",
+      "count": 324,
+      "share": 0.21585609593604263,
+      "example_applications": [
+        "background-subtract"
+      ],
+      "apps": 1
+    },
+    {
+      "rank": 2,
+      "category": "Multi-dimensional Index Flattening",
+      "count": 283,
+      "share": 0.18854097268487674,
+      "example_applications": [
+        "winograd"
+      ],
+      "apps": 1
+    },
+    {
+      "rank": 3,
+      "category": "Execution Model Assumption Transfer",
+      "count": 204,
+      "share": 0.13590939373750832,
+      "example_applications": [
+        "aidw",
+        "dense-embedding",
+        "glu",
+        "nlll"
+      ],
+      "apps": 4
+    },
+    {
+      "rank": 4,
+      "category": "Intermediate Variable Elimination",
+      "count": 198,
+      "share": 0.13191205862758162,
+      "example_applications": [
+        "aidw",
+        "glu",
+        "winograd"
+      ],
+      "apps": 3
+    },
+    {
+      "rank": 5,
+      "category": "Incorrect API/Library Call",
+      "count": 126,
+      "share": 0.08394403730846102,
+      "example_applications": [
+        "lif"
+      ],
+      "apps": 1
+    },
+    {
+      "rank": 6,
+      "category": "Shared Memory Scope Mistranslation",
+      "count": 111,
+      "share": 0.07395069953364423,
+      "example_applications": [
+        "nlll"
+      ],
+      "apps": 1
+    },
+    {
+      "rank": 7,
+      "category": "Loop Bound Error",
+      "count": 101,
+      "share": 0.06728847435043304,
+      "example_applications": [
+        "background-subtract",
+        "dense-embedding",
+        "nlll"
+      ],
+      "apps": 3
+    },
+    {
+      "rank": 8,
+      "category": "Missing Statement Fault",
+      "count": 89,
+      "share": 0.059293804130579615,
+      "example_applications": [
+        "flip",
+        "ising",
+        "lif"
+      ],
+      "apps": 3
+    },
+    {
+      "rank": 9,
+      "category": "Incorrect Reduction",
+      "count": 65,
+      "share": 0.04330446369087275,
+      "example_applications": [
+        "nlll"
+      ],
+      "apps": 1
+    }
+  ],
+  "apps_total": 9,
+  "example_applications": [
+    "aidw",
+    "background-subtract",
+    "dense-embedding",
+    "flip",
+    "glu",
+    "ising",
+    "lif",
+    "nlll",
+    "winograd"
+  ],
+  "unit": "distinct translation mistake across all five mutation runs and all three translators",
+  "thread_hierarchy_or_shared_memory": {
+    "categories": [
+      "Execution Model Assumption Transfer",
+      "Multi-dimensional Index Flattening",
+      "Loop Bound Error",
+      "Shared Memory Scope Mistranslation"
+    ],
+    "count": 699,
+    "share": 0.46568954030646237,
+    "note": "authors' grouping, not part of the manual taxonomy"
+  }
+}

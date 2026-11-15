@@ -1,0 +1,44 @@
+Applications in model: 11 
+
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: 
+cbind(correct, translated - correct) ~ translator + (1 | application) +  
+    (1 | application:run) + (1 | application:translator)
+   Data: d
+Control: glmerControl(optimizer = "bobyqa")
+
+     AIC      BIC   logLik deviance df.resid 
+  1504.1   1517.6   -747.1   1494.1      105 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-6.8488 -0.8852 -0.1543  0.7931 11.4111 
+
+Random effects:
+ Groups                 Name        Variance Std.Dev.
+ application:run        (Intercept)  1.013   1.006   
+ application:translator (Intercept) 14.239   3.773   
+ application            (Intercept)  4.640   2.154   
+Number of obs: 110, groups:  
+application:run, 55; application:translator, 22; application, 11
+
+Fixed effects:
+                            Estimate Std. Error z value Pr(>|z|)
+(Intercept)                  -0.4887     1.3349  -0.366    0.714
+translatorFT-HPC-Coder-6.7B  -0.1792     1.6279  -0.110    0.912
+
+Correlation of Fixed Effects:
+            (Intr)
+tFT-HPC-C-6 -0.617
+
+Odds ratio (CodeLlama / HPC-Coder) with 95% CI:
+ contrast                                 odds.ratio   SE  df asymp.LCL
+ (FT-CodeLlama-13B) / (FT-HPC-Coder-6.7B)        1.2 1.95 Inf    0.0492
+ asymp.UCL null z.ratio p.value
+      29.1    1   0.110  0.9123
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 

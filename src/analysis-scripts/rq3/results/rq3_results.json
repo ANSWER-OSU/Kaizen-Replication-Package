@@ -1,0 +1,578 @@
+{
+  "total_instances": 10525,
+  "instances_per_translator": {
+    "FT-CodeLlama-13B": 2025,
+    "FT-StarCoderBase-7B": 6429,
+    "FT-HPC-Coder-6.7B": 2071
+  },
+  "categories": [
+    {
+      "category": "Undeclared identifier",
+      "model_specific": false,
+      "instances": {
+        "FT-CodeLlama-13B": 166,
+        "FT-StarCoderBase-7B": 2584,
+        "FT-HPC-Coder-6.7B": 833
+      },
+      "total": 3583,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.082,
+        "FT-StarCoderBase-7B": 0.4019,
+        "FT-HPC-Coder-6.7B": 0.4022
+      },
+      "share_of_all_errors": 0.3404,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 4,
+        "FT-StarCoderBase-7B": 2,
+        "FT-HPC-Coder-6.7B": 1
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "ace",
+          "assert",
+          "attention",
+          "channelSum",
+          "flip",
+          "glu",
+          "ising",
+          "lif",
+          "nlll",
+          "winograd"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "aidw",
+          "assert",
+          "attention",
+          "burger",
+          "channelSum",
+          "cross",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising",
+          "lif",
+          "nlll",
+          "winograd"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "ace",
+          "background-subtract",
+          "burger",
+          "channelSum",
+          "cross",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising",
+          "lif",
+          "nlll",
+          "winograd"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "aidw",
+        "assert",
+        "attention",
+        "background-subtract",
+        "burger",
+        "channelSum",
+        "cross",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "nlll",
+        "winograd"
+      ]
+    },
+    {
+      "category": "Syntax error",
+      "model_specific": false,
+      "instances": {
+        "FT-CodeLlama-13B": 85,
+        "FT-StarCoderBase-7B": 2810,
+        "FT-HPC-Coder-6.7B": 227
+      },
+      "total": 3122,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.042,
+        "FT-StarCoderBase-7B": 0.4371,
+        "FT-HPC-Coder-6.7B": 0.1096
+      },
+      "share_of_all_errors": 0.2966,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 6,
+        "FT-StarCoderBase-7B": 1,
+        "FT-HPC-Coder-6.7B": 3
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "aidw",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising",
+          "nlll",
+          "winograd"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "aidw",
+          "assert",
+          "attention",
+          "background-subtract",
+          "burger",
+          "channelSum",
+          "cross",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising",
+          "lif",
+          "nlll",
+          "winograd"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "aidw",
+          "background-subtract",
+          "cross",
+          "dense-embedding",
+          "flip",
+          "lif",
+          "winograd"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "aidw",
+        "assert",
+        "attention",
+        "background-subtract",
+        "burger",
+        "channelSum",
+        "cross",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "nlll",
+        "winograd"
+      ]
+    },
+    {
+      "category": "Function signature mismatch",
+      "model_specific": false,
+      "instances": {
+        "FT-CodeLlama-13B": 1090,
+        "FT-StarCoderBase-7B": 725,
+        "FT-HPC-Coder-6.7B": 538
+      },
+      "total": 2353,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.5383,
+        "FT-StarCoderBase-7B": 0.1128,
+        "FT-HPC-Coder-6.7B": 0.2598
+      },
+      "share_of_all_errors": 0.2236,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 1,
+        "FT-StarCoderBase-7B": 3,
+        "FT-HPC-Coder-6.7B": 2
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "ace",
+          "assert",
+          "background-subtract",
+          "burger",
+          "channelSum",
+          "ising"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "aidw",
+          "assert",
+          "channelSum",
+          "flip",
+          "glu"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "ace",
+          "assert",
+          "burger",
+          "channelSum",
+          "flip",
+          "ising",
+          "lif"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "aidw",
+        "assert",
+        "background-subtract",
+        "burger",
+        "channelSum",
+        "flip",
+        "glu",
+        "ising",
+        "lif"
+      ]
+    },
+    {
+      "category": "Incorrect loop construct",
+      "model_specific": true,
+      "instances": {
+        "FT-CodeLlama-13B": 145,
+        "FT-StarCoderBase-7B": 79,
+        "FT-HPC-Coder-6.7B": 213
+      },
+      "total": 437,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.0716,
+        "FT-StarCoderBase-7B": 0.0123,
+        "FT-HPC-Coder-6.7B": 0.1028
+      },
+      "share_of_all_errors": 0.0415,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 5,
+        "FT-StarCoderBase-7B": 5,
+        "FT-HPC-Coder-6.7B": 4
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "ace",
+          "assert",
+          "attention",
+          "glu",
+          "ising",
+          "lif"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "burger",
+          "channelSum",
+          "cross",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising",
+          "nlll"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "ace",
+          "assert",
+          "channelSum",
+          "dense-embedding",
+          "glu",
+          "ising",
+          "nlll"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "assert",
+        "attention",
+        "burger",
+        "channelSum",
+        "cross",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "nlll"
+      ]
+    },
+    {
+      "category": "Incorrect API/runtime name",
+      "model_specific": false,
+      "instances": {
+        "FT-CodeLlama-13B": 256,
+        "FT-StarCoderBase-7B": 32,
+        "FT-HPC-Coder-6.7B": 119
+      },
+      "total": 407,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.1264,
+        "FT-StarCoderBase-7B": 0.005,
+        "FT-HPC-Coder-6.7B": 0.0575
+      },
+      "share_of_all_errors": 0.0387,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 2,
+        "FT-StarCoderBase-7B": 7,
+        "FT-HPC-Coder-6.7B": 5
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "assert",
+          "channelSum",
+          "ising",
+          "nlll"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "assert",
+          "background-subtract",
+          "channelSum",
+          "flip",
+          "glu",
+          "winograd"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "assert",
+          "channelSum",
+          "nlll",
+          "winograd"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "assert",
+        "background-subtract",
+        "channelSum",
+        "flip",
+        "glu",
+        "ising",
+        "nlll",
+        "winograd"
+      ]
+    },
+    {
+      "category": "Unsupported construct usage",
+      "model_specific": true,
+      "instances": {
+        "FT-CodeLlama-13B": 215,
+        "FT-StarCoderBase-7B": 11,
+        "FT-HPC-Coder-6.7B": 0
+      },
+      "total": 226,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.1062,
+        "FT-StarCoderBase-7B": 0.0017,
+        "FT-HPC-Coder-6.7B": 0.0
+      },
+      "share_of_all_errors": 0.0215,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 3,
+        "FT-StarCoderBase-7B": 8,
+        "FT-HPC-Coder-6.7B": 9
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "ace",
+          "channelSum",
+          "dense-embedding",
+          "nlll"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "assert",
+          "channelSum",
+          "flip",
+          "nlll"
+        ],
+        "FT-HPC-Coder-6.7B": []
+      },
+      "affected_applications_any": [
+        "ace",
+        "assert",
+        "channelSum",
+        "dense-embedding",
+        "flip",
+        "nlll"
+      ]
+    },
+    {
+      "category": "Invalid construct usage",
+      "model_specific": true,
+      "instances": {
+        "FT-CodeLlama-13B": 5,
+        "FT-StarCoderBase-7B": 142,
+        "FT-HPC-Coder-6.7B": 26
+      },
+      "total": 173,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.0025,
+        "FT-StarCoderBase-7B": 0.0221,
+        "FT-HPC-Coder-6.7B": 0.0126
+      },
+      "share_of_all_errors": 0.0164,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 9,
+        "FT-StarCoderBase-7B": 4,
+        "FT-HPC-Coder-6.7B": 8
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "channelSum",
+          "glu",
+          "nlll"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "assert",
+          "background-subtract",
+          "burger",
+          "channelSum",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising",
+          "lif",
+          "nlll",
+          "winograd"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "assert",
+          "background-subtract",
+          "channelSum",
+          "flip",
+          "lif",
+          "nlll"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "assert",
+        "background-subtract",
+        "burger",
+        "channelSum",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "nlll",
+        "winograd"
+      ]
+    },
+    {
+      "category": "Type mismatch",
+      "model_specific": false,
+      "instances": {
+        "FT-CodeLlama-13B": 42,
+        "FT-StarCoderBase-7B": 36,
+        "FT-HPC-Coder-6.7B": 35
+      },
+      "total": 113,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.0207,
+        "FT-StarCoderBase-7B": 0.0056,
+        "FT-HPC-Coder-6.7B": 0.0169
+      },
+      "share_of_all_errors": 0.0107,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 7,
+        "FT-StarCoderBase-7B": 6,
+        "FT-HPC-Coder-6.7B": 7
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "glu",
+          "ising",
+          "lif",
+          "nlll",
+          "winograd"
+        ],
+        "FT-StarCoderBase-7B": [
+          "ace",
+          "assert",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "winograd"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "cross",
+          "dense-embedding",
+          "glu",
+          "nlll"
+        ]
+      },
+      "affected_applications_any": [
+        "ace",
+        "assert",
+        "cross",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "nlll",
+        "winograd"
+      ]
+    },
+    {
+      "category": "Invalid control flow",
+      "model_specific": false,
+      "instances": {
+        "FT-CodeLlama-13B": 21,
+        "FT-StarCoderBase-7B": 10,
+        "FT-HPC-Coder-6.7B": 80
+      },
+      "total": 111,
+      "share_of_translator_errors": {
+        "FT-CodeLlama-13B": 0.0104,
+        "FT-StarCoderBase-7B": 0.0016,
+        "FT-HPC-Coder-6.7B": 0.0386
+      },
+      "share_of_all_errors": 0.0105,
+      "rank_within_translator": {
+        "FT-CodeLlama-13B": 8,
+        "FT-StarCoderBase-7B": 9,
+        "FT-HPC-Coder-6.7B": 6
+      },
+      "affected_applications": {
+        "FT-CodeLlama-13B": [
+          "background-subtract",
+          "flip",
+          "glu",
+          "ising",
+          "winograd"
+        ],
+        "FT-StarCoderBase-7B": [
+          "background-subtract",
+          "dense-embedding",
+          "flip",
+          "glu",
+          "ising"
+        ],
+        "FT-HPC-Coder-6.7B": [
+          "background-subtract",
+          "flip",
+          "glu",
+          "ising",
+          "nlll"
+        ]
+      },
+      "affected_applications_any": [
+        "background-subtract",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "nlll",
+        "winograd"
+      ]
+    }
+  ],
+  "model_specific": {
+    "instances": {
+      "FT-CodeLlama-13B": 365,
+      "FT-StarCoderBase-7B": 232,
+      "FT-HPC-Coder-6.7B": 239
+    },
+    "share": {
+      "FT-CodeLlama-13B": 0.1802,
+      "FT-StarCoderBase-7B": 0.0361,
+      "FT-HPC-Coder-6.7B": 0.1154
+    },
+    "share_all": 0.0794
+  }
+}

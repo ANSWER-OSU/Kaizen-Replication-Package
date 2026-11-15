@@ -1,0 +1,553 @@
+{
+  "settings": {
+    "bootstrap_seed": 1,
+    "bootstrap_resamples": 10000,
+    "applications": [
+      "ace",
+      "aidw",
+      "assert",
+      "attention",
+      "background-subtract",
+      "burger",
+      "channelSum",
+      "cross",
+      "dense-embedding",
+      "flip",
+      "glu",
+      "ising",
+      "lif",
+      "nlll",
+      "p4",
+      "winograd"
+    ],
+    "mutation_runs": 5
+  },
+  "applications_marked_with_asterisk": [
+    "burger",
+    "dense-embedding",
+    "flip",
+    "lif",
+    "nlll",
+    "winograd"
+  ],
+  "unique_variants_translated": 14503,
+  "programs_translated": 14519,
+  "rates": {
+    "FT-CodeLlama-13B": {
+      "programs_translated": 14519,
+      "compiled": 9324,
+      "correct": 4953,
+      "compiled_but_incorrect": 4371,
+      "compile_rate": 0.642193,
+      "compile_rate_ci": [
+        0.3868,
+        0.8582
+      ],
+      "correct_rate": 0.341139,
+      "correct_rate_ci": [
+        0.1523,
+        0.5683
+      ],
+      "incorrect_among_compiled": 0.46879,
+      "incorrect_among_compiled_ci": [
+        0.186,
+        0.7286
+      ],
+      "correct_rate_per_run": [
+        0.3384,
+        0.4059,
+        0.3049,
+        0.3164,
+        0.3453
+      ],
+      "correct_rate_run_mean": 0.342182,
+      "correct_rate_run_sd": 0.0392,
+      "apps_with_no_correct_variant": [
+        "ace",
+        "assert",
+        "burger",
+        "channelSum",
+        "lif",
+        "nlll",
+        "p4"
+      ]
+    },
+    "FT-StarCoderBase-7B": {
+      "programs_translated": 14519,
+      "compiled": 254,
+      "correct": 34,
+      "compiled_but_incorrect": 220,
+      "compile_rate": 0.017494,
+      "compile_rate_ci": [
+        0.0,
+        0.0515
+      ],
+      "correct_rate": 0.002342,
+      "correct_rate_ci": [
+        0.0,
+        0.0078
+      ],
+      "incorrect_among_compiled": 0.866142,
+      "incorrect_among_compiled_ci": [
+        0.0,
+        1.0
+      ],
+      "correct_rate_per_run": [
+        0.0021,
+        0.0018,
+        0.006,
+        0.0012,
+        0.0007
+      ],
+      "correct_rate_run_mean": 0.002365,
+      "correct_rate_run_sd": 0.0021,
+      "apps_with_no_correct_variant": [
+        "ace",
+        "aidw",
+        "attention",
+        "background-subtract",
+        "burger",
+        "channelSum",
+        "cross",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "nlll",
+        "p4",
+        "winograd"
+      ]
+    },
+    "FT-HPC-Coder-6.7B": {
+      "programs_translated": 14519,
+      "compiled": 9641,
+      "correct": 4000,
+      "compiled_but_incorrect": 5641,
+      "compile_rate": 0.664026,
+      "compile_rate_ci": [
+        0.4612,
+        0.8304
+      ],
+      "correct_rate": 0.275501,
+      "correct_rate_ci": [
+        0.1202,
+        0.4711
+      ],
+      "incorrect_among_compiled": 0.585105,
+      "incorrect_among_compiled_ci": [
+        0.2684,
+        0.8122
+      ],
+      "correct_rate_per_run": [
+        0.2689,
+        0.2742,
+        0.2496,
+        0.3195,
+        0.265
+      ],
+      "correct_rate_run_mean": 0.275444,
+      "correct_rate_run_sd": 0.0263,
+      "apps_with_no_correct_variant": [
+        "ace",
+        "burger",
+        "channelSum",
+        "ising",
+        "nlll",
+        "p4"
+      ]
+    }
+  },
+  "verdicts": {
+    "FT-CodeLlama-13B": {
+      "pass_conventional": 8,
+      "pass_kaizen": 1,
+      "pass_to_fail": [
+        "aidw",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "ising",
+        "lif",
+        "winograd"
+      ],
+      "fail_to_pass": [],
+      "conventional_pass_kaizen_pass": [
+        "cross"
+      ],
+      "exact_mcnemar_p": 0.0156
+    },
+    "FT-StarCoderBase-7B": {
+      "pass_conventional": 0,
+      "pass_kaizen": 0,
+      "pass_to_fail": [],
+      "fail_to_pass": [],
+      "conventional_pass_kaizen_pass": [],
+      "exact_mcnemar_p": null
+    },
+    "FT-HPC-Coder-6.7B": {
+      "pass_conventional": 10,
+      "pass_kaizen": 0,
+      "pass_to_fail": [
+        "aidw",
+        "assert",
+        "attention",
+        "burger",
+        "cross",
+        "dense-embedding",
+        "flip",
+        "glu",
+        "lif",
+        "winograd"
+      ],
+      "fail_to_pass": [],
+      "conventional_pass_kaizen_pass": [],
+      "exact_mcnemar_p": 0.002
+    }
+  },
+  "metamorphic_relation": {
+    "eligible_pairs": 14,
+    "pairs_with_violation": 13,
+    "pairs_with_violation_in_every_run": 11,
+    "violating_variants": 3540,
+    "variants_in_eligible_pairs": 11471,
+    "violation_rate": 0.308604,
+    "reverse_pairs": 6,
+    "reverse_variants": 1042,
+    "violation_rate_ci": [
+      0.1695,
+      0.4633
+    ],
+    "per_translator": {
+      "FT-CodeLlama-13B": {
+        "eligible_pairs": 6,
+        "pairs_with_violation": 5,
+        "violations": 948
+      },
+      "FT-StarCoderBase-7B": {
+        "eligible_pairs": 0,
+        "pairs_with_violation": 0,
+        "violations": 0
+      },
+      "FT-HPC-Coder-6.7B": {
+        "eligible_pairs": 8,
+        "pairs_with_violation": 8,
+        "violations": 2592
+      }
+    }
+  },
+  "metamorphic_relation_without_assert": {
+    "eligible_pairs": 13,
+    "pairs_with_violation": 12,
+    "pairs_with_violation_in_every_run": 10,
+    "violating_variants": 3031,
+    "variants_in_eligible_pairs": 10600,
+    "violation_rate": 0.285943,
+    "reverse_pairs": 5,
+    "reverse_variants": 1008
+  },
+  "translator_comparison": {
+    "mean_per_application_correctness": {
+      "FT-CodeLlama-13B": 0.3683,
+      "FT-StarCoderBase-7B": 0.0025,
+      "FT-HPC-Coder-6.7B": 0.3448
+    },
+    "friedman_chi2": 11.762,
+    "friedman_p": 0.0028,
+    "pairwise": [
+      {
+        "a": "FT-CodeLlama-13B",
+        "b": "FT-StarCoderBase-7B",
+        "wilcoxon_p": 0.0069,
+        "holm_p": 0.0152,
+        "A12": 0.768
+      },
+      {
+        "a": "FT-CodeLlama-13B",
+        "b": "FT-HPC-Coder-6.7B",
+        "wilcoxon_p": 0.9292,
+        "holm_p": 0.9292,
+        "A12": 0.5
+      },
+      {
+        "a": "FT-StarCoderBase-7B",
+        "b": "FT-HPC-Coder-6.7B",
+        "wilcoxon_p": 0.0051,
+        "holm_p": 0.0152,
+        "A12": 0.203
+      }
+    ],
+    "mixed_model": "results/rq1_glmm.txt (scripts/rq1_glmm.R)"
+  },
+  "run_variability": {
+    "pairs_with_correct_and_incorrect": 19,
+    "per_pair": [
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "aidw",
+        "correct_pct_per_run": [
+          19.3548,
+          97.1429,
+          89.3805,
+          44.4444,
+          77.2277
+        ],
+        "min_pct": 19.3548,
+        "max_pct": 97.1429,
+        "range_pp": 77.788
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "attention",
+        "correct_pct_per_run": [
+          0.0,
+          46.9697,
+          6.7568,
+          1.3158,
+          1.4085
+        ],
+        "min_pct": 0.0,
+        "max_pct": 46.9697,
+        "range_pp": 46.9697
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "background-subtract",
+        "correct_pct_per_run": [
+          26.2821,
+          56.5517,
+          27.2152,
+          79.1444,
+          81.3953
+        ],
+        "min_pct": 26.2821,
+        "max_pct": 81.3953,
+        "range_pp": 55.1133
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "dense-embedding",
+        "correct_pct_per_run": [
+          45.4545,
+          43.3962,
+          17.7083,
+          17.8404,
+          11.8557
+        ],
+        "min_pct": 11.8557,
+        "max_pct": 45.4545,
+        "range_pp": 33.5989
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "flip",
+        "correct_pct_per_run": [
+          86.9369,
+          91.0891,
+          82.6923,
+          87.3134,
+          88.4774
+        ],
+        "min_pct": 82.6923,
+        "max_pct": 91.0891,
+        "range_pp": 8.3968
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "glu",
+        "correct_pct_per_run": [
+          91.623,
+          90.7104,
+          87.2928,
+          68.8312,
+          93.1818
+        ],
+        "min_pct": 68.8312,
+        "max_pct": 93.1818,
+        "range_pp": 24.3506
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "ising",
+        "correct_pct_per_run": [
+          97.4093,
+          99.4565,
+          98.4043,
+          89.3162,
+          94.5
+        ],
+        "min_pct": 89.3162,
+        "max_pct": 99.4565,
+        "range_pp": 10.1403
+      },
+      {
+        "translator": "FT-CodeLlama-13B",
+        "application": "winograd",
+        "correct_pct_per_run": [
+          79.8419,
+          91.635,
+          37.9845,
+          43.3735,
+          55.5556
+        ],
+        "min_pct": 37.9845,
+        "max_pct": 91.635,
+        "range_pp": 53.6505
+      },
+      {
+        "translator": "FT-StarCoderBase-7B",
+        "application": "assert",
+        "correct_pct_per_run": [
+          3.5714,
+          2.7473,
+          10.0592,
+          2.1622,
+          1.1628
+        ],
+        "min_pct": 1.1628,
+        "max_pct": 10.0592,
+        "range_pp": 8.8964
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "aidw",
+        "correct_pct_per_run": [
+          92.4731,
+          100.0,
+          97.3451,
+          73.1481,
+          95.0495
+        ],
+        "min_pct": 73.1481,
+        "max_pct": 100.0,
+        "range_pp": 26.8519
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "assert",
+        "correct_pct_per_run": [
+          75.0,
+          72.5275,
+          11.8343,
+          24.8649,
+          25.0
+        ],
+        "min_pct": 11.8343,
+        "max_pct": 75.0,
+        "range_pp": 63.1657
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "attention",
+        "correct_pct_per_run": [
+          20.3125,
+          27.2727,
+          94.5946,
+          80.2632,
+          94.3662
+        ],
+        "min_pct": 20.3125,
+        "max_pct": 94.5946,
+        "range_pp": 74.2821
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "background-subtract",
+        "correct_pct_per_run": [
+          16.6667,
+          22.069,
+          25.3165,
+          80.7487,
+          4.6512
+        ],
+        "min_pct": 4.6512,
+        "max_pct": 80.7487,
+        "range_pp": 76.0975
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "cross",
+        "correct_pct_per_run": [
+          91.9355,
+          94.2857,
+          97.1429,
+          100.0,
+          94.2857
+        ],
+        "min_pct": 91.9355,
+        "max_pct": 100.0,
+        "range_pp": 8.0645
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "dense-embedding",
+        "correct_pct_per_run": [
+          83.4225,
+          71.0692,
+          41.1458,
+          75.1174,
+          86.5979
+        ],
+        "min_pct": 41.1458,
+        "max_pct": 86.5979,
+        "range_pp": 45.4521
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "flip",
+        "correct_pct_per_run": [
+          5.4054,
+          6.9307,
+          8.1731,
+          22.0149,
+          7.8189
+        ],
+        "min_pct": 5.4054,
+        "max_pct": 22.0149,
+        "range_pp": 16.6095
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "glu",
+        "correct_pct_per_run": [
+          93.7173,
+          91.2568,
+          86.7403,
+          94.3723,
+          95.0
+        ],
+        "min_pct": 86.7403,
+        "max_pct": 95.0,
+        "range_pp": 8.2597
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "lif",
+        "correct_pct_per_run": [
+          0.0,
+          0.0,
+          1.5666,
+          0.4854,
+          0.4988
+        ],
+        "min_pct": 0.0,
+        "max_pct": 1.5666,
+        "range_pp": 1.5666
+      },
+      {
+        "translator": "FT-HPC-Coder-6.7B",
+        "application": "winograd",
+        "correct_pct_per_run": [
+          43.8735,
+          43.7262,
+          55.0388,
+          71.8876,
+          61.4379
+        ],
+        "min_pct": 43.7262,
+        "max_pct": 71.8876,
+        "range_pp": 28.1613
+      }
+    ]
+  }
+}

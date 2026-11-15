@@ -1,0 +1,35 @@
+\begin{figure*}[!t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{lr|c|c|cr|c|c|cr|c|c|cr}
+\hline
+\multirow{3}{*}{\textbf{Application}} & \multirow{3}{*}{\textbf{Programs}} & \multicolumn{4}{c|}{\textbf{FT-CodeLlama-13B}} & \multicolumn{4}{c|}{\textbf{FT-StarCoderBase-7B}} & \multicolumn{4}{c}{\textbf{FT-HPC-Coder-6.7B}} \\
+\cline{3-14}
+& & \multirow{2}{*}{\textbf{Comp. (\%)}} & \multirow{2}{*}{\textbf{Corr. (\%)}} & \multicolumn{2}{c|}{\textbf{Violation}} & \multirow{2}{*}{\textbf{Comp. (\%)}} & \multirow{2}{*}{\textbf{Corr. (\%)}} & \multicolumn{2}{c|}{\textbf{Violation}} & \multirow{2}{*}{\textbf{Comp. (\%)}} & \multirow{2}{*}{\textbf{Corr. (\%)}} & \multicolumn{2}{c}{\textbf{Violation}} \\
+\cline{5-6}\cline{9-10}\cline{13-14}
+& & & & \textbf{\boldmath$T$(Orig.)} & \textbf{\boldmath$T$(Var.)} & & & \textbf{\boldmath$T$(Orig.)} & \textbf{\boldmath$T$(Var.)} & & & \textbf{\boldmath$T$(Orig.)} & \textbf{\boldmath$T$(Var.)} \\
+\hline
+ace & 1{,}535 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}99\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \textsf{C} & -- \\
+aidw & 516 & \phantom{0}99\,$\pm$\,\phantom{0}1 & \phantom{0}66\,$\pm$\,33 & \textsf{G} & 173 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}99\,$\pm$\,\phantom{0}1 & \phantom{0}92\,$\pm$\,11 & \textsf{G} & 44 \\
+assert & 872 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}4\,$\pm$\,\phantom{0}4 & \phantom{00}4\,$\pm$\,\phantom{0}4 & -- & -- & \phantom{0}42\,$\pm$\,30 & \phantom{0}42\,$\pm$\,30 & \textsf{G} & 509 \\
+attention & 347 & \phantom{0}11\,$\pm$\,20 & \phantom{0}11\,$\pm$\,20 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}63\,$\pm$\,37 & \phantom{0}63\,$\pm$\,37 & \textsf{G} & 122 \\
+background-subtract & 814 & \phantom{0}97\,$\pm$\,\phantom{0}4 & \phantom{0}54\,$\pm$\,27 & \textsf{C} & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}95\,$\pm$\,\phantom{0}5 & \phantom{0}30\,$\pm$\,29 & \textsf{C} & -- \\
+burger$^{*}$ & 1{,}141 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}98\,$\pm$\,\phantom{0}3 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \textsf{D} & -- \\
+channelSum & 478 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- \\
+cross & 336 & 100\,$\pm$\,\phantom{0}0 & 100\,$\pm$\,\phantom{0}0 & \textsf{G} & 0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}96\,$\pm$\,\phantom{0}3 & \phantom{0}96\,$\pm$\,\phantom{0}3 & \textsf{G} & 15 \\
+dense-embedding$^{*}$ & 941 & \phantom{0}98\,$\pm$\,\phantom{0}3 & \phantom{0}27\,$\pm$\,16 & \textsf{D} & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}99\,$\pm$\,\phantom{0}1 & \phantom{0}71\,$\pm$\,18 & \textsf{G} & 269 \\
+flip$^{*}$ & 1{,}139 & \phantom{0}99\,$\pm$\,\phantom{0}1 & \phantom{0}87\,$\pm$\,\phantom{0}3 & \textsf{G} & 145 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}10\,$\pm$\,\phantom{0}7 & \phantom{0}10\,$\pm$\,\phantom{0}7 & \textsf{G} & 1{,}022 \\
+glu & 1{,}002 & \phantom{0}90\,$\pm$\,\phantom{0}6 & \phantom{0}86\,$\pm$\,10 & \textsf{G} & 143 & \phantom{0}22\,$\pm$\,11 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \textsf{C} & -- & \phantom{0}93\,$\pm$\,\phantom{0}4 & \phantom{0}92\,$\pm$\,\phantom{0}3 & \textsf{G} & 76 \\
+ising & 995 & \phantom{0}97\,$\pm$\,\phantom{0}3 & \phantom{0}96\,$\pm$\,\phantom{0}4 & \textsf{G} & 45 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- \\
+lif$^{*}$ & 1{,}968 & 100\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \textsf{D} & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}81\,$\pm$\,20 & \phantom{00}1\,$\pm$\,\phantom{0}1 & \textsf{D} & -- \\
+nlll$^{*}$ & 1{,}081 & \phantom{0}63\,$\pm$\,19 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}38\,$\pm$\,17 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \textsf{C} & -- \\
+p4 & 182 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- \\
+winograd$^{*}$ & 1{,}172 & \phantom{0}94\,$\pm$\,\phantom{0}4 & \phantom{0}62\,$\pm$\,23 & \textsf{G} & 442 & \phantom{00}0\,$\pm$\,\phantom{0}0 & \phantom{00}0\,$\pm$\,\phantom{0}0 & -- & -- & \phantom{0}70\,$\pm$\,10 & \phantom{0}55\,$\pm$\,12 & \textsf{G} & 535 \\
+\hline
+\textbf{All} & 14{,}519 & 64.2 & 34.1 & 8/16 & 948 & \phantom{0}1.7 & \phantom{0}0.2 & 0/16 & -- & 66.4 & 27.6 & 10/16 & 2{,}592 \\
+\hline
+\end{tabular}
+\caption{RQ1: Results per application. \emph{Programs}: original program and unique variants over five mutation runs. \emph{Comp.} and \emph{Corr.}: percentage of translations that compile and that behave like the CUDA program on all inputs (mean\,$\pm$\,SD over runs). \emph{Violation}: $T$(\emph{Orig.}) is the outcome of the translation of the original CUDA program, which itself compiles and passes the manual test inputs in every application (-- does not compile, \textsf{C} fails a manual test input, \textsf{D} passes the manual test inputs but differs from the CUDA program on a generated input, \textsf{G} behaves like the CUDA program on every input); $T$(\emph{Var.}) is the number of metamorphic relation violations, the variants over the five runs translated incorrectly although the original is translated correctly (\textsf{G}). $^{*}$: a CUDA program of the application fails on some generated input. Last row: pooled percentages, original translations that pass the manual test inputs, and total violations.}
+\label{tab:rq1}
+\end{figure*}

@@ -1,0 +1,158 @@
+{
+  "table": {
+    "FT-CodeLlama-13B": {
+      "originals_compiled": 9,
+      "conventional": 8,
+      "originals_both_inputs": 6,
+      "variants_compiled": 1863,
+      "source_transformations_only": 1713,
+      "kaizen": 989,
+      "variants_per_run": 2900
+    },
+    "FT-StarCoderBase-7B": {
+      "originals_compiled": 1,
+      "conventional": 0,
+      "originals_both_inputs": 0,
+      "variants_compiled": 51,
+      "source_transformations_only": 7,
+      "kaizen": 7,
+      "variants_per_run": 2900
+    },
+    "FT-HPC-Coder-6.7B": {
+      "originals_compiled": 13,
+      "conventional": 10,
+      "originals_both_inputs": 8,
+      "variants_compiled": 1924,
+      "source_transformations_only": 1461,
+      "kaizen": 798,
+      "variants_per_run": 2900
+    }
+  },
+  "consistency": {
+    "FT-CodeLlama-13B": {
+      "kaizen_ablation_table": 991,
+      "kaizen_rq1_data": 989.4,
+      "variants_compiled_ablation_table": 1863,
+      "variants_compiled_rq1_data": 1863.0,
+      "conventional_ablation_table": 8,
+      "conventional_rq1_data": 8
+    },
+    "FT-StarCoderBase-7B": {
+      "kaizen_ablation_table": 7,
+      "kaizen_rq1_data": 6.8,
+      "variants_compiled_ablation_table": 51,
+      "variants_compiled_rq1_data": 50.6,
+      "conventional_ablation_table": 0,
+      "conventional_rq1_data": 0
+    },
+    "FT-HPC-Coder-6.7B": {
+      "kaizen_ablation_table": 797,
+      "kaizen_rq1_data": 798.4,
+      "variants_compiled_ablation_table": 1924,
+      "variants_compiled_rq1_data": 1925.6,
+      "conventional_ablation_table": 11,
+      "conventional_rq1_data": 10
+    }
+  },
+  "application_level": {
+    "conventional_pairs": 18,
+    "exposed": 17,
+    "exposed_by_generated_inputs": [
+      "FT-CodeLlama-13B on dense-embedding",
+      "FT-CodeLlama-13B on lif",
+      "FT-HPC-Coder-6.7B on burger",
+      "FT-HPC-Coder-6.7B on lif"
+    ],
+    "exposed_only_by_source_transformations": [
+      "FT-CodeLlama-13B on aidw",
+      "FT-CodeLlama-13B on flip",
+      "FT-CodeLlama-13B on glu",
+      "FT-CodeLlama-13B on ising",
+      "FT-CodeLlama-13B on winograd",
+      "FT-HPC-Coder-6.7B on aidw",
+      "FT-HPC-Coder-6.7B on assert",
+      "FT-HPC-Coder-6.7B on attention",
+      "FT-HPC-Coder-6.7B on cross",
+      "FT-HPC-Coder-6.7B on dense-embedding",
+      "FT-HPC-Coder-6.7B on flip",
+      "FT-HPC-Coder-6.7B on glu",
+      "FT-HPC-Coder-6.7B on winograd"
+    ],
+    "not_exposed": [
+      "FT-CodeLlama-13B on cross"
+    ]
+  },
+  "translation_level": {
+    "FT-CodeLlama-13B": {
+      "pass_manual": 1713,
+      "fail_generated": 722,
+      "share": 0.4214827787507297
+    },
+    "FT-HPC-Coder-6.7B": {
+      "pass_manual": 1461,
+      "fail_generated": 664,
+      "share": 0.4544832306639288
+    },
+    "both": {
+      "pass_manual": 3174,
+      "fail_generated": 1386,
+      "share": 0.43667296786389415
+    }
+  },
+  "figure9": {
+    "FT-CodeLlama-13B": {
+      "full": {
+        "compilability": 64.22,
+        "correctness": 34.11
+      },
+      "kaizen_i": {
+        "compilability": 64.22,
+        "correctness": 59.05
+      },
+      "kaizen_ii": {
+        "compilability": 56.25,
+        "correctness": 37.5
+      },
+      "baseline": {
+        "compilability": 56.25,
+        "correctness": 50.0
+      }
+    },
+    "FT-StarCoderBase-7B": {
+      "full": {
+        "compilability": 1.75,
+        "correctness": 0.23
+      },
+      "kaizen_i": {
+        "compilability": 1.75,
+        "correctness": 0.24
+      },
+      "kaizen_ii": {
+        "compilability": 6.25,
+        "correctness": 0.0
+      },
+      "baseline": {
+        "compilability": 6.25,
+        "correctness": 0.0
+      }
+    },
+    "FT-HPC-Coder-6.7B": {
+      "full": {
+        "compilability": 66.4,
+        "correctness": 27.55
+      },
+      "kaizen_i": {
+        "compilability": 66.4,
+        "correctness": 50.38
+      },
+      "kaizen_ii": {
+        "compilability": 81.25,
+        "correctness": 50.0
+      },
+      "baseline": {
+        "compilability": 81.25,
+        "correctness": 62.5
+      }
+    }
+  }
+}

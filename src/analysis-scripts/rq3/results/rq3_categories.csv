@@ -1,0 +1,28 @@
+category,model_specific,translator,instances,share_of_translator_errors,rank_within_translator,affected_applications,n_affected_applications
+Undeclared identifier,0,FT-CodeLlama-13B,166,0.082,4,ace assert attention channelSum flip glu ising lif nlll winograd,10
+Undeclared identifier,0,FT-StarCoderBase-7B,2584,0.4019,2,ace aidw assert attention burger channelSum cross dense-embedding flip glu ising lif nlll winograd,14
+Undeclared identifier,0,FT-HPC-Coder-6.7B,833,0.4022,1,ace background-subtract burger channelSum cross dense-embedding flip glu ising lif nlll winograd,12
+Syntax error,0,FT-CodeLlama-13B,85,0.042,6,aidw dense-embedding flip glu ising nlll winograd,7
+Syntax error,0,FT-StarCoderBase-7B,2810,0.4371,1,ace aidw assert attention background-subtract burger channelSum cross dense-embedding flip glu ising lif nlll winograd,15
+Syntax error,0,FT-HPC-Coder-6.7B,227,0.1096,3,aidw background-subtract cross dense-embedding flip lif winograd,7
+Function signature mismatch,0,FT-CodeLlama-13B,1090,0.5383,1,ace assert background-subtract burger channelSum ising,6
+Function signature mismatch,0,FT-StarCoderBase-7B,725,0.1128,3,ace aidw assert channelSum flip glu,6
+Function signature mismatch,0,FT-HPC-Coder-6.7B,538,0.2598,2,ace assert burger channelSum flip ising lif,7
+Incorrect loop construct,1,FT-CodeLlama-13B,145,0.0716,5,ace assert attention glu ising lif,6
+Incorrect loop construct,1,FT-StarCoderBase-7B,79,0.0123,5,ace burger channelSum cross dense-embedding flip glu ising nlll,9
+Incorrect loop construct,1,FT-HPC-Coder-6.7B,213,0.1028,4,ace assert channelSum dense-embedding glu ising nlll,7
+Incorrect API/runtime name,0,FT-CodeLlama-13B,256,0.1264,2,assert channelSum ising nlll,4
+Incorrect API/runtime name,0,FT-StarCoderBase-7B,32,0.005,7,ace assert background-subtract channelSum flip glu winograd,7
+Incorrect API/runtime name,0,FT-HPC-Coder-6.7B,119,0.0575,5,assert channelSum nlll winograd,4
+Unsupported construct usage,1,FT-CodeLlama-13B,215,0.1062,3,ace channelSum dense-embedding nlll,4
+Unsupported construct usage,1,FT-StarCoderBase-7B,11,0.0017,8,ace assert channelSum flip nlll,5
+Unsupported construct usage,1,FT-HPC-Coder-6.7B,0,0.0,9,,0
+Invalid construct usage,1,FT-CodeLlama-13B,5,0.0025,9,channelSum glu nlll,3
+Invalid construct usage,1,FT-StarCoderBase-7B,142,0.0221,4,ace assert background-subtract burger channelSum dense-embedding flip glu ising lif nlll winograd,12
+Invalid construct usage,1,FT-HPC-Coder-6.7B,26,0.0126,8,assert background-subtract channelSum flip lif nlll,6
+Type mismatch,0,FT-CodeLlama-13B,42,0.0207,7,glu ising lif nlll winograd,5
+Type mismatch,0,FT-StarCoderBase-7B,36,0.0056,6,ace assert dense-embedding flip glu winograd,6
+Type mismatch,0,FT-HPC-Coder-6.7B,35,0.0169,7,cross dense-embedding glu nlll,4
+Invalid control flow,0,FT-CodeLlama-13B,21,0.0104,8,background-subtract flip glu ising winograd,5
+Invalid control flow,0,FT-StarCoderBase-7B,10,0.0016,9,background-subtract dense-embedding flip glu ising,5
+Invalid control flow,0,FT-HPC-Coder-6.7B,80,0.0386,6,background-subtract flip glu ising nlll,5
