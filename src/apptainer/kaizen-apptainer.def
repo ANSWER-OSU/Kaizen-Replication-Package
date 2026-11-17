@@ -1,0 +1,57 @@
+Bootstrap: docker
+From: nvidia/cuda:12.0.1-devel-ubuntu22.04
+
+%files
+    apptainer/requirements.txt /apptainer/requirements.txt
+    resources/AFLplusplus /apptainer/AFLplusplus
+
+%post
+    #!/bin/bash
+    # Set frontend to noninteractive to avoid prompts during install
+    export DEBIAN_FRONTEND=noninteractive
+
+    # Install all prerequisites
+    apt-get update && apt-get install -y \
+        wget \
+        gnupg \
+        ca-certificates \
+        cmake \
+        git \
+        make \
+        lsb-release \
+        software-properties-common \
+        python3 \
+        python3-pip \
+        gfortran
+
+    # Add the official LLVM APT repository for version 18
+    wget https://apt.llvm.org/llvm.sh
+    chmod +x llvm.sh
+    ./llvm.sh 18 all
+
+    # Install the development libraries for LLVM/Clang
+    apt-get install -y \
+        llvm-18-dev \
+        libclang-18-dev \
+        libomp-18-dev \
+        libc++-18-dev \
+        zlib1g-dev \
+        libzstd-dev \
+        libcurl4-openssl-dev
+
+    # --- Build and Install AFLplusplus from Source ---
+    cd /apptainer/AFLplusplus
+    
+    # Point the build script to the correct LLVM version
+    export LLVM_CONFIG=llvm-config-18
+    
+    # Build and install AFL++
+    make distrib
+    make install
+
+    # Install Python packages globally from requirements.txt
+    pip3 install --no-cache-dir -r /apptainer/requirements.txt
+
+%environment
+    # Set environment variables for the container
+    export DEBIAN_FRONTEND=noninteractive
