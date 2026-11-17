@@ -2,10 +2,12 @@
 #include "clang/AST/ASTContext.h"
 #include "clang/AST/RecursiveASTVisitor.h"
 #include "clang/AST/Expr.h"
+#include "clang/AST/ExprCXX.h"
 #include "clang/AST/Stmt.h"
 #include "llvm/Support/raw_ostream.h"
 #include <random>
 #include <algorithm>
+#include <set>
 
 using namespace clang;
 
@@ -35,6 +37,50 @@ public:
         return true;
     }
 };
+
+// Helper visitor to collect variable declarations referenced in a predicate expression
+class VariableCollector : public RecursiveASTVisitor<VariableCollector> {
+public:
+    std::set<const NamedDecl*> referencedVars;
+
+    bool VisitDeclRefExpr(DeclRefExpr* DRE) {
+        if (auto varDecl = dyn_cast<VarDecl>(DRE->getDecl())) {
+            referencedVars.insert(varDecl->getCanonicalDecl());
+        }
+        return true;
+    }
+
+    bool VisitMemberExpr(MemberExpr* ME) {
+        if (ME->getBase() && isa<CXXThisExpr>(ME->getBase()->IgnoreParenImpCasts())) {
+            if (auto fieldDecl = dyn_cast<FieldDecl>(ME->getMemberDecl())) {
+                referencedVars.insert(fieldDecl->getCanonicalDecl());
+            }
+        }
+        return true;
+    }
+};
+
+// Check whether any two predicates in the list reference the same variable
+static bool predicatesShareVariable(const std::vector<Expr*>& predicates) {
+    std::set<const NamedDecl*> seenVars;
+
+    for (Expr* predicate : predicates) {
+        if (!predicate) continue;
+
+        VariableCollector collector;
+        collector.TraverseStmt(predicate);
+
+        for (const NamedDecl* var : collector.referencedVars) {
+            if (!seenVars.insert(var).second) {
+                llvm::outs() << "Cannot reorder: predicates share variable '"
+                             << var->getNameAsString() << "'\n";
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
 
 void ReorderPredicatesMutation::apply(FunctionDecl* KernelDecl, Rewriter& Rewrite) {
     if (!KernelDecl || !KernelDecl->hasBody()) return;
@@ -144,9 +190,12 @@ bool ReorderPredicatesMutation::canReorderPredicates(const ConditionalInfo& info
         }
     }
     
-    // For && operations, reordering is generally safe due to short-circuiting behavior
-    // For || operations, reordering is also generally safe
-    // We allow both as the semantic change is usually minimal
+    // Check if any predicates share a variable (e.g., null/bounds guard before dereference/index)
+    if (predicatesShareVariable(info.predicates)) {
+        return false;
+    }
+
+    // For && and || operations with independent predicates, reordering is safe
     return true;
 }
 
